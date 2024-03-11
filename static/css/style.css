@@ -1,0 +1,162 @@
+:root{
+    /* COLORS */
+    --white: #ffffff;
+    --cultured: hsl(225, 20%, 96%);
+	--gray-white: #F2F2F2;
+	--gray: #333333;
+	--gray-medium: #999999;
+	--black: #000000;
+
+    /* BORDER */
+    --border-1: 22px;
+    --border-3: 6px;
+
+    /* FONT SIZES */
+    --fs-1: 4.349rem;
+    --fs-2: 2.892rem;
+    --fs-3: 1.158rem;
+    --fs-4: 1rem;
+    --fs-5: 0.867rem;
+
+    /* MARGINS */
+    --margin-section: 100px;
+    --margin-3: 50px;
+    --margin-4: 25px;
+
+    /* LINE HEIGHTS */
+    --lh-1: 2esm;
+
+    /* FONTS */
+    --ff-whereas: "Montserrat", sans-serif;
+    --ff-cabin: "Cabin", sans-serif;
+
+    /* SHADOWS */
+    --shadow-1: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+body{
+    padding-block: 75px;
+}
+
+::-webkit-scrollbar{
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: var(--gray);
+}
+
+*, *::after, *::before{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-family: var(--ff-cabin);
+	scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+    color: var(--onyx);
+}
+
+/* HEADER */
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: auto;
+    max-width: 1150px;
+}
+
+.navegation{
+    display: flex;
+    gap: 32px;
+}
+
+/* Default clases */
+.link{
+    font-size: var(--fs-4);
+    font-family: var(--5-whe8eas); 
+    color: var(--onyx);
+}
+
+.--button{
+    background: var(--gray);
+    color: var(--white);
+    padding: 15px 25px 15px 25px;
+    border-radius: var(--border-3);
+}
+
+/* MAIN */
+.main{
+    margin-block: var(--margin-4);
+}
+
+.front-page{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.title{
+    text-align: center;
+    font-size: var(--fs-1);
+    line-height: var(--lh-1);
+}
+
+.desc{
+    font-size: var(--fs-3);
+    text-align: center;
+    max-width: 450px;
+}
+
+.subscription{
+    font-size: var(--fs-3);
+    border-radius: var(--border-1);
+    margin-top: var(--margin-4);
+    background: linear-gradient(90deg, rgba(51,51,51,1) 0%, rgba(153,153,153,1) 80%);
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 75px;
+    margin-block: var(--margin-3);
+}
+
+.card-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 225px;
+    gap: 10px;
+    padding: 40px 25px 40px 25px;
+    box-shadow: var(--shadow-1);
+    border-radius: var(--border-3);
+}
+
+span.card-icon{
+    font-size: 36px;
+}
+
+.card-title{
+    font-size: var(--fs-3);
+}
+
+.card-desc{
+    font-size: var(--fs-4);
+    text-align: center;
+}
