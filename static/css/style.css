@@ -65,7 +65,7 @@ a{
 /* HEADER */
 
 .header{
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -90,6 +90,7 @@ a{
     font-size: var(--fs-4);
     font-family: var(--5-whe8eas); 
     color: var(--onyx);
+    width: fit-content;
 }
 
 .--button{
@@ -159,4 +160,46 @@ span.card-icon{
 .card-desc{
     font-size: var(--fs-4);
     text-align: center;
+}
+
+/* ABOUT US */
+.about-us{
+    display: flex;
+    justify-content: center;
+    margin-block: var(--margin-section);
+    max-width: 1250px;
+    margin-inline: auto;
+    gap: 200px;
+}
+
+.subtitle{
+    font-size: var(--fs-2);
+}
+
+.technologies{
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.tech-icons{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+}
+
+.logo-icon{
+    float: left;
+    font-size: 40px;
+    padding: 20px;
+    background-color: var(--gray);
+    color: var(--white);  
+    border-radius: var(--border-3);  
+}
+
+.description-us{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 425px;
 }
