@@ -34,10 +34,6 @@
     --shadow-1: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-body{
-    padding-block: 75px;
-}
-
 ::-webkit-scrollbar{
 	width: 10px;
 }
@@ -70,6 +66,7 @@ a{
     left: 0;
     width: 100%;
     background-color: var(--white);
+    z-index: 10;
 }
 
 .nav{
@@ -94,6 +91,7 @@ a{
 }
 
 .--button{
+    position: relative;
     background: var(--gray);
     color: var(--white);
     padding: 15px 25px 15px 25px;
@@ -102,7 +100,7 @@ a{
 
 /* MAIN */
 .main{
-    margin-block: var(--margin-4);
+    margin-block: var(--margin-3);
 }
 
 .front-page{
@@ -189,12 +187,33 @@ span.card-icon{
 }
 
 .logo-icon{
-    float: left;
+    position: relative;
     font-size: 40px;
     padding: 20px;
-    background-color: var(--gray);
     color: var(--white);  
-    border-radius: var(--border-3);  
+    border-radius: var(--border-3);
+    background-color: var(--gray);
+    cursor: pointer;
+}
+
+.logo-icon::before{
+    position: absolute;
+    content: "";
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gray-medium);
+    transition: .2s ease-in-out;  
+    z-index: -1;
+}
+
+.logo-icon:hover::before{
+    top: 0;
+}
+
+.logo-icon:hover{
+    color: var(--gray);
 }
 
 .description-us{
@@ -202,4 +221,13 @@ span.card-icon{
     flex-direction: column;
     gap: 25px;
     max-width: 425px;
+}
+
+.social-media{
+    display: flex;
+    gap: 20px;
+}
+
+.social-media_icon{
+    font-size: 26px;
 }
