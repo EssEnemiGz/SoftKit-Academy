@@ -252,3 +252,69 @@ span.card-icon{
     background-color: var(--gray);
     color: var(--white);
 }
+
+@media (max-width: 1155px){
+    .nav{
+        max-width: 755px;
+    }
+
+    .cards{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .technologies{
+        width: 525px;
+        margin-inline: auto;
+        gap: 35px;
+    }
+
+    .about-us{
+        flex-direction: column;
+    }
+
+    .about-us{
+        gap: 125px;
+    }
+
+    .teach-us{
+        margin-inline: auto;
+        align-items: baseline;
+    }
+}
+
+@media (max-width: 650px){
+    .nav{
+        display: none;
+        max-width: 555px;
+    }
+
+    .cards{
+        grid-template-columns: 1fr;
+    }
+
+    .technologies{
+        width: 325px;
+        margin-inline: auto;
+        gap: 25px;
+    }
+
+    .about-us, .teach-us{
+        flex-direction: column;
+    }
+
+    .about-us{
+        gap: 125px;
+    }
+
+    .teach-us{
+        margin-inline: auto;
+        align-items: baseline;
+        max-width: 325px;
+        gap: 20px;
+    }
+
+    .social-media{
+        flex-direction: row;
+    }
+}
+
