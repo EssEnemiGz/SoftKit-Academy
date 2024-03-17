@@ -17,6 +17,7 @@
     --fs-3: 1.158rem;
     --fs-4: 1rem;
     --fs-5: 0.867rem;
+    --fs-major: 3.759rem;
 
     /* MARGINS */
     --margin-section: 100px;
@@ -57,6 +58,10 @@ a{
     color: var(--onyx);
 }
 
+ul{
+    list-style: none;
+}
+
 /* HEADER */
 
 .header{
@@ -90,7 +95,6 @@ a{
 .link{
     font-size: var(--fs-4);
     color: var(--onyx);
-    width: fit-content;
 }
 
 .--button{
@@ -99,6 +103,12 @@ a{
     color: var(--white);
     padding: 15px 25px 15px 25px;
     border-radius: var(--border-3);
+    width: fit-content;
+}
+
+.--button-full-size{
+    text-align: center;
+    width: 100%;
 }
 
 /* MAIN */
@@ -167,7 +177,7 @@ span.card-icon{
 .about-us{
     display: flex;
     justify-content: center;
-    margin-block: var(--margin-section);
+    padding-block: var(--margin-section);
     max-width: 1250px;
     margin-inline: auto;
     gap: 200px;
@@ -253,6 +263,46 @@ span.card-icon{
     color: var(--white);
 }
 
+/* PRICING */
+.pricing{
+    padding-block: var(--margin-section);
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.pricing-card{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-block: 50px;
+    padding-inline: 25px;
+    gap: 25px;
+    box-shadow: var(--shadow-1);
+    border-radius: var(--border-3);
+    min-width: 350px;
+    max-width: fit-content;
+}
+
+.pricing-title{
+    font-size: var(--fs-major);
+    color: var(--gray-medium);
+}
+
+.pricing-list{
+    display: grid;
+    place-items: baseline;
+    max-width: 250px;
+    gap: 10px;
+}
+
+.pricing-list > li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 @media (max-width: 1155px){
     .nav{
         max-width: 755px;
@@ -280,9 +330,20 @@ span.card-icon{
         margin-inline: auto;
         align-items: baseline;
     }
+
+    .pricing{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-inline: auto;
+        gap: 35px;
+    }
+
+    .pricing-card{
+        margin-inline: auto;
+    }
 }
 
-@media (max-width: 650px){
+@media (max-width: 786px){
     .nav{
         display: none;
         max-width: 555px;
@@ -315,6 +376,16 @@ span.card-icon{
 
     .social-media{
         flex-direction: row;
+    }
+
+    .pricing{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .pricing-card{
+        margin-inline: auto;
     }
 }
 
