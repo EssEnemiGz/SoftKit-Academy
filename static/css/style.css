@@ -32,6 +32,7 @@
 
     /* SHADOWS */
     --shadow-1: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    --shadow-2: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar{
@@ -71,6 +72,7 @@ ul{
     width: 100%;
     background-color: var(--white);
     z-index: 10;
+    box-shadow: var(--shadow-2);
 }
 
 .nav{
