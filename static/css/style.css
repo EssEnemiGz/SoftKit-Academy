@@ -378,10 +378,16 @@ span.check-icon{
     border-radius: var(--border-3);
 }
 
+.contact-section{
+    display: flex;
+    align-items: center;
+    gap: 75px;
+}
+
 .contact-info > ul{
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
     font-family: var(--ff-vietnam);
 }
 
@@ -557,6 +563,41 @@ span.contact-icon{
 
     .pricing-card{
         margin-inline: auto;
+    }
+
+    .footer{
+        padding: 62px 25px;
+        padding-block-end: 0;
+    }
+
+    .contact{
+        align-items: start;
+        gap: 15px;
+        padding: 32px;
+        flex-direction: column;
+    }
+
+    .contact-section{
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .footer-main{
+        grid-template-columns: 1fr;
+        padding: 12px;
+        padding-block: initial;
+        gap: 32px;
+        margin-inline: initial;
+    }
+
+    .footer-div{
+        max-width: initial;
+    }
+
+    .copyright{
+        flex-direction: column;
+        align-items: initial;
+        gap: 12px;
     }
 }
 
