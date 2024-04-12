@@ -571,6 +571,7 @@ span.contact-icon{
     }
 
     .contact{
+        margin-inline: initial;
         align-items: start;
         gap: 15px;
         padding: 32px;
