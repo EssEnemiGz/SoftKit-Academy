@@ -22,7 +22,7 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Conexion a base de datos
 db = supabase.create_client(database, api)
-auth_key = supabase.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
+auth_key = db.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
 if auth_key.session:
     token = auth_key.session.access_token
     headers = {
