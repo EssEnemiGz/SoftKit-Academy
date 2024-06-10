@@ -1,7 +1,7 @@
 # LIBRARYS
 from flask import *
 from dotenv import load_dotenv
-from supabase import *
+import supabase
 import os
 
 # Carga de variables de entorno del .env
