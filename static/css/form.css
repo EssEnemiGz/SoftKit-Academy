@@ -1,0 +1,238 @@
+:root{
+	--white: #FFF;
+	--onyx: hsl(207, 8%, 21%);;
+	--space-cadet: hsl(220, 41%, 20%);
+	--offblue: #547BFF;
+	--cultured: hsl(225, 20%, 96%);
+	--gray-white: #F2F2F2;
+	--gray: #333333;
+	--gray-black: #CCCCCC;
+	--gray-medium: #999999;
+	--black: #032034;
+  	
+	/**
+	 * Pastel colors
+	*/
+
+	--pastel-red: #ff6961;
+	--pastel-green: #77dd77;
+	--pastel-blue: #84b6f4;
+
+	/**
+	 * Layers
+	*/
+	--layer-1: rgba(0, 0, 0, 0.6);
+	--layer-2: rgba(0, 0, 0, 0.8);
+
+	/** 
+	 * Shadow
+	*/
+
+	--shadow-1: 2px 2px 5px 1px lightgrey;
+	--shadow-2: 5px 5px 5px 2px var(--gray-medium);
+	--shadow-3: 1px 1px 3px lightgray;
+
+	/** 
+	 * Margins and paddings
+	*/
+
+	--margin-gigant: 150px;
+	--margin-1: 100px;
+	--margin-2: 50px;
+	--margin-3: 15px;
+	--margin-4: 10px;
+
+	/* 
+	 * Borders
+	*/
+
+	--border-circle: 50%;
+	--border-1: 1px solid rgba(0, 0, 0, 0.1);
+	--border-2: 30px;
+
+	/**
+   	* typography
+	*/
+	
+	--fs-1: 2.30rem;
+	--fs-2: 2.0rem;
+	--fs-3: 1.75rem;
+	--fs-4: 1.40rem;
+	--fs-5: 1.15rem;
+	--fs-6: 1rem;
+	--fs-7: 0.83rem;
+
+	--fw-500: 500;
+	--fw-600: 600;
+
+	--ff-vietnam: "Be Vietnam Pro", sans-serif;
+	--ff-consola: Consola, Courier New, monospace;
+}
+
+/* REUSED CSS */
+
+::-webkit-scrollbar{
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: var(--gray);
+}
+
+*, *::after, *::before{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-family: var(--ff-vietnam);
+	scroll-behavior: smooth;
+}
+
+body{
+	padding-block-start: 30px;
+	background-color: var(--cultured);
+}
+
+a, img, span{
+	display: block;
+}
+
+li{
+	list-style: none;
+}
+
+a{ 
+	text-decoration: none;
+	color: #032034;
+}
+
+.container{
+	padding-inline: 15px;
+}
+
+span.icon-box{
+	font-size: 5px;
+}
+
+/* MAIN */
+
+.main{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	min-height: 515px;
+}
+
+.container, .form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.form{
+	box-shadow: var(--shadow-1);
+	background-color: white;
+	border: var(--border-1);
+	padding: 35px 55px 35px 55px;
+}
+
+.form > *{
+	margin-bottom: var(--margin-3);
+}
+
+.form__title{
+	text-align: center;
+	/*font-family: var(--ff-consola);*/
+	font-size: var(--fs-2);
+}
+
+.input-icon{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon{
+	font-size: var(--fs-4);
+}
+
+.info-input {
+	border: 0;
+	border-radius: 0;
+  	border-bottom: 1px solid var(--gray-black);
+  	padding: 0.850rem;
+  	color: #032034;
+	transition: .2s ease-in-out all;
+}
+
+.info-input:placeholder {
+  	color: #032034;
+}
+
+.form input:focus{
+	outline: none;
+	border-bottom: 1px solid var(--gray);
+}
+
+.submit{
+	font-size: var(--fs-6);
+	font-weight: var(--fw-600);
+	padding: 10px 35px 10px 35px;
+
+	border: none;
+	border: 1px solid var(--black);
+	border-radius: var(--border-2);
+	background-color: var(--white);
+	color: var(--black);
+	transition: .2s ease-in-out all;
+}
+
+.submit:hover{
+	background-color: var(--black);
+	color: var(--white);
+	cursor: pointer;
+}
+
+.question{
+	text-decoration: underline;
+	margin-block: var(--margin-3);
+	font-size: var(--fs-7);
+}
+
+.question:hover{
+	cursor: pointer;
+}
+
+.options{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: var(--margin-3);
+	width: 250px;
+}
+
+.forget{
+	font-size: var(--fs-7);
+	width: 100px;
+}
+
+.forget:hover:not(.submit){
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.register{
+	display: none;
+}
+
+.login{
+	display: none;
+}
+
+.show{
+	display: flex;
+}
