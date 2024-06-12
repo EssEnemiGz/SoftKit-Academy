@@ -6,12 +6,13 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
     const main_table = document.getElementById('table');
     let actual_week;
-    for (let j = 1; j <= data.length; j++){
+    for (let j = 1; j < data.length; j++){
         const actual = data[j];
+        console.log(j, actual)
         if (actual_week !== actual.week){ console.log("Cambio de semana")}
 
         const notes = document.createElement('div');
-        notes.classList.add('--columns-list');
+        notes.classList.add('--products-list');
 
         const point = document.createElement('p');
         point.innerText = actual.point
