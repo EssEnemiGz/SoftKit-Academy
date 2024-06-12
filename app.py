@@ -41,7 +41,7 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabse = db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase = db, db, db, db
 login.server_url, register.server_url = server_url, server_url
 
 app.register_blueprint(auth.auth_bp)

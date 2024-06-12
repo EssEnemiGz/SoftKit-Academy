@@ -5,8 +5,8 @@ Microservicio de renderizacion general
 from flask import *
 import microservices.common.db_interpreter as interpreter
 
-supabse = None
-render_bp = Blueprint(__name__, 'render_bp')
+supabase = None
+render_bp = Blueprint('render_bp', __name__)
 
 @render_bp.route('/dashboard/califications', methods=["GET"])
 def califications():
