@@ -6,20 +6,18 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
     const main_table = document.getElementById('table');
     const column = document.getElementById('columns');
-    let actual_week, actual_row;
-    actual_row = document.createElement('div');
-    actual_row.classList.add('--products-list');
+    const default_row = document.getElementById('default-row')
+    let actual_week;
     for (let j = 1; j < data.length; j++){
         const actual = data[j];
-        console.log(j, actual)
-
         if (actual_week === undefined){
             actual_week = actual.week;
         }
 
         if (actual_week !== actual.week){ 
             actual_week = actual.week;
-            main_table.appendChild(actual_row)
+            main_table.appendChild(default_row
+        )
             console.log("Cambio de semana")
         }
 
@@ -29,7 +27,9 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
         const point = document.createElement('p');
         point.innerText = actual.point
-        actual_row.appendChild(point)
+        default_row
+.appendChild(point)
     }
-    main_table.appendChild(actual_row)
+    main_table.appendChild(default_row
+)
 })
