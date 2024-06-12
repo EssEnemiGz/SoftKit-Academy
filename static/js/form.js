@@ -57,7 +57,7 @@ async function send(data, option){
 };
 
 function register(){
-	let username, password, email, confirmation, id_centro;
+	let username, password, email, confirmation, code;
 	username = document.querySelector(".register .username").value 
 	password = document.querySelector(".register .password").value 
 	confirmation = document.querySelector(".register .confirm").value
@@ -83,7 +83,7 @@ function register(){
 }
 
 function login(){
-	let username, password, email, id_centro;
+	let username, password, email;
 	username = document.querySelector(".login .username").value 
 	password = document.querySelector(".login .password").value 
  
