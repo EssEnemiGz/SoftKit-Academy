@@ -29,7 +29,7 @@ if auth_key.session:
         "Authorization":f"Bearer {token}",
         "apikey":api
     }
-    print(db.table('califications').select('*').execute(headers=headers).data)
+    print(auth_key.table)
 else:
     print(f"Error de auth. {auth_key.error}")
 
