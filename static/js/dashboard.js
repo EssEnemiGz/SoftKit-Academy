@@ -6,30 +6,29 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
     const main_table = document.getElementById('table');
     const column = document.getElementById('columns');
-    let actual_week;
+    let actual_week, actual_row;
+    actual_row = document.createElement('div');
+    actual_row.classList.add('--products-list');
     for (let j = 1; j < data.length; j++){
         const actual = data[j];
         console.log(j, actual)
-        if (actual_week !== actual.week){ 
-            actual_week = actual.week;
-            console.log("Cambio de semana")
-        }
 
         if (actual_week === undefined){
             actual_week = actual.week;
+        }
+
+        if (actual_week !== actual.week){ 
+            actual_week = actual.week;
+            main_table.appendChild(notes)
+            console.log("Cambio de semana")
         }
 
         const extra_column = document.createElement('h3')
         extra_column.innerText = actual.task;
         column.appendChild(extra_column)
 
-        const notes = document.createElement('div');
-        notes.classList.add('--products-list');
-
         const point = document.createElement('p');
         point.innerText = actual.point
-        notes.appendChild(point)
-
-        main_table.appendChild(notes)
+        actual_row.appendChild(point)
     }
 })
