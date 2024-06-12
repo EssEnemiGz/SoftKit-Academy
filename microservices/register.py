@@ -70,5 +70,6 @@ def register():
 
         response = make_response( jsonify( {'redirect':'/dashboard'} ) )
         response.status_code = 200
-        session.permanent = True
+        session['id'] =  info.get('id')
+        session['username'] = username
         return response

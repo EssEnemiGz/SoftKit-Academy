@@ -17,5 +17,6 @@ def califications():
 
     if result.status_code == 500: return result.flask_response()
     result = result.output_data()
+    print(result, user_id)
 
     return result

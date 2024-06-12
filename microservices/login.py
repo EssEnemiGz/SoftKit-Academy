@@ -45,4 +45,5 @@ def login():
         response = make_response( jsonify( {'redirect':'/dashboard'} ) )
         response.status_code = 200
         session['id'] =  info.get('id')
+        session['username'] = username
         return response
