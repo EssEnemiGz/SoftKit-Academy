@@ -60,8 +60,8 @@ def dashboard():
     if len(session):
         return render_template("dashboard.html")
     else:
-        redirect( '/form' )
-
+        return redirect( '/form' )
+    
 @app.route("/form", methods=["GET"])
 def form():
     return render_template("form.html")

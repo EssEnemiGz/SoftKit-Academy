@@ -62,7 +62,6 @@ function register(){
 	password = document.querySelector(".register .password").value 
 	confirmation = document.querySelector(".register .confirm").value
 	email = document.querySelector(".register .email").value
-	id_centro = document.querySelector(".register .centro-list").value
 	code = document.querySelector(".register .code").value
  
 	let json = {
@@ -70,7 +69,6 @@ function register(){
 		'password':password,
 		'confirm':confirmation,
 		'email':email,	
-		'id_centro':id_centro,
 		'code':code
 	}
 
@@ -88,13 +86,11 @@ function login(){
 	let username, password, email, id_centro;
 	username = document.querySelector(".login .username").value 
 	password = document.querySelector(".login .password").value 
-	id_centro = document.querySelector(".login .centro-list").value
  
 	let json ={
 		'username':username,
 		'password':password,
 		'email':email,
-		'id_centro':id_centro
 	}
 
 	send(json, LOGIN_OPTION, username);
