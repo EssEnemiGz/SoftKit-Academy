@@ -14,7 +14,7 @@ admin_passw = os.getenv("PASSW")
 
 # Configuracion de la aplicacion web
 app = Flask(__name__)
-if secret_key == None: secret_key = "ewaiourio32i3ujwlelk"
+if secret_key == None: secret_key = "ewkwerkajeklewropewpoiewrop309-490i3ujwlelk"
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
@@ -29,6 +29,7 @@ if auth_key.session:
         "Authorization":f"Bearer {token}",
         "apikey":api
     }
+    print(db.table('califications').select('*').execute(headers=headers).data)
 else:
     print(f"Error de auth. {auth_key.error}")
 
