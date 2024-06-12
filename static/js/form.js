@@ -63,13 +63,15 @@ function register(){
 	confirmation = document.querySelector(".register .confirm").value
 	email = document.querySelector(".register .email").value
 	id_centro = document.querySelector(".register .centro-list").value
+	code = document.querySelector(".register .code").value
  
 	let json = {
 		'username':username,
 		'password':password,
 		'confirm':confirmation,
 		'email':email,	
-		'id_centro':id_centro
+		'id_centro':id_centro,
+		'code':code
 	}
 
 	if ( username.length < 1  &&  password.length < 1 ){ // CREATE A ERROR MENSAJE

@@ -1,4 +1,13 @@
+# MICROSERVICES
+import microservices.auth as auth
+import microservices.existence as exist
+import microservices.hash as hash
+import microservices.login as login
+import microservices.register as register
+import microservices.render as render
+
 # LIBRARYS
+from datetime import timedelta
 from flask import *
 from dotenv import load_dotenv
 import supabase
@@ -11,6 +20,7 @@ database = os.getenv("SUPABASE_URL")
 secret_key = os.getenv("SECRET_KEY")
 admin_email = os.getenv("EMAIL")
 admin_passw = os.getenv("PASSW")
+server_url = os.getenv("SERVER")
 
 # Configuracion de la aplicacion web
 app = Flask(__name__)
@@ -19,18 +29,27 @@ app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 
 # Conexion a base de datos
 db = supabase.create_client(database, api)
 auth_key = db.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
 if auth_key.session:
     token = auth_key.session.access_token
-    headers = {
-        "Authorization":f"Bearer {token}",
-        "apikey":api
-    }
+    pass
 else:
     print(f"Error de auth. {auth_key.error}")
+
+# BLUEPRINTS
+auth.supabase, exist.supabase, register.supabase, render.supabse = db, db, db, db
+login.server_url, register.server_url = server_url, server_url
+
+app.register_blueprint(auth.auth_bp)
+app.register_blueprint(exist.existence_bp)
+app.register_blueprint(hash.hash_bp)
+app.register_blueprint(login.login_bp)
+app.register_blueprint(register.register_bp)
+app.register_blueprint(render.render_bp)
 
 @app.route("/", methods=["GET"])
 def main():
@@ -38,7 +57,10 @@ def main():
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
-    return render_template("dashboard.html")
+    if len(session):
+        return render_template("dashboard.html")
+    else:
+        redirect( '/form' )
 
 @app.route("/form", methods=["GET"])
 def form():
