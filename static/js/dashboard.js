@@ -19,7 +19,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
         if (actual_week !== actual.week){ 
             actual_week = actual.week;
-            main_table.appendChild(notes)
+            main_table.appendChild(actual_row)
             console.log("Cambio de semana")
         }
 
@@ -31,5 +31,5 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
         point.innerText = actual.point
         actual_row.appendChild(point)
     }
-    main_table.appendChild(notes)
+    main_table.appendChild(actual_row)
 })
