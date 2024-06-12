@@ -31,4 +31,5 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
         point.innerText = actual.point
         actual_row.appendChild(point)
     }
+    main_table.appendChild(notes)
 })
