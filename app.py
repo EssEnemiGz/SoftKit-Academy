@@ -29,13 +29,20 @@ if auth_key.session:
         "Authorization":f"Bearer {token}",
         "apikey":api
     }
-    print(auth_key.user.table)
 else:
     print(f"Error de auth. {auth_key.error}")
 
 @app.route("/", methods=["GET"])
 def main():
     return render_template("index.html")
+
+@app.route("/dashboard", methods=["GET"])
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.route("/form", methods=["GET"])
+def form():
+    return render_template("form.html")
 
 if __name__=="__main__":
     app.run(debug=True)
