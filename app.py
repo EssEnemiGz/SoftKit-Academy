@@ -29,7 +29,7 @@ if auth_key.session:
         "Authorization":f"Bearer {token}",
         "apikey":api
     }
-    print(auth_key.table)
+    print(auth_key.user.table)
 else:
     print(f"Error de auth. {auth_key.error}")
 
