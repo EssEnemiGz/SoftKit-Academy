@@ -61,13 +61,13 @@
                                 more_vert
                             </span>
                             <div class="--extended-menu --invisible">
-                                <span class="--clickable"><span class="material-symbols-outlined --icon-box --trending-up">trending_up</span>Mejor puntaje</span>
-                                <span class="--clickable"><span class="material-symbols-outlined --icon-box --trending-down">trending_down</span>Peor puntaje</span>
+                                <span class="--clickable" onclick="trending('up')"><span class="material-symbols-outlined --icon-box --trending-up">trending_up</span>Mejor puntaje</span>
+                                <span class="--clickable" onclick="trending('down')"><span class="material-symbols-outlined --icon-box --trending-down">trending_down</span>Peor puntaje</span>
                             </div>
                         </div>
                     </div>
                     <h2 class="--title --no-stroke" id="best-score"></h2>
-                    <p class="--description-transparent">Tu mejor puntaje en una tarea</p>
+                    <p class="--description-transparent" id="best-score-desc">Tu mejor puntaje en una tarea</p>
                 </div>
                 <div class="--card">
                     <div class="--header-more">

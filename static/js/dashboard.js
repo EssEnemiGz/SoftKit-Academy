@@ -1,4 +1,8 @@
 const temp = [];
+let best_score = -1;
+let min_score = 11;
+const promedio_list = []
+const minimo_list = []
 
 fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/califications",
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "cors", credentials: "same-origin" } })
@@ -46,9 +50,6 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
         }
 
         let actual_week, row;
-        let best_score = -1;
-        const promedio_list = []
-        const minimo_list = []
         for (let i = 1; i < data.length; i++) {
             const actual = data[i];
             if (actual_week === undefined || actual_week !== actual.week) {
@@ -82,6 +83,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
             table.appendChild(row)
 
             if (best_score < point) best_score = point;
+            if (min_score > point) min_score = point;
             minimo_list.push(point);
             promedio_list.push(point);
         }
@@ -94,3 +96,14 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
         table.appendChild(row);
     })
+
+const trending = (action) => {
+    if (action === "down"){
+        document.getElementById('best-score').innerText = min_score;
+        document.getElementById('best-score-desc').innerText = "Tu peor puntaje en una tarea";
+        return 0;
+    }
+
+    document.getElementById('best-score').innerText = best_score;
+    document.getElementById('best-score-desc').innerText = "Tu mejor puntaje en una tarea";
+}
