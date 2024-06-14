@@ -1,7 +1,8 @@
+const temp = [];
+
 fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/califications", 
 {headers:{"Content-Type":"application/json", "Accept":"application/json", mode:"cors", credentials:"same-origin"}})
 .then(response => response.json()).then(data => {
-    console.log(data)
     document.getElementById('username').innerText = data[0];
 
     const table = document.getElementById('table');
@@ -27,14 +28,18 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
     }
 
     let actual_week, row;
-    const temp = [];
     for (let i = 1; i < data.length; i++){
         const actual = data[i];
         if (actual_week === undefined || actual_week !== actual.week){
             actual_week = actual.week;
             const column = createColumn(actual.week);
-            if (actual.week !== 1) column.style.display = 'none'; 
             row = createRow(actual.week);
+
+            if (actual.week !== 1) {
+                console.log(actual)
+                column.style.display = 'none';
+                row.style.display = 'none';
+            } 
             table.appendChild(column)
             temp.push([]);
         }
@@ -53,6 +58,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
         const info = createDefault('p', point);
         row.appendChild(info)
         temp[actual_week-1].push(actual.point)
+        table.appendChild(row)
     }
     table.appendChild(row)
 })
