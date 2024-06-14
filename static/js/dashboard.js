@@ -6,10 +6,16 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
 
     const table = document.getElementById('table');
 
+    createDefault = (element, content) => {
+        const result = document.createElement(element)
+        result.innerText = content;
+        return result
+    }
+
     createColumn = (week) => {
         const column = document.createElement("div")
         column.classList.add('--columns-list')
-        column.id = "column+"+week;
+        column.id = "column-"+week;
         return column
     }
 
@@ -29,7 +35,6 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
             actual_week = actual.week;
             const column = createColumn(actual.week);
             if (actual.week !== 1) column.style.display = 'none'; 
-            column.innerText = actual.task;
             table.appendChild(column)
             temp.push([]);
         }
@@ -38,11 +43,16 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
             table.appendChild(row)
         }
 
+        console.log(document.getElementById('column-1'))
+        const column = document.getElementById('column-'+actual.week);
+        column_text = createDefault('h3', actual.task);
+        column.appendChild(column_text)
+
         const point = document.createElement('p');
         point.innerText = actual.point
         row.appendChild(point)
 
         temp[actual_week-1].push(actual.point)
+        table.appendChild(row)
     }
-    table.appendChild(row)
 })
