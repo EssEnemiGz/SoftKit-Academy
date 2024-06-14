@@ -98,7 +98,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
     })
 
 const trending = (action, element) => {
-    element.classList.toggle('--visible');
+    element.classList.toggle('--invisible');
     if (action === "down"){
         document.getElementById('best-score').innerText = min_score;
         document.getElementById('best-score-desc').innerText = "Tu peor puntaje en una tarea";
