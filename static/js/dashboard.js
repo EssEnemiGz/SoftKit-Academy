@@ -4,32 +4,45 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
     console.log(data)
     document.getElementById('username').innerText = data[0];
 
-    const main_table = document.getElementById('table');
-    const column = document.getElementById('columns');
-    const default_row = document.getElementById('default-row')
+    const table = document.getElementById('table');
+
+    createColumn = (week) => {
+        const column = docuemnt.createElement("div")
+        column.classList.add('--columns-list')
+        column.id = "column+"+week;
+        return column
+    }
+
+    createRow = (week) => {
+        const row = document.createElement('div')
+        row.classList.add('--product-list')
+        row.id = "row-"+week;
+        return row
+    }
+
     let actual_week;
+    const temp = [];
     for (let j = 1; j < data.length; j++){
+        const row = createRow(actual.week);
         const actual = data[j];
-        if (actual_week === undefined){
+        if (actual_week === undefined || actual_week !== actual.week){
             actual_week = actual.week;
+            const column = createColumn(actual.week);
+            if (actual.week !== 1) column.style.display = 'none'; 
+            column.innerText = actual.task;
+            table.appendChild(column)
+            temp.push([]);
         }
 
         if (actual_week !== actual.week){ 
-            actual_week = actual.week;
-            main_table.appendChild(default_row
-        )
-            console.log("Cambio de semana")
+            table.appendChild(row)
         }
-
-        const extra_column = document.createElement('h3')
-        extra_column.innerText = actual.task;
-        column.appendChild(extra_column)
 
         const point = document.createElement('p');
         point.innerText = actual.point
-        default_row
-.appendChild(point)
+        row.appendChild(point)
+
+        temp[actual_week-1].push(actual.point)
     }
-    main_table.appendChild(default_row
-)
+    table.appendChild(row)
 })
