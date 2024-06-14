@@ -23,8 +23,8 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
     let actual_week;
     const temp = [];
     for (let j = 1; j < data.length; j++){
-        const row = createRow(actual.week);
         const actual = data[j];
+        const row = createRow(actual.week);
         if (actual_week === undefined || actual_week !== actual.week){
             actual_week = actual.week;
             const column = createColumn(actual.week);
