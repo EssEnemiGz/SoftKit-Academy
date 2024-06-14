@@ -26,33 +26,33 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
         return row
     }
 
-    let actual_week;
+    let actual_week, row;
     const temp = [];
-    for (let j = 1; j < data.length; j++){
-        const actual = data[j];
-        const row = createRow(actual.week);
+    for (let i = 1; i < data.length; i++){
+        const actual = data[i];
         if (actual_week === undefined || actual_week !== actual.week){
             actual_week = actual.week;
             const column = createColumn(actual.week);
             if (actual.week !== 1) column.style.display = 'none'; 
+            row = createRow(actual.week);
             table.appendChild(column)
             temp.push([]);
         }
 
         if (actual_week !== actual.week){ 
             table.appendChild(row)
+            row = createRow(actual.week);
+            table.appendChild(row)
         }
 
-        console.log(document.getElementById('column-1'))
         const column = document.getElementById('column-'+actual.week);
         column_text = createDefault('h3', actual.task);
         column.appendChild(column_text)
 
-        const point = document.createElement('p');
-        point.innerText = actual.point
-        row.appendChild(point)
-
+        const point = data[i].point;
+        const info = createDefault('p', point);
+        row.appendChild(info)
         temp[actual_week-1].push(actual.point)
-        table.appendChild(row)
     }
+    table.appendChild(row)
 })
