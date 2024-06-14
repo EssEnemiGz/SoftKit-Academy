@@ -339,7 +339,7 @@ span.--big-icon{
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    gap: var(--margin-3);
+    gap: var(--margin-5);
 }
 
 .--columns-list{
@@ -382,4 +382,20 @@ span.--big-icon{
 
 .--invisible{
     display: none;
+}
+
+@media (max-width: 600px){
+    .table{
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .--columns-list, .--product-list{
+        grid-template-columns: none;
+    }
+
+    .--three-cards-container{
+        grid-template-columns: 1fr;
+    }
 }

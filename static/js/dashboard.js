@@ -55,13 +55,9 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
             if (actual_week === undefined || actual_week !== actual.week) {
                 actual_week = actual.week;
                 const column = createColumn(actual.week);
+                column.appendChild(createDefault('h3', 'Semana '+actual.week))
                 row = createRow(actual.week);
-
-                if (actual.week !== 1) {
-                    console.log(actual)
-                    column.style.display = 'none';
-                    row.style.display = 'none';
-                }
+                row.appendChild(createDefault('p', actual.week))
                 table.appendChild(column)
                 temp.push([]);
             }
@@ -72,7 +68,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
                 table.appendChild(row)
             }
 
-            const column = document.getElementById('column-' + actual.week);
+            const column = document.getElementById('column-'+actual.week);
             column_text = createDefault('h3', actual.task);
             column.appendChild(column_text)
 
