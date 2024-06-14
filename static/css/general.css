@@ -385,7 +385,7 @@ span.--big-icon{
 }
 
 @media (max-width: 600px){
-    .table{
+    .--table{
         display: flex;
         align-items: center;
         gap: 25px;
