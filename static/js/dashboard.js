@@ -7,7 +7,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
     const table = document.getElementById('table');
 
     createColumn = (week) => {
-        const column = docuemnt.createElement("div")
+        const column = document.createElement("div")
         column.classList.add('--columns-list')
         column.id = "column+"+week;
         return column
