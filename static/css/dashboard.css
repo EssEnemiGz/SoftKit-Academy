@@ -13,3 +13,9 @@
 .big-container{
     height: 100%;
 }
+
+@media (max-width: 786px){
+    .content{
+        height: initial;
+    }
+}
