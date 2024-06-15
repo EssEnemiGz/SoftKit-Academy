@@ -619,6 +619,10 @@ span.contact-icon{
         gap: 25px;
     }
 
+    .tech-icons{
+        grid-template-columns: 1fr 1fr;
+    }
+
     .about-us, .teach-us{
         flex-direction: column;
     }
