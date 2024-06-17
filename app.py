@@ -73,13 +73,11 @@ def form():
     
 @app.route('/admin/insert', methods=["GET"])
 def insert_route():
-    if len(session):
-        redirect('/form?form=login')
-    
-    if session.get('username') != 'biscenp':
-        redirect('/')
-    
-    return render_template('insert.html')
+    if len(session): redirect('/form?form=login')
+
+    elif session.get('username') != 'biscenp': redirect('/')
+
+    else: return render_template('insert.html')
 
 if __name__=="__main__":
     app.run(debug=True)
