@@ -7,7 +7,7 @@ import microservices.common.db_interpreter as interpreter
 from flask import *
 import requests
 
-supabase, server_url = None, None
+supabase, server_url, server_code = None, None, None
 register_bp = Blueprint('register', __name__)
 CORS(register_bp)
 
@@ -25,7 +25,7 @@ def register():
             reject.status_code = 401
             return reject
         
-        if data.get('code') != 'justaeasypassword':
+        if data.get('code') != server_code:
             reject = make_response( "Codigo incorrecto" )
             reject.status_code = 401
             return reject

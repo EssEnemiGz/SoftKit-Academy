@@ -7,7 +7,7 @@ By: EssEnemiGz
 from flask import *
 import microservices.common.db_interpreter as interpreter
 
-supabase = None
+supabase, server_code = None, None
 insert_bp = Blueprint('insert_bp', __name__)
 
 @insert_bp.route("/insert/califications", methods=["POST"])
@@ -19,7 +19,7 @@ def califications_insert():
         err.status_code = 401
         return err
     
-    if info.get('server_code') != 'justaeasypassword':
+    if info.get('server_code') != server_code:
         err = make_response("Codigo incorrecto")
         err.status_code = 401
         return err

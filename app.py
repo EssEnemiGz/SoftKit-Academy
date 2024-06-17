@@ -22,6 +22,7 @@ secret_key = os.getenv("SECRET_KEY")
 admin_email = os.getenv("EMAIL")
 admin_passw = os.getenv("PASSW")
 server_url = os.getenv("SERVER")
+server_code = os.getenv('SERVER_CODE')
 
 # Configuracion de la aplicacion web
 app = Flask(__name__)
@@ -44,6 +45,7 @@ else:
 # BLUEPRINTS
 auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase = db, db, db, db, db
 login.server_url, register.server_url = server_url, server_url
+insert.server_code, register.server_code = server_code, server_code
 
 app.register_blueprint(auth.auth_bp)
 app.register_blueprint(exist.existence_bp)
@@ -75,7 +77,7 @@ def form():
 def insert_route():
     if not len(session): return redirect('/form?form=login')
 
-    elif session.get('username') != 'biscenp': return redirect('/')
+    elif session.get('username') != 'biscenp': return redirect('/dashboard')
 
     else: return render_template('insert.html')
 
