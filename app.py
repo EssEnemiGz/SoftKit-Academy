@@ -76,7 +76,7 @@ def insert_route():
     if not len(session):
         redirect('/form?form=login')
     
-    if session.username != 'biscenp':
+    if session.get('username') != 'biscenp':
         redirect('/')
     
     return render_template('insert.html')
