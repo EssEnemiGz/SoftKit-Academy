@@ -13,8 +13,8 @@ const form = params.get('form');
 
 // Displays
 
-const registerForm = document.querySelector('.register');
-const loginForm = document.querySelector('.login');
+const registerForm = document.querySelector('.register-general');
+const loginForm = document.querySelector('.login-general');
 
 function change(){
 	registerForm.classList.toggle('show');

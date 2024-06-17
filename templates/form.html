@@ -18,60 +18,62 @@
 	<main class="main">
 		<div class="container">
 			<!-- REGISTER -->
-			<form class="form register show">
-				<h1 class="form__title">Register</h1>
-				<label for="user" class="input-icon">
-					<ion-icon name="person-outline" class="icon"></ion-icon>
-					<input type="text" placeholder="Insert your username" name="username" class="username info-input">
-				</label>
-
-				<label for="passw" class="input-icon">
-					<ion-icon name="lock-closed-outline" class="icon"></ion-icon>
-					<input type="password" placeholder="Insert your password" name="password" class="password info-input">
-				</label>
-
-				<label for="confirm" class="input-icon">
-				<ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
-					<input type="password" placeholder="Confirm your password" name="confirm" class="confirm info-input">
-				</label>
-					
-				<label for="mail" class="input-icon">
-					<ion-icon name="at-outline" class="icon"></ion-icon>
-					<input type="email" placeholder="Insert your mail" name="email" class="email info-input">
-				</label>
-
-				<label for="confirm" class="input-icon">
-					<ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
-						<input type="password" placeholder="SERVER CODE" name="code" class="code info-input">
+			<div class="general-container register-general show">
+				<img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="" class="logo" width="425" height="525">
+				<form class="form register">
+					<h1 class="form__title">Register</h1>
+					<label for="user" class="input-icon">
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						<input type="text" placeholder="Insert your username" name="username" class="username info-input">
 					</label>
-				<span class="question" onclick="change()">Do you have an account?</span>
-				<button type="button" class="submit" onclick="register()">Send</button>
-			</form>
+	
+					<label for="passw" class="input-icon">
+						<ion-icon name="lock-closed-outline" class="icon"></ion-icon>
+						<input type="password" placeholder="Insert your password" name="password" class="password info-input">
+					</label>
+	
+					<label for="confirm" class="input-icon">
+					<ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
+						<input type="password" placeholder="Confirm your password" name="confirm" class="confirm info-input">
+					</label>
+						
+					<label for="mail" class="input-icon">
+						<ion-icon name="at-outline" class="icon"></ion-icon>
+						<input type="email" placeholder="Insert your mail" name="email" class="email info-input">
+					</label>
+	
+					<label for="confirm" class="input-icon">
+						<ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
+							<input type="password" placeholder="SERVER CODE" name="code" class="code info-input">
+						</label>
+					<span class="question" onclick="change()">Do you have an account?</span>
+					<button type="button" class="submit" onclick="register()">Send</button>
+				</form>
+			</div>
 
 			<!-- LOGIN -->
-			<form class="form login">
-				<h1 class="form__title">Login</h1>
-				<label for="user" class="input-icon">
-					<ion-icon name="person-outline" class="icon"></ion-icon>
-					<input type="text" placeholder="Insert your username" name="username" class="username info-input">
-				</label>
-
-				<label for="passw" class="input-icon">
-					<ion-icon name="lock-closed-outline" class="icon"></ion-icon>
-					<input type="password" placeholder="Insert your password" name="password" class="password info-input">
-				</label>
-					
-				<label for="mail" class="input-icon">
-					<ion-icon name="at-outline" class="icon"></ion-icon>
-					<input type="email" placeholder="Insert your mail" name="email" class="email info-input">
-				</label>
-				<span class="question" onclick="change()">Don't have an account?</span>
-				<div class="options">
-					<a class="forget" href="#">Forgot your password?</a>
+			<div class="general-container login-general">
+				<img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="" class="logo" width="425" height="525">
+				<form class="form login">
+					<h1 class="form__title">Login</h1>
+					<label for="user" class="input-icon">
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						<input type="text" placeholder="Insert your username" name="username" class="username info-input">
+					</label>
+	
+					<label for="passw" class="input-icon">
+						<ion-icon name="lock-closed-outline" class="icon"></ion-icon>
+						<input type="password" placeholder="Insert your password" name="password" class="password info-input">
+					</label>
+						
+					<label for="mail" class="input-icon">
+						<ion-icon name="at-outline" class="icon"></ion-icon>
+						<input type="email" placeholder="Insert your mail" name="email" class="email info-input">
+					</label>
+					<span class="question" onclick="change()">Don't have an account?</span>
 					<button type="button" class="submit" onclick="login()">Send</button>
-				
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</main>
 

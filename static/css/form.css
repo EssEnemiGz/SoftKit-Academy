@@ -8,7 +8,7 @@
 	--gray: #333333;
 	--gray-black: #CCCCCC;
 	--gray-medium: #999999;
-	--black: #032034;
+	--black: #000;
   	
 	/**
 	 * Pastel colors
@@ -91,7 +91,7 @@ html{
 }
 
 body{
-	padding-block-start: 30px;
+	height: 100vh;
 	background-color: var(--cultured);
 }
 
@@ -124,12 +124,13 @@ span.icon-box{
 	align-items: center;
 
 	min-height: 515px;
+	padding-inline: 40px;
+	height: 100%;
 }
 
 .container, .form{
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
 }
 
@@ -137,7 +138,7 @@ span.icon-box{
 	box-shadow: var(--shadow-1);
 	background-color: white;
 	border: var(--border-1);
-	padding: 35px 55px 35px 55px;
+	padding: 35px 175px 35px 55px;
 }
 
 .form > *{
@@ -145,14 +146,12 @@ span.icon-box{
 }
 
 .form__title{
-	text-align: center;
 	/*font-family: var(--ff-consola);*/
 	font-size: var(--fs-2);
 }
 
 .input-icon{
 	display: flex;
-	justify-content: center;
 	align-items: center;
 }
 
@@ -165,12 +164,12 @@ span.icon-box{
 	border-radius: 0;
   	border-bottom: 1px solid var(--gray-black);
   	padding: 0.850rem;
-  	color: #032034;
+  	color: var(--black);
 	transition: .2s ease-in-out all;
 }
 
 .info-input:placeholder {
-  	color: #032034;
+  	color: var(--black);
 }
 
 .form input:focus{
@@ -189,6 +188,8 @@ span.icon-box{
 	background-color: var(--white);
 	color: var(--black);
 	transition: .2s ease-in-out all;
+	width: fit-content;
+
 }
 
 .submit:hover{
@@ -225,14 +226,25 @@ span.icon-box{
 	cursor: pointer;
 }
 
-.register{
-	display: none;
-}
-
-.login{
+.general-container{
 	display: none;
 }
 
 .show{
 	display: flex;
+}
+
+@media (max-width: 910px){
+	.form{
+		padding: 35px 55px 35px 55px;
+		align-items: center;
+	}
+
+	.logo{
+		display: none;
+	}
+
+	.form__title{
+		text-align: center;
+	}
 }

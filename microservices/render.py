@@ -21,3 +21,12 @@ def califications():
     result.insert(0, username)
 
     return result
+
+@render_bp.route('/render/students', methods=["GET"])
+def students():
+    query = supabase.table('users').select('id, username').eq('role', 'student')
+    db_response = interpreter.return_data(query=query, was_be_empty=1)
+
+    if db_response.status_code == 500: return db_response.flask_response()
+    final = db_response.output_data()
+    return final

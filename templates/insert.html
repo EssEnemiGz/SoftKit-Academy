@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+	content="This is a the academy of the future. Softkit academy is created by TCER Company and we teach about technology and science. Python, C, C++, Go, Ruby, Figma, Linux, GNU/Linux, Wordpress, JavaScript, Docker, HTML, NodeJS, React, Assembly and more.">
+	<title>Form - SoftKit Academy</title>
+
+	<!-- Icons -->
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="/static/css/form.css">
+</head>
+<body>
+	<main class="main">
+        <div class="container">
+            <div class="general-container show">
+                <img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="" class="logo" width="425" height="525">
+                <form class="form information">
+                    <h1 class="form__title">Information</h1>
+                    <select for="user" class="input-icon username">
+                        <option value="7">Leonardo</option>
+                    </select>
+    
+                    <label for="password" class="input-icon">
+                        <ion-icon name="lock-closed-outline" class="icon"></ion-icon>
+                        <input type="password" placeholder="Insert the server code" name="server-code" class="server-code info-input">
+                    </label>
+    
+                    <label for="califications" class="input-icon">
+                    <ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
+                        <input type="text" placeholder="Insert the califications" name="calfications" class="califications info-input">
+                    </label>
+                    <select for="week" class="input-icon">
+                        <option value="1">Week 1</option>
+                        <option value="next">New</option>
+                    </select>
+                    <button type="button" class="submit" onclick="register()">Push</button>
+                </form>
+            </div>
+        </div>
+	</main>
+
+    <script src="/static/js/insert.js"></script>
+</body>
+</html>

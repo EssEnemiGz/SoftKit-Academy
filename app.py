@@ -5,6 +5,7 @@ import microservices.hash as hash
 import microservices.login as login
 import microservices.register as register
 import microservices.render as render
+import microservices.insert as insert
 
 # LIBRARYS
 from datetime import timedelta
@@ -41,7 +42,7 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase = db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase = db, db, db, db, db
 login.server_url, register.server_url = server_url, server_url
 
 app.register_blueprint(auth.auth_bp)
@@ -50,6 +51,7 @@ app.register_blueprint(hash.hash_bp)
 app.register_blueprint(login.login_bp)
 app.register_blueprint(register.register_bp)
 app.register_blueprint(render.render_bp)
+app.register_blueprint(insert.insert_bp)
 
 @app.route("/", methods=["GET"])
 def main():
@@ -64,7 +66,20 @@ def dashboard():
     
 @app.route("/form", methods=["GET"])
 def form():
-    return render_template("form.html")
+    if len(session):
+        return redirect("/dashboard")
+    else:
+        return render_template("form.html")
+    
+@app.route('/admin/insert', methods=["GET"])
+def insert_route():
+    if not len(session):
+        redirect('/form?form=login')
+    
+    if session.username != 'biscenp':
+        redirect('/')
+    
+    return render_template('insert.html')
 
 if __name__=="__main__":
     app.run(debug=True)
