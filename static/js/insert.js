@@ -12,7 +12,7 @@ fetch(`${location.protocol}//${document.domain}/render/students`, {
 
     return response.json()
 }).then(data => {
-    const main = document.getElementById('students');
+    const main = document.getElementById('student');
 
     for (let i=0; i<data.length;i++){
         const element = document.createElement('option')
