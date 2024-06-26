@@ -27,7 +27,7 @@ function sendPoints() {
     const user_id = document.getElementById("students").value
     const server_code = document.querySelector(".server-code").value
     const califications = document.querySelector(".califications").value.split(",")
-    const week = document.querySelector(".week").value
+    const week = document.getElementById("week").value
 
     let json = {
         'user_id': user_id,
