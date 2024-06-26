@@ -36,7 +36,7 @@ function sendPoints() {
         "week": week
     }
 
-    fetch(`${location.protocol}//${document.domain}/insert/califications`, { headers: { method:"POST", 'Content-Type': 'application/json', 'Accept': 'application/json', mode: 'cors', credentials: 'same-origin' }, body: json }).then(response => {
+    fetch(`${location.protocol}//${document.domain}/insert/califications`, { method:"POST", headers: {'Content-Type': 'application/json', 'Accept': 'application/json', mode: 'cors', credentials: 'same-origin' }, body: json }).then(response => {
         if (!response.ok) {
             throw new Error(`Ha ocurrido un error, intente de nuevo\n\n Error code: ${response.status}`)
         }
