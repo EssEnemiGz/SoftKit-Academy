@@ -35,6 +35,7 @@ function sendPoints() {
         'califications': califications,
         "week": week
     }
+    json = JSON.stringify(json)
 
     fetch(`${location.protocol}//${document.domain}/insert/califications`, { method:"POST", headers: {'Content-Type': 'application/json', 'Accept': 'application/json', mode: 'cors', credentials: 'same-origin' }, body: json }).then(response => {
         if (!response.ok) {
