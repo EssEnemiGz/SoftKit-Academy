@@ -42,7 +42,7 @@ function sendPoints() {
             throw new Error(`Ha ocurrido un error, intente de nuevo\n\n Error code: ${response.status}`)
         }
 
-        alert("Calificaiones registradas sin errores reportados")
+        alert("Calificaciones registradas sin errores reportados")
     })
     return 0;
 }

@@ -55,7 +55,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
             if (actual_week === undefined || actual_week !== actual.week) {
                 actual_week = actual.week;
                 const column = createColumn(actual.week);
-                column.appendChild(createDefault('h3', 'Semana '+actual.week))
+                column.appendChild(createDefault('h3', 'Semana'))
                 row = createRow(actual.week);
                 row.appendChild(createDefault('p', actual.week))
                 table.appendChild(column)
