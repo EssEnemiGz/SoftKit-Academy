@@ -72,4 +72,5 @@ def register():
         response.status_code = 200
         session['id'] =  info.get('id')
         session['username'] = username
+        session.permanent = True
         return response
