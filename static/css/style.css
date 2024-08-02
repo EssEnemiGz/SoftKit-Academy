@@ -26,7 +26,7 @@
     --fs-3: 1.158rem;
     --fs-4: 1rem;
     --fs-5: 0.867rem;
-    --fs-major: 3.759rem;
+    --fs-major: 3.559rem;
 
     /* MARGINS */
     --margin-section: 100px;
@@ -401,6 +401,10 @@ span.card-icon{
 .pricing-title{
     font-size: var(--fs-major);
     color: var(--white);
+}
+
+.month-cont{
+    font-size: var(--fs-3);
 }
 
 .pricing-list{

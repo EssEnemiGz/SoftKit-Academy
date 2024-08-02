@@ -4,12 +4,18 @@ let min_score = 11;
 const promedio_list = []
 const minimo_list = []
 
-fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/califications",
-    { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "cors", credentials: "same-origin" } })
+fetch(`${location.protocol}//${document.domain}:5000/dashboard/califications`,
+    { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } })
     .then(response => response.json()).then(data => {
         document.getElementById('username').innerText = data[0];
-
         const table = document.getElementById('table');
+
+        if (data.length === 1){
+            document.getElementById('best-score').innerText = "--"
+            document.getElementById('promedio').innerText = "--";
+            table.classList.add('no-data');
+            return 0;
+        }
 
         createDefault = (element, content) => {
             const result = document.createElement(element)
@@ -29,17 +35,6 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
             row.classList.add('--product-list')
             row.id = "row-" + week;
             return row
-        }
-
-        const minCalc = (numeros) => {
-            const numerosValidos = numeros.filter(num => typeof num === 'number' && !isNaN(num));
-
-            if (numerosValidos.length === 0) {
-                console.log("No hay números válidos en el array.");
-                return NaN; 
-            }
-
-            return Math.min(...numerosValidos);
         }
 
         const promedioCalc = (numeros) => {
@@ -68,7 +63,7 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
                 table.appendChild(row)
             }
 
-            const column = document.getElementById('column-'+actual.week);
+            const column = document.getElementById('column-' + actual.week);
             column_text = createDefault('h3', actual.task);
             column.appendChild(column_text)
 
@@ -85,22 +80,50 @@ fetch("https://softkitacademy-ess123456s-projects.vercel.app/dashboard/calificat
         }
 
         const promedio = promedioCalc(promedio_list);
-        const minimo = minCalc(minimo_list);
         document.getElementById('best-score').innerText = best_score;
-        document.getElementById('minimo').innerText = minimo.toFixed(2);
         document.getElementById('promedio').innerText = promedio.toFixed(2);
 
         table.appendChild(row);
     })
 
+fetch(`${location.protocol}//${document.domain}:5000/meet/info`,
+    { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } }
+).then(response => {
+    if (!response.ok) {
+        alert("Hubo un error cargando sus reuniones proximas. Recargue la pagina o contacte con su maestro");
+        throw new Error(response)
+    }
+
+    return response.json()
+}).then(data => {
+    if (!data.length) {
+        document.getElementById('google-meet-link').remove()
+        document.getElementById('meet-date').innerText = "Sin reuniones activas";
+        document.getElementById("meeting-icon").innerText = "group_off";
+        document.getElementById("reuniones").innerText = "Sin reuniones"
+        return 0;
+    }
+
+    const link = data[0].link;
+    const date = data[0].date+" "+data[0].hour;
+
+    const dateObject = new Date(date);
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const largeDate = dateObject.toLocaleDateString('es-US', options);
+    const largeTime = dateObject.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit'});
+
+    document.getElementById('google-meet-link').href = link;
+    document.getElementById('meet-date').innerText = largeDate.charAt(0).toUpperCase() + largeDate.slice(1).toLowerCase() + " " + largeTime;
+})
+
 const trending = (action, element) => {
     element.classList.toggle('--invisible');
-    if (action === "down"){
-        document.getElementById('best-score').innerText = min_score;
+    if (action === "down") {
+        if (min_score !== 11) document.getElementById('best-score').innerText = min_score;
         document.getElementById('best-score-desc').innerText = "Tu peor puntaje en una tarea";
         return 0;
     }
 
-    document.getElementById('best-score').innerText = best_score;
+    if (best_score !== -1) document.getElementById('best-score').innerText = best_score;
     document.getElementById('best-score-desc').innerText = "Tu mejor puntaje en una tarea";
 }

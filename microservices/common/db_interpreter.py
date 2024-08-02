@@ -40,7 +40,7 @@ def return_data(*, query, was_be_empty: int):
         output = query.execute()
         output = output.data
     except Exception as e:
-        print(f"\033[1;32m >>> {e}")
+        print(f"\033[1;32m >>> {e}\033[0m")
         err = make_response( jsonify({'status':'Execution of query returned a error.'}) )
         err.status_code = 500
 
@@ -74,7 +74,7 @@ def unique_return(*, query, key: str, was_be_empty: int):
         output = query.execute()
         output = output.data
     except Exception as e:
-        print(f"\033[1;32m >>> {e}")
+        print(f"\033[1;32m >>> {e} \033[0m")
         err = make_response( jsonify({'status':'Execution of query returned a error.'}) )
         err.status_code = 500
 
@@ -105,7 +105,7 @@ def no_return(*, query):
     try:
         query.execute()
     except Exception as e:
-        print(f"\033[1;32m >>> {e}")
+        print(f"\033[1;32m >>> {e}\033[0m")
         err = make_response( jsonify({'status':'Execution of query returned a error.'}) )
         err.status_code = 500
 

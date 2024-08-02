@@ -6,6 +6,7 @@ import microservices.login as login
 import microservices.register as register
 import microservices.render as render
 import microservices.insert as insert
+import microservices.mettings as meetings
 
 # LIBRARYS
 from datetime import timedelta
@@ -43,7 +44,7 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase = db, db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase = db, db, db, db, db, db
 login.server_url, register.server_url = server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 
@@ -54,6 +55,7 @@ app.register_blueprint(login.login_bp)
 app.register_blueprint(register.register_bp)
 app.register_blueprint(render.render_bp)
 app.register_blueprint(insert.insert_bp)
+app.register_blueprint(meetings.meet_bp)
 
 @app.route("/", methods=["GET"])
 def main():

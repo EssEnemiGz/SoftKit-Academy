@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="This is a the academy of the future. Softkit academy is created by TCER Company and we teach about technology and science. Python, C, C++, Go, Ruby, Figma, Linux, GNU/Linux, Wordpress, JavaScript, Docker, HTML, NodeJS, React, Assembly and more.">
-    <link rel="stylesheet" href="/static/css/general.css">
-    <link rel="stylesheet" href="/static/css/dashboard.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+        content="This is a the academy of the future. Softkit academy is created by TCER Company and we teach about technology and science. Python, C, C++, Go, Ruby, Figma, Linux, GNU/Linux, Wordpress, JavaScript, Docker, HTML, NodeJS, React, Assembly and more." />
+    <link rel="stylesheet" href="/static/css/general.css" />
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
     <title>Dashboard</title>
 
     <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'">
+        rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
     <!-- GOOGLE ICONS -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -29,7 +29,38 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
+<body class="--pseudo-invisible">
+    <div class="meet-viewer floating-container --absolute-centered --invisible">
+        <span class="material-symbols-outlined --icon-box --close-icon --clickable" onclick="switchParent('.meet-viewer')">
+            close
+        </span>
+        <label class="floating-desc">
+            <h3 class="--meet-link --no-stroke --title --text-centered">
+                <a href="https://meet.google.com" id="google-meet-link">Google Meet</a>
+                <span class="material-symbols-outlined --icon-box" id="meeting-icon">
+                    north_east
+                </span>
+            </h3>
+            <p class="--meet-date --section-micro-margin" id="meet-date">14 de Julio, 2:30PM-2:45PM</p>
+        </label>
+        <span class="--meet-cancel --button --clickable">Cancelar reunion</span>
+    </div>
+
+    <div class="metting-form floating-container --absolute-centered --invisible">
+        <span class="material-symbols-outlined --icon-box --close-icon --clickable" onclick="switchParent('.metting-form')">
+            close
+        </span>
+        <h1 class="--title --no-stroke">Reuniones particulares</h1>
+        <label for="repository-link" class="input-container">
+            <input type="text" class="input-text" id="repository-link" placeholder="Enlace del repositorio con los archivos del programa">
+        </label>
+        <label for="short-desc" class="input-container">
+            <input type="text" class="input-text" id="short-desc" placeholder="En que consiste el problema">
+        </label>
+        <textarea id="problem-description" rows="20" cols="38" style="resize: vertical;">Escriba una descripcion detallada aqui</textarea>
+        <span class="--button --clickable">Solicitar</span>
+    </div>
+
     <main class="container">
         <article class="content --cards-container">
             <div class="big-container">
@@ -37,8 +68,7 @@
                     <div class="--header-more">
                         <h3 class="--sinopsis --no-stroke" id="username"></h3>
                     </div>
-                    <div class="--table" id="table">
-                    </div>
+                    <div class="--table" id="table"></div>
                 </div>
             </div>
             <div class="--three-cards-container">
@@ -50,20 +80,42 @@
                                 more_vert
                             </span>
                             <div class="--extended-menu --invisible">
-                                <span class="--clickable" onclick="trending('up', this.closest('.--extended-menu'))"><span class="material-symbols-outlined --icon-box --trending-up">trending_up</span>Mejor puntaje</span>
-                                <span class="--clickable" onclick="trending('down', this.closest('.--extended-menu'))"><span class="material-symbols-outlined --icon-box --trending-down">trending_down</span>Peor puntaje</span>
+                                <span class="--clickable"
+                                    onclick="trending('up', this.closest('.--extended-menu'))"><span
+                                        class="material-symbols-outlined --icon-box --trending-up">trending_up</span>Mejor
+                                    puntaje</span>
+                                <span class="--clickable"
+                                    onclick="trending('down', this.closest('.--extended-menu'))"><span
+                                        class="material-symbols-outlined --icon-box --trending-down">trending_down</span>Peor
+                                    puntaje</span>
                             </div>
                         </div>
                     </div>
                     <h2 class="--title --no-stroke" id="best-score"></h2>
-                    <p class="--description-transparent" id="best-score-desc">Tu mejor puntaje en una tarea</p>
+                    <p class="--description-transparent" id="best-score-desc">
+                        Tu mejor puntaje en una tarea
+                    </p>
                 </div>
                 <div class="--card">
                     <div class="--header-more">
-                        <h3 class="--sinopsis --no-stroke">Minimo</h3>
+                        <h3 class="--sinopsis --no-stroke">Reunion</h3>
+                        <div class="--menu-container">
+                            <span class="material-symbols-outlined --icon-box --clickable" onclick="switcher(this)">
+                                more_vert
+                            </span>
+                            <div class="--extended-menu --invisible">
+                                <span class="--clickable" onclick="switchParent('.meet-viewer', this)"><span
+                                        class="material-symbols-outlined --icon-box">link</span>Ver enlace</span>
+                                <span class="--clickable" onclick="switchParent('.metting-form', this)"><span
+                                        class="material-symbols-outlined --icon-box">video_call</span>Agregar
+                                    reunion</span>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="--title --no-stroke" id="minimo"></h2>
-                    <p class="--description-transparent">Este ha sido tu minimo puntaje historico</p>
+                    <h2 class="--title --no-stroke" id="reuniones"></h2>
+                    <p class="--description-transparent">
+                        Su proxima reunion particular
+                    </p>
                 </div>
                 <div class="--card">
                     <div class="--header-more">

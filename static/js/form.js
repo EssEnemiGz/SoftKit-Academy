@@ -4,8 +4,8 @@
 
 const REGISTER_OPTION = 'register';
 const LOGIN_OPTION = 'login';
-const register_url = `https://${document.domain}/register/verify`;
-const login_url = `https://${document.domain}/login/verify`;
+const register_url = `${location.protocol}//${document.domain}:5000/register/verify`;
+const login_url = `${location.protocol}//${document.domain}:5000/login/verify`;
 
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);

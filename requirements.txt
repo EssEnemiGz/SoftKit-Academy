@@ -2,6 +2,8 @@ Flask==3.0.3
 requests==2.31.0
 Flask-Cors==4.0.0
 cryptography==41.0.3
-#psycopg2-binary~=2.9.3
 python-dotenv==1.0.1
 supabase==2.4.5
+google-api-python-client 
+google-auth-httplib2 
+google-auth-oauthlib

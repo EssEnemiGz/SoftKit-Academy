@@ -3,3 +3,10 @@ switcher = (more_icon) => {
 
     menu.classList.toggle("--invisible");
 }
+
+switchParent = (reference, collapse) =>{
+    document.querySelector(reference).classList.toggle('--invisible')
+    document.querySelector('body').classList.toggle('--pseudo-invisible')
+
+    if (collapse) collapse.parentElement.classList.toggle('--invisible')
+}

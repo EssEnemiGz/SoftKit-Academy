@@ -1,3 +1,6 @@
 .DS_Store
 isolated/
 tools/
+__pycache__
+.vscode
+credentials.json

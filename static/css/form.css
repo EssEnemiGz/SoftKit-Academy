@@ -150,6 +150,10 @@ span.icon-box{
 	font-size: var(--fs-2);
 }
 
+.logo{
+	height: 100%;
+}
+
 .input-icon{
 	display: flex;
 	align-items: center;

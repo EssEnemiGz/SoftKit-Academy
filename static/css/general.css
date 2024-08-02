@@ -380,10 +380,6 @@ span.--big-icon{
     overflow-x: auto;
 }
 
-.--invisible{
-    display: none;
-}
-
 @media (max-width: 600px){
     .--table{
         display: flex;
@@ -398,4 +394,20 @@ span.--big-icon{
     .--three-cards-container{
         grid-template-columns: 1fr;
     }
+}
+
+.--absolute-centered{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 450px;
+    height: fit-content;
+    z-index: 2;
+}
+
+.--invisible{
+    display: none;
 }
