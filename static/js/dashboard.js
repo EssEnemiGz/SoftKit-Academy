@@ -4,7 +4,7 @@ let min_score = 11;
 const promedio_list = []
 const minimo_list = []
 
-fetch(`${location.protocol}//${document.domain}:5000/dashboard/califications`,
+fetch(`${location.protocol}//${document.domain}/dashboard/califications`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } })
     .then(response => response.json()).then(data => {
         document.getElementById('username').innerText = data[0];
@@ -86,7 +86,7 @@ fetch(`${location.protocol}//${document.domain}:5000/dashboard/califications`,
         table.appendChild(row);
     })
 
-fetch(`${location.protocol}//${document.domain}:5000/meet/info`,
+fetch(`${location.protocol}//${document.domain}/meet/info`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } }
 ).then(response => {
     if (!response.ok) {
