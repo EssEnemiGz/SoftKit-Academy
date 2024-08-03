@@ -72,8 +72,18 @@ body::before{
 }
 
 .input-text{
-    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-3);
+    padding: 15px 20px;
     width: 100%;
+    box-shadow: var(--shadow-2);
+}
+
+#problem-description{
+    border: none;
+    border-radius: var(--border-3);
+    padding: 10px 20px;
+    box-shadow: var(--shadow-2);
 }
 
 /* before element  */
