@@ -12,7 +12,7 @@ supabase, server_url = None, None
 
 @meets_bp.route("/meet/info", methods=["GET"])
 def info():
-    query = supabase.table('meetings').select('link, date').eq('user_id', session.get("id")).eq("status", 1)
+    query = supabase.table('meetings').select('link, date, hour').eq('user_id', session.get("id")).eq("status", 1)
     result = interpreter.return_data(query=query, was_be_empty=1)
     result = result.output_data()
 

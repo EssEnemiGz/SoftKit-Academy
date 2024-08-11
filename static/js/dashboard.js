@@ -4,7 +4,7 @@ let min_score = 11;
 const promedio_list = []
 const minimo_list = []
 
-fetch(`${location.protocol}//${document.domain}/dashboard/califications`,
+fetch(`${location.protocol}//${document.domain}:5000/dashboard/califications`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } })
     .then(response => {
         if (!response.ok) {
@@ -93,7 +93,7 @@ fetch(`${location.protocol}//${document.domain}/dashboard/califications`,
         table.appendChild(row);
     })
 
-fetch(`${location.protocol}//${document.domain}/meet/info`,
+fetch(`${location.protocol}//${document.domain}:5000/meet/info`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } }
 ).then(response => {
     if (!response.ok) {
@@ -113,13 +113,25 @@ fetch(`${location.protocol}//${document.domain}/meet/info`,
 
     const link = data[0].link;
     const date = data[0].date;
+    console.log(link, date)
 
     const dateObject = new Date(date);
-    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const options = {
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: 'numeric', 
+        minute: 'numeric'
+    };
     const largeDate = dateObject.toLocaleDateString('es-US', options);
+    const fullDate = largeDate.charAt(0).toUpperCase() + largeDate.slice(1).toLowerCase()
+
+    const short_options = { month: 'long', day: 'numeric' };
+    const shortDate = dateObject.toLocaleDateString('es-US', short_options);
 
     document.getElementById('google-meet-link').href = link;
-    document.getElementById('meet-date').innerText = largeDate.charAt(0).toUpperCase() + largeDate.slice(1).toLowerCase();
+    document.getElementById('meet-date').innerText = fullDate;
+    document.getElementById("reuniones").innerText = shortDate;
 })
 
 const trending = (action, element) => {
@@ -136,17 +148,17 @@ const trending = (action, element) => {
 
 const solicitar = () => {
     const data = {
-        "error_concept":document.getElementById("short-desc").value,
-        "github_link":document.getElementById("repository-link").value,
-        "description":document.getElementById("problem-description").value
+        "error_concept": document.getElementById("short-desc").value,
+        "github_link": document.getElementById("repository-link").value,
+        "description": document.getElementById("problem-description").value
     }
     const info = JSON.stringify(data)
 
-    fetch(`${location.protocol}//${document.domain}/meet/add`,
+    fetch(`${location.protocol}//${document.domain}:5000/meet/add`,
         {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" },
-            body:info
+            body: info
         }
     ).then(response => {
         if (!response.ok) {
