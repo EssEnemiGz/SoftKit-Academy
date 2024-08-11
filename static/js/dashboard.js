@@ -4,7 +4,7 @@ let min_score = 11;
 const promedio_list = []
 const minimo_list = []
 
-fetch(`${location.protocol}//${document.domain}/dashboard/califications`,
+fetch(`${location.protocol}//${document.domain}:5000/dashboard/califications`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } })
     .then(response => {
         if (!response.ok) {
@@ -93,7 +93,7 @@ fetch(`${location.protocol}//${document.domain}/dashboard/califications`,
         table.appendChild(row);
     })
 
-fetch(`${location.protocol}//${document.domain}/meet/info`,
+fetch(`${location.protocol}//${document.domain}:5000/meet/info`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } }
 ).then(response => {
     if (!response.ok) {
@@ -112,8 +112,7 @@ fetch(`${location.protocol}//${document.domain}/meet/info`,
     }
 
     const link = data[0].link;
-    const date = data[0].date;
-    console.log(link, date)
+    const date = data[0].date + " " + data[0].hour;
 
     const dateObject = new Date(date);
     const options = {
@@ -154,7 +153,7 @@ const solicitar = () => {
     }
     const info = JSON.stringify(data)
 
-    fetch(`${location.protocol}//${document.domain}/meet/add`,
+    fetch(`${location.protocol}//${document.domain}:5000/meet/add`,
         {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" },
