@@ -104,7 +104,7 @@ fetch(`${location.protocol}//${document.domain}/meet/info`,
     return response.json()
 }).then(data => {
     if (!data.length) {
-        document.getElementById('google-meet-link').remove()
+        document.getElementById('meet-status').remove()
         document.getElementById('meet-date').innerText = "Sin reuniones activas";
         document.getElementById("meeting-icon").innerText = "group_off";
         document.getElementById("reuniones").innerText = "Sin reuniones"
