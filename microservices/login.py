@@ -15,6 +15,11 @@ CORS(login_bp)
 def login():
     if request.method == "POST":
         data = request.get_json()
+        if None in data.values(): 
+            err = make_response( jsonify({'status':'ERROR'}) )
+            err.status_code = 500
+            return err
+        
         username = data.get('username')
         password = data.get('password')
         email = data.get('email')

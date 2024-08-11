@@ -15,7 +15,7 @@ CORS(register_bp)
 def register():
     if request.method == "POST":
         data = request.get_json()
-        if None in data: 
+        if None in data.values(): 
             err = make_response( jsonify({'status':'ERROR'}) )
             err.status_code = 500
             return err

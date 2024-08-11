@@ -6,11 +6,18 @@ const minimo_list = []
 
 fetch(`${location.protocol}//${document.domain}/dashboard/califications`,
     { headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" } })
-    .then(response => response.json()).then(data => {
+    .then(response => {
+        if (!response.ok) {
+            alert("Hubo un error al renderizar las calificaciones, recargue la pagina o contacte con su maestro.")
+            throw new Error("Render error")
+        }
+
+        return response.json()
+    }).then(data => {
         document.getElementById('username').innerText = data[0];
         const table = document.getElementById('table');
 
-        if (data.length === 1){
+        if (data.length === 1) {
             document.getElementById('best-score').innerText = "--"
             document.getElementById('promedio').innerText = "--";
             table.classList.add('no-data');
@@ -105,15 +112,14 @@ fetch(`${location.protocol}//${document.domain}/meet/info`,
     }
 
     const link = data[0].link;
-    const date = data[0].date+" "+data[0].hour;
+    const date = data[0].date;
 
     const dateObject = new Date(date);
     const options = { weekday: 'long', month: 'long', day: 'numeric' };
     const largeDate = dateObject.toLocaleDateString('es-US', options);
-    const largeTime = dateObject.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit'});
 
     document.getElementById('google-meet-link').href = link;
-    document.getElementById('meet-date').innerText = largeDate.charAt(0).toUpperCase() + largeDate.slice(1).toLowerCase() + " " + largeTime;
+    document.getElementById('meet-date').innerText = largeDate.charAt(0).toUpperCase() + largeDate.slice(1).toLowerCase();
 })
 
 const trending = (action, element) => {
@@ -126,4 +132,28 @@ const trending = (action, element) => {
 
     if (best_score !== -1) document.getElementById('best-score').innerText = best_score;
     document.getElementById('best-score-desc').innerText = "Tu mejor puntaje en una tarea";
+}
+
+const solicitar = () => {
+    const data = {
+        "error_concept":document.getElementById("short-desc").value,
+        "github_link":document.getElementById("repository-link").value,
+        "description":document.getElementById("problem-description").value
+    }
+    const info = JSON.stringify(data)
+
+    fetch(`${location.protocol}//${document.domain}/meet/add`,
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json", mode: "no-cors", credentials: "same-origin" },
+            body:info
+        }
+    ).then(response => {
+        if (!response.ok) {
+            alert("Hubo un error al registrar su reunion.")
+            throw new Error("Error al registrar reunion")
+        }
+
+        alert("Reunion agregada con exito, a la espera de confirmacion.")
+    })
 }
