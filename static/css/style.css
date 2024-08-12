@@ -225,7 +225,7 @@ span.exit-icon{
 .desc{
     font-size: var(--fs-3);
     text-align: center;
-    max-width: 475px;
+    max-width: 575px;
     color: var(--white);
 }
 
@@ -233,20 +233,22 @@ span.exit-icon{
     font-size: var(--fs-3);
     border-radius: var(--border-1);
     margin-top: var(--margin-4);
-    background: linear-gradient(90deg, rgba(141,87,171,1) 0%, var(--gray) 100%);
-    background-size: 1000% 1000%;
-    animation: linear-gradient 5s ease infinite;
+    background: var(--purple);
+    background-size: 100% 100%;
+    animation: linear-gradient 3s ease infinite;
 }
 
 @keyframes linear-gradient{
     0%{
-        background-position: 0% 50%;
+        background-color: var(--gray);
     }
+
     50%{
-        background-position: 100% 50%;
+        background-color: var(--purple);
     }
+
     100%{
-        background-position: 0% 50%;
+        background-color: var(--gray);
     }
 }
 
@@ -254,7 +256,8 @@ span.exit-icon{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 75px;
-    margin-block: var(--margin-section);
+    margin-block: var(--margin-3);
+    margin-block-end: var(--margin-section);
 }
 
 .card-info{
