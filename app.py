@@ -84,6 +84,11 @@ def insert_route():
     elif session.get('username') != 'biscenp': return redirect('/dashboard')
 
     else: return render_template('insert.html')
+    
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory("static/seo", request.path[1:])
 
 if __name__=="__main__":
     app.run(debug=True, port=5000)
