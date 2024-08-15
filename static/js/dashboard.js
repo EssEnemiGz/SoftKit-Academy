@@ -106,7 +106,7 @@ fetch(`${location.protocol}//${document.domain}/meet/info`,
     if (!data.length) {
         document.getElementById('meet-status').remove()
         document.getElementById('meet-date').innerText = "Sin reuniones activas";
-        document.getElementById("meeting-icon").innerText = "group_off";
+        document.getElementById("meeting-icon").src = "/static/icons/group_off.svg";
         document.getElementById("reuniones").innerText = "Sin reuniones"
         return 0;
     }
