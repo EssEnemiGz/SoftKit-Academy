@@ -45,12 +45,11 @@ def get_calendar(service):
     if main_calendar == None: exit()
     return main_calendar
     
-@calendar_bp.route("/calendar/add/event")
+@calendar_bp.route("/calendar/add/event", methods=["PUT"])
 def add_event():
     """
     Requested info: error_concept (resume), github_link, description, start (start date), end (end date)
     """
-    
     
     service = credentials()
     main_calendar = get_calendar(service)
@@ -73,11 +72,11 @@ def add_event():
         'summary': resume,
         'description': f'{description}\n\nRepository: {github}',
         'start': {
-            'dateTime': (datetime.strptime(fecha_inicio, "%Y-%m-%d %H:%M")).isoformat(),
+            'dateTime': (datetime.strptime(fecha_inicio, "%d-%m-%Y %H:%M")).isoformat(),
             'timeZone': 'America/Santo_Domingo',
         },
         'end': {
-            'dateTime': (datetime.strptime(fecha_fin, "%Y-%m-%d %H%M")).isoformat(),
+            'dateTime': (datetime.strptime(fecha_fin, "%d-%m-%Y %H:%M")).isoformat(),
             'timeZone': 'America/Santo_Domingo',
         },
     }
