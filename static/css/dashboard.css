@@ -29,6 +29,16 @@ body::before{
     height: 100%;
 }
 
+#google-meet-link{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#meet-date{
+    text-align: center;
+}
+
 @media (max-width: 786px){
     .content{
         height: initial;

@@ -250,11 +250,11 @@ span.--big-icon{
 }
 
 .--trending-up{
-    color: green;
+    filter: brightness(0) saturate(100%) invert(24%) sepia(65%) saturate(7148%) hue-rotate(92deg) brightness(105%) contrast(108%);
 }
 
 .--trending-down{
-    color: red;
+    filter: brightness(0) saturate(100%) invert(18%) sepia(79%) saturate(7012%) hue-rotate(357deg) brightness(103%) contrast(114%);
 }
 
 .--irregular-container-left{
@@ -410,4 +410,8 @@ span.--big-icon{
 
 .--invisible{
     display: none;
+}
+
+.--black-icon{
+    filter: brightness(0%);
 }
