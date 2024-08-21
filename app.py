@@ -32,7 +32,7 @@ if secret_key == None: secret_key = "ewkwer1231231kajeklew3213ropewp21oiewrop312
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_SAMESITE'] = 'SameSite'
+app.config['SESSION_COOKIE_SAMESITE'] = None
 app.config['SESSION_COOKIE_DOMAIN'] = f".{server_url}"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 
