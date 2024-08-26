@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="En nuestra academia de programación, aprenderás a dominar las habilidades de desarrollo de software de manera rápida y práctica. Ofrecemos un enfoque intensivo y asequible, con cursos diseñados para que te conviertas en un programador competente en tiempo récord. A través de proyectos reales y ejercicios prácticos, mejorarás tus habilidades en programación web, desarrollo de aplicaciones y más. Ideal para quienes buscan una formación efectiva, accesible y centrada en la práctica. ¡Empieza tu camino hacia una nueva carrera hoy mismo con nuestra metodología comprobada y asequible! Apto para novatos, experimentados y expertos, damos soporte a todos los niveles. Domina la programación de forma rápida y práctica en nuestra academia asequible. Aprende con proyectos reales y mejora tus habilidades en tiempo récord. Aprende, practica y construye. Crea el futuro con tus propias manos.">
+    <meta name="keywords"
+        content="Academia, programación, programming, cursos, desarrollo de software, programadores, rapido, barato, cursos de programacion de buena calidad, programmers, tecnología">
+    <link rel="alternate" hreflang="es" href="https://softkitacademy.com/es/" />
+    <link rel="alternate" hreflang="en" href="https://softkitacademy.com/en/" />
+
+    <link rel="stylesheet" href="/static/css/general.css" />
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+    <title>Dashboard</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
+        rel="stylesheet" />
+
+    <!-- IONIC ICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="--pseudo-invisible">
+    <div class="meet-viewer floating-container --absolute-centered --invisible">
+        <img src="/static/icons/close.svg" alt="Cerrar menu" class="--icon-box --close-icon --clickable --black-icon"
+            onclick="switchParent('.meet-viewer')" width="24" height="24">
+        <label class="floating-desc">
+            <h3 class="--meet-link --no-stroke --title --text-centered">
+                <a href="https://meet.google.com" id="google-meet-link">
+                    <span id="meet-status">Google Meet</span>
+                    <img src="/static/icons/north_east.svg" alt="Ir a la reunion"
+                        class="--icon-box --clickable --black-icon" id="meeting-icon" width="32" height="32">
+                </a>
+            </h3>
+            <p class="--meet-date --section-micro-margin" id="meet-date">14 de Julio</p>
+        </label>
+        <!--<span class="--meet-cancel --button --clickable">Cancelar reunion</span>-->
+    </div>
+
+    <div class="metting-form floating-container --absolute-centered --invisible">
+        <img src="/static/icons/close.svg" alt="Cerrar menu" class="--icon-box --clickable --black-icon --close-icon"
+            onclick="switchParent('.metting-form')" width="24" height="24">
+        <h1 class="--title --no-stroke">Reuniones particulares</h1>
+        <label for="repository-link" class="input-container">
+            <input type="text" class="input-text" id="repository-link" placeholder="Enlace del repositorio de GitHub">
+        </label>
+        <label for="short-desc" class="input-container">
+            <input type="text" class="input-text" id="short-desc" placeholder="En que consiste el problema">
+        </label>
+        <textarea id="problem-description" rows="8" cols="34"
+            style="resize: vertical;">Escriba una descripcion detallada aqui</textarea>
+        <span class="--button --clickable" onclick="solicitar()">Solicitar</span>
+    </div>
+
+    <main class="container">
+        <article class="content --cards-container">
+            <div class="big-container">
+                <div class="--card">
+                    <div class="--header-more">
+                        <h3 class="--sinopsis --no-stroke" id="username"></h3>
+                    </div>
+                    <div class="--table" id="table"></div>
+                </div>
+            </div>
+            <div class="--three-cards-container">
+                <div class="--card">
+                    <div class="--header-more">
+                        <h3 class="--sinopsis --no-stroke">Puntaje neto</h3>
+                        <div class="--menu-container">
+                            <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones"
+                                class="--icon-box --clickable --black-icon" onclick="switcher(this)">
+                            <div class="--extended-menu --invisible">
+                                <span class="--clickable" onclick="trending('up', this.closest('.--extended-menu'))">
+                                    <span class="--inline-container"><img src="/static/icons/trendring_up.svg"
+                                            alt="Mejor puntaje" class="--icon-box --trending-up">Mejor puntaje</span>
+                                </span>
+                                <span class="--clickable" onclick="trending('down', this.closest('.--extended-menu'))">
+                                    <span class="--inline-container"><img src="/static/icons/trending_down.svg"
+                                            alt="Peor puntaje" class="--icon-box --trending-down">Peor puntaje</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="--title --no-stroke" id="best-score"></h2>
+                    <p class="--description-transparent" id="best-score-desc">
+                        Tu mejor puntaje en una tarea
+                    </p>
+                </div>
+                <div class="--card">
+                    <div class="--header-more">
+                        <h3 class="--sinopsis --no-stroke">Reunion</h3>
+                        <div class="--menu-container">
+                            <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones"
+                                class="--icon-box --clickable --black-icon" onclick="switcher(this)">
+                            <div class="--extended-menu --invisible">
+                                <span class="--clickable" onclick="switchParent('.meet-viewer', this)">
+                                    <span class="--inline-container"><img src="/static/icons/link.svg" alt="Ver enlace"
+                                            class="--black-icon">Ver enlace</span>
+                                </span>
+
+                                <span class="--clickable" onclick="switchParent('.metting-form', this)">
+
+                                    <span class="--inline-container"><img src="/static/icons/video_call.svg"
+                                            alt="Solicitar videollamada" class="--black-icon">Agregar reunion</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="--title --no-stroke" id="reuniones"></h2>
+                    <p class="--description-transparent">
+                        Su proxima reunion particular
+                    </p>
+                </div>
+                <div class="--card">
+                    <div class="--header-more">
+                        <h3 class="--sinopsis --no-stroke">Promedio</h3>
+                    </div>
+                    <h2 class="--title --no-stroke" id="promedio"></h2>
+                    <p class="--description-transparent">Promedio general</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- CUSTOM JS -->
+    <script src="/static/js/menus.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+
+</html>

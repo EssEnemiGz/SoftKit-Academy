@@ -4,6 +4,8 @@ Allow: /static/
 Allow: /robots.txt
 Allow: /sitemap/xml
 Allow: /form
+Allow: /es
+Allow: /en
 
 # Disallow Pages
 User-agent: *

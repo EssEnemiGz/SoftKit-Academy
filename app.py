@@ -36,6 +36,8 @@ app.config['SESSION_COOKIE_SAMESITE'] = None
 app.config['SESSION_COOKIE_DOMAIN'] = f".{server_url}"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 
+SUPPORTED_LANGUAGES = ['es', 'en']
+
 # Conexion a base de datos
 db = supabase.create_client(database, api)
 auth_key = db.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
@@ -61,22 +63,41 @@ app.register_blueprint(meetings.meets_bp)
 app.register_blueprint(calendar.calendar_bp)
 
 @app.route("/", methods=["GET"])
-def main():
-    return render_template("index.html")
+def index():
+    return render_template(f"es/index.html")
+
+@app.route("/<lang>", methods=["GET"])
+def main(lang):
+    if lang not in SUPPORTED_LANGUAGES:
+        abort(404)
+    elif lang == "":
+        return render_template(f"es/index.html")
+    else:
+        return render_template(f"{lang}/index.html")
 
 @app.route("/dashboard", methods=["GET"])
-def dashboard():
+def dashboard(lang):
+    if lang not in SUPPORTED_LANGUAGES:
+        abort(404)
+    elif lang == "":
+        return render_template(f"es/dashboard.html")
+        
     if len(session):
-        return render_template("dashboard.html")
+        return render_template(f"{lang}/dashboard.html")
     else:
         return redirect( '/form?form=login' )
     
 @app.route("/form", methods=["GET"])
-def form():
+def form(lang):
+    if lang not in SUPPORTED_LANGUAGES:
+        abort(404)
+    elif lang == "":
+        return render_template(f"es/form.html")
+        
     if len(session):
         return redirect("/dashboard")
     else:
-        return render_template("form.html")
+        return render_template(f"{lang}/form.html")
     
 @app.route('/admin/insert', methods=["GET"])
 def insert_route():

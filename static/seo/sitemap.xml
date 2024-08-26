@@ -9,6 +9,22 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Home Page Spanish -->
+  <url>
+    <loc>https://www.softkitacademy.com/es</loc>
+    <lastmod>2024-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Home Page English -->
+  <url>
+    <loc>https://www.softkitacademy.com/en</loc>
+    <lastmod>2024-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
   <!-- Form Page -->
   <url>
     <loc>https://www.softkitacademy.com/form</loc>
