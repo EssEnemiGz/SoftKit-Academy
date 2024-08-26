@@ -13,7 +13,6 @@ CORS(existence_bp)
 
 @existence_bp.route('/existence/check', methods=["POST"])
 def check(): 
-    global db, cursor
     if request.method == "POST":
         dic = {}
         data = request.get_json()
