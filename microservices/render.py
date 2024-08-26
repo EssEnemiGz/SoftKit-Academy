@@ -30,3 +30,7 @@ def students():
     if db_response.status_code == 500: return db_response.flask_response()
     final = db_response.output_data()
     return final
+
+@render_bp.route('/render/languages', methods=["GEt"])
+def languages():
+    pass
