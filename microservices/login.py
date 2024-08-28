@@ -30,6 +30,7 @@ def login():
             err.status_code = 500
             return err
 
+        print(check.text)
         check = check.json()
         if not check.get('user') and not check.get('email'):
             err = make_response( redirect('/render/form') )
