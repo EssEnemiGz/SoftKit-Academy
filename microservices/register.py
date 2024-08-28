@@ -9,7 +9,7 @@ import requests
 
 supabase, server_url, server_code = None, None, None
 register_bp = Blueprint('register', __name__)
-CORS(register_bp)
+CORS(register_bp, supports_credentials=True)
 
 @register_bp.route("/api/register/verify", methods=["POST"])
 def register():

@@ -9,7 +9,7 @@ import requests
 
 server_url = None
 login_bp = Blueprint('login', __name__)
-CORS(login_bp)
+CORS(login_bp, supports_credentials=True)
 
 @login_bp.route('/api/login/verify', methods=["POST"])
 def login():

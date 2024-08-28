@@ -32,8 +32,8 @@ if secret_key == None: secret_key = "ewkwer1231231kajeklew3213ropewp21oiewrop312
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_SAMESITE'] = None
-app.config['SESSION_COOKIE_DOMAIN'] = f".{server_url}"
+app.config['SESSION_COOKIE_SAMESITE'] = "Lax"
+app.config['SESSION_COOKIE_DOMAIN'] = f".{server_url.split('//')[1]}"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 
 SUPPORTED_LANGUAGES = ['es', 'en']
@@ -77,11 +77,6 @@ def main(lang):
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
-    """if lang not in SUPPORTED_LANGUAGES:
-        abort(404)
-    elif lang == "":
-        return render_template(f"es/dashboard.html")
-        """
     if len(session):
         return render_template("es/dashboard.html")
     else:
