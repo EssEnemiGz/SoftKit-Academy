@@ -1,4 +1,4 @@
-fetch(`${location.protocol}//${document.domain}/render/students`, {
+fetch(`${location.protocol}//${document.domain}/api/render/students`, {
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -37,7 +37,7 @@ function sendPoints() {
     }
     json = JSON.stringify(json)
 
-    fetch(`${location.protocol}//${document.domain}/insert/califications`, { method:"POST", headers: {'Content-Type': 'application/json', 'Accept': 'application/json', mode: 'cors', credentials: 'same-origin' }, body: json }).then(response => {
+    fetch(`${location.protocol}//${document.domain}/api/insert/califications`, { method:"POST", headers: {'Content-Type': 'application/json', 'Accept': 'application/json', mode: 'cors', credentials: 'same-origin' }, body: json }).then(response => {
         if (!response.ok) {
             throw new Error(`Ha ocurrido un error, intente de nuevo\n\n Error code: ${response.status}`)
         }

@@ -10,7 +10,7 @@ import microservices.common.db_interpreter as interpreter
 supabase, server_code = None, None
 insert_bp = Blueprint('insert_bp', __name__)
 
-@insert_bp.route("/insert/califications", methods=["POST"])
+@insert_bp.route("/api/insert/califications", methods=["POST"])
 def califications_insert():
     info = request.get_json()
 

@@ -11,7 +11,7 @@ supabase, server_url, server_code = None, None, None
 register_bp = Blueprint('register', __name__)
 CORS(register_bp)
 
-@register_bp.route("/register/verify", methods=["POST"])
+@register_bp.route("/api/register/verify", methods=["POST"])
 def register():
     if request.method == "POST":
         data = request.get_json()

@@ -45,7 +45,7 @@ def get_calendar(service):
     if main_calendar == None: exit()
     return main_calendar
     
-@calendar_bp.route("/calendar/add/event", methods=["PUT"])
+@calendar_bp.route("/api/calendar/add/event", methods=["PUT"])
 def add_event():
     """
     Requested info: error_concept (resume), github_link, description, start (start date), end (end date)

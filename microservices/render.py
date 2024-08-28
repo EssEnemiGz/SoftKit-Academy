@@ -8,7 +8,7 @@ import microservices.common.db_interpreter as interpreter
 supabase = None
 render_bp = Blueprint('render_bp', __name__)
 
-@render_bp.route('/dashboard/califications', methods=["GET"])
+@render_bp.route('/api/dashboard/califications', methods=["GET"])
 def califications():
     user_id = session.get('id')
     username = session.get('username')
@@ -22,7 +22,7 @@ def califications():
 
     return result
 
-@render_bp.route('/render/students', methods=["GET"])
+@render_bp.route('/api/render/students', methods=["GET"])
 def students():
     query = supabase.table('users').select('id, username').eq('role', 'student')
     db_response = interpreter.return_data(query=query, was_be_empty=1)

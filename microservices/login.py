@@ -11,7 +11,7 @@ server_url = None
 login_bp = Blueprint('login', __name__)
 CORS(login_bp)
 
-@login_bp.route('/login/verify', methods=["POST"])
+@login_bp.route('/api/login/verify', methods=["POST"])
 def login():
     if request.method == "POST":
         data = request.get_json()

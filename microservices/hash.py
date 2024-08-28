@@ -10,7 +10,7 @@ from flask import *
 hash_bp = Blueprint('hash', __name__)
 CORS(hash_bp)
 
-@hash_bp.route('/hash/create', methods=["POST"])
+@hash_bp.route('/api/hash/create', methods=["POST"])
 def generate():
     head = request.headers
     data = request.get_json()

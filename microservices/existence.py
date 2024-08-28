@@ -11,7 +11,7 @@ supabase = None
 existence_bp = Blueprint('existence', __name__)
 CORS(existence_bp)
 
-@existence_bp.route('/existence/check', methods=["POST"])
+@existence_bp.route('/api/existence/check', methods=["POST"])
 def check(): 
     if request.method == "POST":
         dic = {}

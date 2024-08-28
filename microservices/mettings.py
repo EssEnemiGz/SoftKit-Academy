@@ -11,7 +11,7 @@ import requests
 meets_bp = Blueprint('meetings', __name__)
 supabase, server_url = None, None
 
-@meets_bp.route("/meet/info", methods=["GET"])
+@meets_bp.route("/api/meet/info", methods=["GET"])
 def info():
     query = supabase.table('meetings').select('link, date, hour').eq('user_id', session.get("id")).eq("status", 1)
     result = interpreter.return_data(query=query, was_be_empty=1)
@@ -21,7 +21,7 @@ def info():
     response.status_code = 200
     return response
 
-@meets_bp.route("/meet/add", methods=["POST"])
+@meets_bp.route("/api/meet/add", methods=["POST"])
 def add_meet():
     if session.get("id") == None:
         err = redirect("/form?form=login")
@@ -43,7 +43,7 @@ def add_meet():
     response.status_code = 200
     return response
 
-@meets_bp.route("/meet/confirm", methods=["POST"])
+@meets_bp.route("/api/meet/confirm", methods=["POST"])
 def confirm_meet():
     #if session.get("id") == None:
     #    err = redirect("/form?form=login")

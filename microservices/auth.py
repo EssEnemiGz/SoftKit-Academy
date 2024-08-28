@@ -12,7 +12,7 @@ supabase = None
 auth_bp = Blueprint('auth', __name__)
 CORS(auth_bp)
 
-@auth_bp.route("/auth/log", methods=["GET", "POST"])
+@auth_bp.route("/api/auth/log", methods=["GET", "POST"])
 def token():
     if request.method == "POST":
         data = request.get_json()
