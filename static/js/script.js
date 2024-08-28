@@ -20,13 +20,3 @@ links.onclick = function() {
 	event.stopPropagation();
 	menu.classList.toggle('open');
 }
-
-window.onload = () => {
-	if (location.pathname == "/"){
-		const supported_langs = ['es', 'en']
-		const lang = navigator.language[0] + navigator.language[1]
-
-		if (supported_langs.includes(lang))
-			window.location.href = `${location.protocol}//${document.domain}/${lang}`
-	}
-}
