@@ -83,7 +83,7 @@ def dashboard():
         return render_template(f"es/dashboard.html")
         """
     if len(session):
-        return render_template("dashboard.html")
+        return render_template("es/dashboard.html")
     else:
         return redirect( '/form?form=login' )
     
