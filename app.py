@@ -92,7 +92,7 @@ def form():
     if len(session):
         return redirect("/dashboard")
     else:
-        return render_template("form.html")
+        return render_template("es/form.html")
     
 @app.route('/admin/insert', methods=["GET"])
 def insert_route():
@@ -100,7 +100,7 @@ def insert_route():
 
     elif session.get('username') != 'biscenp': return redirect('/dashboard')
 
-    else: return render_template('insert.html')
+    else: return render_template('es/insert.html')
     
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
