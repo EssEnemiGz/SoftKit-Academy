@@ -76,28 +76,23 @@ def main(lang):
         return render_template(f"{lang}/index.html")
 
 @app.route("/dashboard", methods=["GET"])
-def dashboard(lang):
-    if lang not in SUPPORTED_LANGUAGES:
+def dashboard():
+    """if lang not in SUPPORTED_LANGUAGES:
         abort(404)
     elif lang == "":
         return render_template(f"es/dashboard.html")
-        
+        """
     if len(session):
-        return render_template(f"{lang}/dashboard.html")
+        return render_template("dashboard.html")
     else:
         return redirect( '/form?form=login' )
     
 @app.route("/form", methods=["GET"])
-def form(lang):
-    if lang not in SUPPORTED_LANGUAGES:
-        abort(404)
-    elif lang == "":
-        return render_template(f"es/form.html")
-        
+def form():
     if len(session):
         return redirect("/dashboard")
     else:
-        return render_template(f"{lang}/form.html")
+        return render_template("form.html")
     
 @app.route('/admin/insert', methods=["GET"])
 def insert_route():
