@@ -34,7 +34,7 @@ def register():
         password = data.get('password')
         email = data.get('email')
 
-        check = requests.post(server_url+"/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'email':email})
+        check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'email':email})
         if check.status_code == 500:
             err = make_response( jsonify({'status':'ERROR'}) )
             err.status_code = 500
@@ -47,7 +47,7 @@ def register():
             response.status_code = 409
             return response
         
-        serverResponse = requests.post(server_url+"/hash/create", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'action':'hash-passw', 'password':password})
+        serverResponse = requests.post(server_url+"/api/hash/create", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'action':'hash-passw', 'password':password})
         if serverResponse.status_code == 500:
             response = make_response( redirect('/render/form') )
             response.status_code = 500
@@ -57,7 +57,7 @@ def register():
         query = supabase.table('users').insert({'username':username, 'password':password_hashed, 'email':email})
         interpreter.no_return(query=query) 
         
-        token = requests.post(server_url+"/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password, 'email':email}) # To confirm the register creating a token
+        token = requests.post(server_url+"/api/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password, 'email':email}) # To confirm the register creating a token
         if token.status_code == 500:
             response = make_response( redirect('/render/form') )
             return response

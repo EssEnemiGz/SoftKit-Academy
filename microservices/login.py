@@ -24,7 +24,7 @@ def login():
         password = data.get('password')
         email = data.get('email')
 
-        check = requests.post(server_url+"/existence/check", headers={"Content-Type":"application/json", "Accept":"application/json"}, json={'username':username, 'email':email})
+        check = requests.post(server_url+"/api/existence/check", headers={"Content-Type":"application/json", "Accept":"application/json"}, json={'username':username, 'email':email})
         if check.status_code == 500: 
             err = make_response( jsonify({'status':'ERROR'}) )
             err.status_code = 500
@@ -36,7 +36,7 @@ def login():
             err.status_code = 401
             return err
 
-        token = requests.post(server_url+"/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password, 'email':email}) # To confirm the register creating a token
+        token = requests.post(server_url+"/api/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password, 'email':email}) # To confirm the register creating a token
         if token.status_code == 500:
             response = make_response( redirect('/render/form') )
             return response 

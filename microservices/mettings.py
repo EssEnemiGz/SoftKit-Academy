@@ -65,7 +65,7 @@ def confirm_meet():
         "end":data.get("end")
     }
     
-    calendar_request = requests.put(server_url+"/calendar/add/event", headers={"Content-Type":"application/json", "Accept":"application/json"}, json=info)
+    calendar_request = requests.put(server_url+"/api/calendar/add/event", headers={"Content-Type":"application/json", "Accept":"application/json"}, json=info)
     if calendar_request.status_code == 200:
         start_obj = datetime.strptime(data.get("start"), "%d-%m-%Y %H:%M")
         end_obj = datetime.strptime(data.get("end"), "%d-%m-%Y %H:%M")
