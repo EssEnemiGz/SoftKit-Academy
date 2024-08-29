@@ -86,6 +86,7 @@ function login(){
 	let username, password, email;
 	username = document.querySelector(".login .username").value 
 	password = document.querySelector(".login .password").value 
+	email = document.querySelector(".login .email").value
  
 	let json ={
 		'username':username,
