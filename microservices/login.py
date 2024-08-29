@@ -23,14 +23,14 @@ def login():
         username = data.get('username')
         password = data.get('password')
         email = data.get('email')
-
+        
+        print(username, email)
         check = requests.post(server_url+"/api/existence/check", headers={"Content-Type":"application/json", "Accept":"application/json"}, json={'username':username, 'email':email})
         if check.status_code == 500: 
             err = make_response( jsonify({'status':'ERROR'}) )
             err.status_code = 500
             return err
-
-        print(check.text)
+        
         check = check.json()
         if not check.get('user') and not check.get('email'):
             err = make_response( redirect('/render/form') )
