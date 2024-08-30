@@ -34,3 +34,8 @@ def students():
 @render_bp.route('/render/languages', methods=["GEt"])
 def languages():
     pass
+
+@render_bp.route("/render/courses", methods=["GET"])
+def courses():
+    query = supabase.table("")
+    pass

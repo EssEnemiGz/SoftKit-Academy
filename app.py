@@ -48,7 +48,7 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase = db, db, db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase = db, db, db, db, db, db, db
 login.server_url, register.server_url, meetings.server_url = server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 
@@ -93,7 +93,7 @@ def form():
 def insert_route():
     if not len(session): return redirect('/form?form=login')
 
-    elif session.get('username') != 'biscenp': return redirect('/dashboard')
+    elif session.get('role') == 'student': return redirect('/dashboard')
 
     else: return render_template('es/insert.html')
     
