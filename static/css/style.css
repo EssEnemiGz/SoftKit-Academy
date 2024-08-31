@@ -191,6 +191,7 @@ span.exit-icon{
     color: var(--gray-white);
     font-size: var(--fs-2);
 }
+
 /* Default clases */
 .link{
     font-size: var(--fs-4);

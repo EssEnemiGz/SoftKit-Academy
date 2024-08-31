@@ -39,6 +39,7 @@ app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52
 SUPPORTED_LANGUAGES = ['es', 'en']
 
 # Conexion a base de datos
+"""
 db = supabase.create_client(database, api)
 auth_key = db.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
 if auth_key.session:
@@ -46,9 +47,10 @@ if auth_key.session:
     pass
 else:
     print(f"Error de auth. {auth_key.error}")
+"""
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase = db, db, db, db, db, db, db
+#auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase = db, db, db, db, db, db, db
 login.server_url, register.server_url, meetings.server_url = server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 
@@ -97,10 +99,42 @@ def insert_route():
 
     else: return render_template('es/insert.html')
     
+@app.route("/students/panel", methods=["GET"])
+def students_panel_default():
+    return render_template("es/students-panel.html")    
+    
+@app.route("/students/panel/<lang>", methods=["GET"])
+def students_panel(lang):
+    print(lang)
+    if lang not in SUPPORTED_LANGUAGES:
+        abort(404)
+    elif lang == "":
+        return render_template("es/students-panel.html")
+    else:
+        return render_template(f"{lang}/students-panel.html")
+    
+@app.route("/students/task", methods=["GET"])
+def students_task_default():
+    return render_template("es/students-task.html")    
+    
+@app.route("/students/task/<lang>", methods=["GET"])
+def students_task(lang):
+    print(lang)
+    if lang not in SUPPORTED_LANGUAGES:
+        abort(404)
+    elif lang == "":
+        return render_template("es/students-task.html")
+    else:
+        return render_template(f"{lang}/students-task.html")
+    
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
 def static_from_root():
     return send_from_directory("static/seo", request.path[1:])
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory("static/icons", "static/icons/favicon.ico")
 
 if __name__=="__main__":
     app.run(debug=True, port=5000)

@@ -1,0 +1,61 @@
+body{
+    background-color: var(--coal);
+}
+
+.--gigant-title{
+    font-size: 32px;
+}
+
+.main{
+    display: flex;
+}
+
+/* GENERAL STYLES */
+.material-block{
+    width: 1100px;
+    padding-inline: 25px;
+}
+
+.material-block-mini{
+    width: 900px;
+}
+
+.--border-bottom{
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 24px;
+}
+
+.--material-block{
+    padding-block: 12px;
+    padding-inline: 40px;
+}
+
+.--illumination{
+    transition: ease-in-out .2s;
+}
+
+.--illumination:hover{
+    box-shadow: 0px 0px 3px 1px var(--white);
+    border-radius: 8px;
+}
+
+/* Students task */
+.task-header{
+    display: flex;
+    gap: 18px;
+    border-bottom: 1px solid var(--white);
+    padding-block-end: 24px;
+}
+
+.assigment-info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-content{
+    display: flex;
+    flex-direction: column;
+    padding-block-start: 24px;
+    gap: 32px;
+}
