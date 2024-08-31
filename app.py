@@ -39,7 +39,6 @@ app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52
 SUPPORTED_LANGUAGES = ['es', 'en']
 
 # Conexion a base de datos
-"""
 db = supabase.create_client(database, api)
 auth_key = db.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
 if auth_key.session:
@@ -47,10 +46,9 @@ if auth_key.session:
     pass
 else:
     print(f"Error de auth. {auth_key.error}")
-"""
 
 # BLUEPRINTS
-#auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase = db, db, db, db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase = db, db, db, db, db, db, db
 login.server_url, register.server_url, meetings.server_url = server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 
