@@ -24,6 +24,7 @@ def check():
             query = supabase.table('users').select('username, email').eq('username', username)
             result = interpreter.return_data(query=query, was_be_empty=1)
 
+            print(result.output_data())
             if result.output_data() == []:
                 user_existence = 0
 

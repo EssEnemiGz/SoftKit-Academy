@@ -34,7 +34,7 @@ def login():
         check = check.json()
         print(username, password, email)
         if not check.get('user') and not check.get('email'):
-            print(check.get("user", check.get("email")))
+            print(check.get("user"), check.get("email"))
             err = make_response( redirect('/render/form') )
             err.status_code = 401
             return err
