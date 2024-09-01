@@ -43,6 +43,7 @@ const completed = (content_id) => {
             alert("Recargue su pagina, ha ocurrido un error")
         }
 
+        alert("Marcado como completado correctamente, su maestro ha recibido la notificación.")
         return response
     })
 }
