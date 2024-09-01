@@ -2,96 +2,141 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description"
-		content="En nuestra academia de programación, aprenderás a dominar las habilidades de desarrollo de software de manera rápida y práctica. Ofrecemos un enfoque intensivo y asequible, con cursos diseñados para que te conviertas en un programador competente en tiempo récord. A través de proyectos reales y ejercicios prácticos, mejorarás tus habilidades en programación web, desarrollo de aplicaciones y más. Ideal para quienes buscan una formación efectiva, accesible y centrada en la práctica. ¡Empieza tu camino hacia una nueva carrera hoy mismo con nuestra metodología comprobada y asequible! Apto para novatos, experimentados y expertos, damos soporte a todos los niveles. Domina la programación de forma rápida y práctica en nuestra academia asequible. Aprende con proyectos reales y mejora tus habilidades en tiempo récord. Aprende, practica y construye. Crea el futuro con tus propias manos.">
-	<meta name="keywords"
-		content="Academia, programación, programming, cursos, desarrollo de software, programadores, rapido, barato, cursos de programacion de buena calidad, programmers, tecnología">
-	<link rel="alternate" hreflang="es" href="https://softkitacademy.com/es/" />
-	<link rel="alternate" hreflang="en" href="https://softkitacademy.com/en/" />
-	<title>Form - SoftKit Academy</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Softkit Academy</title>
 
-	<!-- Main CSS -->
-	<link rel="stylesheet" href="/static/css/form.css">
+    <!-- ICON -->
+    <link rel="shortcut icon" href="/static/img/TSAR-Logo-Gray.webp" type="image/x-icon">
 
-	<!-- Icons -->
-	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/form-version2.css">
+    <link rel="stylesheet" href="/static/css/general.css">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
+        rel="stylesheet">
+
+    <!-- GOOGLE ICONS -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
-	<main class="main">
-		<div class="container">
-			<!-- REGISTER -->
-			<div class="general-container register-general show">
-				<img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="" class="logo"
-					width="520" height="520">
-				<form class="form register">
-					<h1 class="form__title">Register</h1>
-					<label for="user" class="input-icon">
-						<ion-icon name="person-outline" class="icon"></ion-icon>
-						<input type="text" placeholder="Insert your username" name="username"
-							class="username info-input">
-					</label>
+    <main class="main">
+        <!-- LOGIN FORM -->
+        <article class="container login-main">
+            <div class="information-container main-container --card">
+                <div class="main-form">
+                    <h1 class="--title">Iniciar sesion</h1>
+                    <p class="--description-transparent">Aprenda programación a nivel profesional</p>
+                    <div class="form login">
+                        <label class="entry --clickable-text" for="username">
+                            <span class="material-symbols-outlined --form-icon --icon-box">
+                                person
+                            </span>
+                            <input type="text" id="username" placeholder="Ingrese su nombre"
+                                class="input-info username" required>
+                        </label>
+                        <label class="entry --clickable-text" for="password">
+                            <span class="material-symbols-outlined --form-icon --icon-box">
+                                vpn_key
+                            </span>
+                            <input type="password" id="password" placeholder="Ingrese su contraseña"
+                                class="input-info password" required>
+                        </label>
+                        <label class="entry --clickable-text" for="email">
+                            <span class="material-symbols-outlined --form-icon --icon-box">
+                                mail
+                            </span>
+                            <input type="email" id="email" placeholder="Ingrese su e-mail" class="input-info email" required>
+                        </label>
+                    </div>
+                    <div class="actions --element-mini-margin" onclick="login()">
+                        <span class="--button --clickable --button-default-hover">Entrar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="extra-containers">
+                <a href="mailto:contract@softkitacademy.com?subject=Contratar Plan Estandar de SoftKit Academy - 1 mes&body=Saludos! Quisiera contratar el plan estándar de SoftKit Academy por 1 mes" class="--card question-container">
+                    <h1 class="--title">¿No tiene una cuenta?</h1>
+                    <p class="--desc">Contacte con nosotros e inicie a aprender</p>
+                    <div class="form-card">
+                        <span class="material-symbols-outlined --big-icon">
+                            how_to_reg
+                        </span>
+                        <div class="sinopsis">
+                            <h3 class="--little-title --no-stroke">Crear cuenta</h3>
+                            <p class="--description-transparent">De un click para mandarnos un correo</p>
+                        </div>
+                        <span class="material-symbols-outlined --big-icon">
+                            chevron_right
+                        </span>
+                    </div>
+                </a>
+                <div class="--card opinions">
+                    <div class="tech">
+                        <img src="https://skillicons.dev/icons?i=js" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=python" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=docker" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=angular" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=rust" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=react" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=supabase" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=git" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=postgres" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=astro" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=cloudflare" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                        <img src="https://skillicons.dev/icons?i=tailwind" alt="Technology logo"
+                            class="partner-logo" width="60" height="60">
+                    </div>
+                    <h1 class="--title">Las tecnologías más importantes</h1>
+                    <p class="--description-transparent --medium-word-limiter --text-centered">Todas las tecnologías
+                        destacadas del mercado están aquí <br>Gracias a
+                        nuestra academia podrá dominarlas en poco tiempo al nivel más alto.</p>
+                    <div class="rate-sinopsis">
+                        <div class="rate">
+                            <span class="material-symbols-outlined">
+                                star
+                            </span>
+                            <span class="material-symbols-outlined">
+                                star
+                            </span>
+                            <span class="material-symbols-outlined">
+                                star
+                            </span>
+                            <span class="material-symbols-outlined">
+                                star
+                            </span>
+                            <span class="material-symbols-outlined">
+                                star
+                            </span>
+                        </div>
+                        <p class="--micro-description --text-centered rate-description">¡La mayor calidad!</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
 
-					<label for="passw" class="input-icon">
-						<ion-icon name="lock-closed-outline" class="icon"></ion-icon>
-						<input type="password" placeholder="Insert your password" name="password"
-							class="password info-input">
-					</label>
-
-					<label for="confirm" class="input-icon">
-						<ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
-						<input type="password" placeholder="Confirm your password" name="confirm"
-							class="confirm info-input">
-					</label>
-
-					<label for="mail" class="input-icon">
-						<ion-icon name="at-outline" class="icon"></ion-icon>
-						<input type="email" placeholder="Insert your mail" name="email" class="email info-input">
-					</label>
-
-					<label for="confirm" class="input-icon">
-						<ion-icon name="checkmark-circle-outline" class="icon"></ion-icon>
-						<input type="password" placeholder="SERVER CODE" name="code" class="code info-input">
-					</label>
-					<span class="question" onclick="change()">Do you have an account?</span>
-					<button type="button" class="submit" onclick="register()">Send</button>
-				</form>
-			</div>
-
-			<!-- LOGIN -->
-			<div class="general-container login-general">
-				<img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="" class="logo"
-					width="520" height="520">
-				<form class="form login">
-					<h1 class="form__title">Login</h1>
-					<label for="user" class="input-icon">
-						<ion-icon name="person-outline" class="icon"></ion-icon>
-						<input type="text" placeholder="Insert your username" name="username"
-							class="username info-input">
-					</label>
-
-					<label for="passw" class="input-icon">
-						<ion-icon name="lock-closed-outline" class="icon"></ion-icon>
-						<input type="password" placeholder="Insert your password" name="password"
-							class="password info-input">
-					</label>
-
-					<label for="mail" class="input-icon">
-						<ion-icon name="at-outline" class="icon"></ion-icon>
-						<input type="email" placeholder="Insert your mail" name="email" class="email info-input">
-					</label>
-					<span class="question" onclick="change()">Don't have an account?</span>
-					<button type="button" class="submit" onclick="login()">Send</button>
-				</form>
-			</div>
-		</div>
-	</main>
-
-	<!-- Custom JS -->
-	<script src="/static/js/form.js"></script>
+    <script src="/static/js/form.js"></script>
 </body>
 
 </html>

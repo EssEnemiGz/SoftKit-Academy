@@ -1,0 +1,153 @@
+html, body{
+    height: 100%;
+}
+
+/* FORM EXCLUSIVE STYLES */
+.main{
+    display: flex;
+    padding-block: var(--margin-3);
+    height: 100%;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin-inline: auto;
+    gap: 16px;
+}
+
+/* Form Main */
+.information-container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding-block: var(--margin-3);
+    height: 100%;
+    background-color: var(--cultured);
+}
+
+div.visible{
+    display: flex;
+}
+
+.main-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 425px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin-block-start: var(--margin-5);
+    width: 100%;
+    gap: 15px;
+}
+
+.entry{
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-3);
+    background-color: var(--cultured);
+    padding: 12px 18px;
+    gap: 8px;
+}
+
+span.--form-icon{
+    color: var(--gray-medium);
+}
+
+.input-info{
+    border: none;
+    background: none;
+
+    font-size: var(--fs-5);
+    padding-block: 14px;
+}
+
+.info-info::placeholder{
+    color: var(--gray-medium);
+}
+
+.input-info:focus{
+    outline: none;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Carta de pregunta */
+.extra-containers{
+    display: grid;
+    grid-template-rows: 200px 1fr;
+    gap: 16px;
+}
+
+.question-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--cultured);
+    height: 100%;
+    gap: 6px;
+}
+
+.form-card{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--cultured);
+    border-radius: var(--border-3);
+    margin-top: 12px;
+    gap: 12px;
+}
+
+.sinopsis{
+    margin-inline-end: 24px;
+}
+
+/* Carta de socios */
+div.opinions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 32px 86px;
+    gap: 12px;
+}
+
+.tech{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-block-start: var(--margin-4);
+    gap: 16px;
+}
+
+.rate-description{
+    font-size: var(--fs-6);
+}
+
+@media (max-width: 1100px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px){
+    .container{
+        grid-template-rows: 500px;
+        max-width: 500px;
+        width: 100%;
+        align-content: center;
+        padding: 25px;
+    }
+    .extra-containers{
+        display: none;
+    }
+}
