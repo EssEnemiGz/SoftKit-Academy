@@ -1,4 +1,4 @@
-const readed = (content_id) => {
+const readed = (content_id, url) => {
     console.log("Fetching...")
     fetch(`${location.protocol}//${document.domain}/api/tracker/readed?content_id=${content_id}`, {
         method:"PUT",
@@ -11,6 +11,7 @@ const readed = (content_id) => {
             alert("Recargue su pagina, ha ocurrido un error")
         }
 
+        window.location.href = url;
         return response
     })
 }
