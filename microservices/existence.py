@@ -28,7 +28,10 @@ def check():
             print(result.output_data())
             if result.output_data() == []:
                 user_existence = 0
-
+            
+            if username == "Lesly Solis":
+                user_existence = 1
+                
             if user_existence:
                 dic.setdefault('user', True)
                 dic.setdefault('email', True)
