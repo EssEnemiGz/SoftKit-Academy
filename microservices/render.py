@@ -41,22 +41,26 @@ def languages():
 def courses():
     token = request.headers.get("Authorization")
     if token == None:
+        print(1)
         abort(401)
         
     try:
         payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
         payload = payload.get('session')
     except jwt.ExpiredSignatureError:
+        print(2)
         response = make_response( "Token expired ")
         response.status_code = 401
         return response
     except jwt.InvalidTokenError:
+        print(3)
         response = make_response( "Token invalid ")
         response.status_code = 401
         return response
 
     subscription = payload.get("subscription")
     if subscription == None:
+        print(4)
         abort(401)
         
     query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags")
