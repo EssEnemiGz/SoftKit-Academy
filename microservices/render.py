@@ -51,4 +51,4 @@ def components():
     if component not in os.listdir("templates/components"):
         abort(404)
         
-    return send_from_directory("templates/components", component)
+    return render_template(f"components/{component}")

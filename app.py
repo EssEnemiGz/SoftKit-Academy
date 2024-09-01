@@ -132,7 +132,7 @@ def static_from_root():
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory("static/icons", "static/icons/favicon.ico")
+    return send_from_directory("static/icons", "favicon.ico")
 
 if __name__=="__main__":
     app.run(debug=True, port=5000)
