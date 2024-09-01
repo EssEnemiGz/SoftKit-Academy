@@ -14,18 +14,18 @@
 <body>
     <header class="header"></header>
     <main class="main --section-2">
-        {%- for element in data -%}
         <section class="material-block --self-centered">
             <div class="--header-more --border-bottom">
-                <h2 class="--material-title --font-white --no-stroke --no-margin">Bloque</h2>
+                <h2 class="--material-title --font-white --no-stroke --no-margin">Material de estudio</h2>
                 <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones" class="--icon-box --clickable --svg-white">
             </div>
+            {%- for element in data -%}
             <a class="assigment --inline-container --material-inline --material-block --clickable --illumination" onclick="readed('{{ element.get('id') }}', '/students/task?course_id={{ element.get('id') }}')">
                 <img src="/static/icons/book.svg" alt="Task icon" class="--clickable --svg-circle" width="50" height="50">
                 <h3 class="--title --font-white --no-margin">{{ element.get("course") }}</h3>
             </a>
+            {%- endfor -%}
         </section>
-        {%- endfor -%}
     </main>
 
     <script src="/static/js/script.js"></script>

@@ -8,6 +8,8 @@ body{
 
 .main{
     display: flex;
+    flex-direction: column;
+    gap: 64px;
 }
 
 /* GENERAL STYLES */
