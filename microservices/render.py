@@ -59,6 +59,7 @@ def courses():
         return response
 
     subscription = payload.get("subscription")
+    print(payload)
     if subscription == None:
         print(4)
         abort(401)
