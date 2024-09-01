@@ -99,7 +99,7 @@ def course_unique():
     if course_id == None:
         abort(400)
         
-    query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags")
+    query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags").eq("id", course_id)
     result = interpreter.return_data(query=query, was_be_empty=0)
     if result.status_code() == 0:
         err = make_response( "Error with the course load" )

@@ -116,6 +116,7 @@ def students_panel_default():
         
     r = requests.get(server_url+f"/api/render/courses", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
     if r.status_code == 200:
+        print(r.json())
         return render_template("es/students-panel.html", data=r.json())    
     else: 
         abort(500)
