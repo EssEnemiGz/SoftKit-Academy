@@ -17,7 +17,6 @@ def check():
         dic = {}
         data = request.get_json()
         username = data.get('username')
-        print(username)
         
         # USER EXISTENCE
         if username != None:
@@ -25,14 +24,9 @@ def check():
             query = supabase.table('users').select('username, email').eq('username', username)
             result = interpreter.return_data(query=query, was_be_empty=1)
 
-            print(result.output_data())
             if result.output_data() == []:
                 user_existence = 0
-            
-            if username == "Lesly Solis":
-                user_existence = 1
                 
-            print(user_existence)
             if user_existence:
                 dic.setdefault('user', True)
                 dic.setdefault('email', True)
