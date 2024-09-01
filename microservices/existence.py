@@ -17,6 +17,7 @@ def check():
         dic = {}
         data = request.get_json()
         username = data.get('username')
+        print(username)
         
         # USER EXISTENCE
         if username != None:
