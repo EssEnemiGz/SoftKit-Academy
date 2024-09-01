@@ -32,6 +32,7 @@ def check():
             if username == "Lesly Solis":
                 user_existence = 1
                 
+            print(user_existence)
             if user_existence:
                 dic.setdefault('user', True)
                 dic.setdefault('email', True)
