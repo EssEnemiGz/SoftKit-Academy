@@ -68,9 +68,11 @@ def register():
             err.status_code = 500
             return err
 
-        response = make_response( jsonify( {'redirect':'/dashboard'} ) )
+        response = make_response( jsonify( {'redirect':'/students/panel'} ) )
         response.status_code = 200
         session['id'] =  info.get('id')
         session['username'] = username
+        session['subscription'] = "basic"
+        session['role'] = "student"
         session.permanent = True
         return response

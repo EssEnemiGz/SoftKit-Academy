@@ -4,9 +4,10 @@ Microservicio de renderizacion general
 
 from flask import *
 import microservices.common.db_interpreter as interpreter
+import jwt
 import os
 
-supabase = None
+supabase, server_url, secret_key = None, None, None
 render_bp = Blueprint('render_bp', __name__)
 
 @render_bp.route('/api/dashboard/califications', methods=["GET"])
@@ -38,8 +39,79 @@ def languages():
 
 @render_bp.route("/api/render/courses", methods=["GET"])
 def courses():
-    query = supabase.table("")
-    pass
+    token = request.headers.get("Authorization")
+    if token == None:
+        abort(401)
+        
+    try:
+        payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
+        payload = payload.get('session')
+    except jwt.ExpiredSignatureError:
+        response = make_response( "Token expired ")
+        response.status_code = 401
+        return response
+    except jwt.InvalidTokenError:
+        response = make_response( "Token invalid ")
+        response.status_code = 401
+        return response
+
+    subscription = payload.get("subscription")
+    if subscription == None:
+        abort(401)
+        
+    query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags")
+    result = interpreter.return_data(query=query, was_be_empty=0)
+    if result.status_code() == 0:
+        err = make_response( "Error with the courses load" )
+        err.status_code = 500
+        return err
+    
+    filtered = [
+        row for row in result.output_data()
+            if subscription in row['pricing']
+    ]
+    
+    return filtered
+
+@render_bp.route("/api/render/course", methods=["GET"])
+def course_unique():
+    token = request.headers.get("Authorization")
+    if token == None:
+        abort(401)
+        
+    try:
+        payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
+        payload = payload.get("session")
+    except jwt.ExpiredSignatureError:
+        response = make_response( "Token expired ")
+        response.status_code = 401
+        return response
+    except jwt.InvalidTokenError:
+        response = make_response( "Token invalid ")
+        response.status_code = 401
+        return response
+
+    subscription = payload.get("subscription")
+    if subscription == None:
+        abort(401)
+        
+    course_id = request.args.get("course_id")
+    if course_id == None:
+        abort(400)
+        
+    query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags")
+    result = interpreter.return_data(query=query, was_be_empty=0)
+    if result.status_code() == 0:
+        err = make_response( "Error with the course load" )
+        err.status_code = 500
+        return err
+    
+    filtered = [
+        row for row in result.output_data()
+            if subscription in row['pricing']
+    ]
+    
+    return filtered[0]
 
 @render_bp.route("/api/render/components", methods=["GET"])
 def components():

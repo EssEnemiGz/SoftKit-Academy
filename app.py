@@ -8,12 +8,15 @@ import microservices.render as render
 import microservices.insert as insert
 import microservices.mettings as meetings
 import microservices.calendar as calendar
+import microservices.tracker as tracker
 
 # LIBRARYS
-from datetime import timedelta
+from datetime import timedelta, datetime
 from flask import *
 from dotenv import load_dotenv
 import supabase
+import requests
+import jwt
 import os
 
 # Carga de variables de entorno del .env
@@ -48,9 +51,10 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase = db, db, db, db, db, db, db
-login.server_url, register.server_url, meetings.server_url = server_url, server_url, server_url
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase, tracker.supabase = db, db, db, db, db, db, db, db
+login.server_url, register.server_url, meetings.server_url, render.server_url = server_url, server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
+render.secret_key = secret_key
 
 app.register_blueprint(auth.auth_bp)
 app.register_blueprint(exist.existence_bp)
@@ -61,6 +65,14 @@ app.register_blueprint(render.render_bp)
 app.register_blueprint(insert.insert_bp)
 app.register_blueprint(meetings.meets_bp)
 app.register_blueprint(calendar.calendar_bp)
+app.register_blueprint(tracker.track_bp)
+
+def generate_jwt(data):
+    payload = {
+        'session': data,
+    }
+    token = jwt.encode(payload, secret_key, algorithm='HS256')
+    return token 
 
 @app.route("/", methods=["GET"])
 def index():
@@ -85,7 +97,7 @@ def dashboard():
 @app.route("/form", methods=["GET"])
 def form():
     if len(session):
-        return redirect("/dashboard")
+        return redirect("/students/panel")
     else:
         return render_template("es/form.html")
     
@@ -99,31 +111,65 @@ def insert_route():
     
 @app.route("/students/panel", methods=["GET"])
 def students_panel_default():
-    return render_template("es/students-panel.html")    
+    if not len(session):
+        abort(401)
+        
+    r = requests.get(server_url+f"/api/render/courses", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
+    if r.status_code == 200:
+        return render_template("es/students-panel.html", data=r.json())    
+    else: 
+        abort(500)
     
 @app.route("/students/panel/<lang>", methods=["GET"])
 def students_panel(lang):
-    print(lang)
+    if not len(session):
+        abort(401)
+        
     if lang not in SUPPORTED_LANGUAGES:
         abort(404)
     elif lang == "":
         return render_template("es/students-panel.html")
-    else:
-        return render_template(f"{lang}/students-panel.html")
+
+    r = requests.get(server_url+f"/api/render/courses?subscription={session.get('subscription')}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
+    if r.status_code == 200:
+        return render_template("es/students-panel.html", data=r.json())    
+    else: 
+        abort(500)
     
 @app.route("/students/task", methods=["GET"])
-def students_task_default():
-    return render_template("es/students-task.html")    
+def students_task_default():   
+    if not len(session):
+        abort(401)
+        
+    course_id = request.args.get("course_id")
+    if course_id == None:
+        abort(400)
+        
+    r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
+    if r.status_code == 200:
+        return render_template("es/students-task.html", data=r.json())    
+    else: 
+        abort(500)
     
 @app.route("/students/task/<lang>", methods=["GET"])
 def students_task(lang):
-    print(lang)
+    if not len(session):
+        abort(401)
+        
     if lang not in SUPPORTED_LANGUAGES:
         abort(404)
     elif lang == "":
         return render_template("es/students-task.html")
-    else:
-        return render_template(f"{lang}/students-task.html")
+        
+    course_id = request.args.get("course_id")
+    if course_id == None:
+        abort(400)
+        
+    r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
+    if r.status_code == 200:
+        return render_template("es/students-task.html", data=r.json())    
+    else: 
+        abort(500)
     
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
