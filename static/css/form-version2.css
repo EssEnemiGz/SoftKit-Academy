@@ -56,8 +56,8 @@ div.visible{
     gap: 8px;
 }
 
-span.--form-icon{
-    color: var(--gray-medium);
+.--form-icon{
+    filter: brightness(0) saturate(100%) invert(56%) sepia(34%) saturate(0%) hue-rotate(258deg) brightness(100%) contrast(99%);
 }
 
 .input-info{

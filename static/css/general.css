@@ -90,16 +90,16 @@ ul{
 
 .--icon-box{
     font-variation-settings: 'wght' 300;
-    color: var(--eerie-black);
+    filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(1343%) hue-rotate(169deg) brightness(93%) contrast(85%);
     font-weight: var(--fw-500);
     font-size: 24px;
 }
 
-span.--big-icon{
+.--big-icon{
     font-variation-settings: 'wght' 300;
-    color: var(--eerie-black);
-    font-weight: var(--fw-400);
-    font-size: 34px;
+    filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(1343%) hue-rotate(169deg) brightness(93%) contrast(85%);
+    width: 34px;
+    height: 34px;
 }
 
 /* Default clases */
