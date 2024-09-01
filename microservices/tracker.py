@@ -12,6 +12,7 @@ supabase = None
 
 @track_bp.route("/api/tracker/visited", methods=["PUT"])
 def visited():
+    print("Starting tracker")
     if not len(session):
         abort(401)
         
@@ -25,12 +26,14 @@ def visited():
     if result.status_code() == 200:
         response = make_response( "DONE" )
         response.status_code = 200
+        print("Tracked!")
         return response
     
     abort(500)
     
 @track_bp.route("/api/tracker/readed", methods=["PUT"])
 def readed():
+    print("Starting tracker")
     if not len(session):
         abort(401)
         
@@ -44,6 +47,7 @@ def readed():
     if result.status_code() == 200:
         response = make_response( "DONE" )
         response.status_code = 200
+        print("Tracked!")
         return response
     
     abort(500)

@@ -1,4 +1,5 @@
 const readed = (content_id) => {
+    console.log("Fetching...")
     fetch(`${location.protocol}//${document.domain}/api/tracker/readed?content_id=${content_id}`, {
         method:"PUT",
         headers:{
@@ -15,6 +16,7 @@ const readed = (content_id) => {
 }
 
 const visited = (content_id) => {
+    console.log("Fetching...")
     fetch(`${location.protocol}//${document.domain}/api/tracker/visited?content_id=${content_id}`, {
         method:"PUT",
         headers:{
