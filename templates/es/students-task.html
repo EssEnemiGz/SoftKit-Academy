@@ -8,9 +8,9 @@
     <script src="/static/js/content-loader.js"></script>
 
     <link rel="stylesheet" href="/static/css/general.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/panel.css">
     <link rel="stylesheet" href="/static/css/header.css">
-    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
 <body>
@@ -19,14 +19,14 @@
         <div class="material-block-mini --self-centered">
             <div class="task-header">
                 <img src="/static/icons/book.svg" alt="Book icon" width="60" height="60"
-                    class="--clickable --svg-white">
+                    class="--clickable --svg-black">
                 <div class="assigment-info">
-                    <h3 class="assigmment-title --font-white --gigant-title --no-stroke">{{ data.get("course") }}</h3>
-                    <p class="assigment-desc --font-white --stroke">{{ data.get("teachers").get('name') }} | {{ data.get("published") }}</p>
+                    <h3 class="assigmment-title --font-black --gigant-title --no-stroke">{{ data.get("course") }}</h3>
+                    <p class="assigment-desc --font-black --stroke">{{ data.get("teachers").get('name') }} | {{ data.get("published") }}</p>
                 </div>
             </div>
             <div class="task-content">
-                <p class="task-desc --font-white">{{ data.get("description") }}</p>
+                <p class="task-desc --font-black">{{ data.get("description") }}</p>
                 <a class="--button --self-centered --clickable --button-default-hover --inline-container" href="{{ data.get('url') }}" onclick="visited('{{ data.get('id') }}')">
                     <img src="/static/icons/play_circle.svg" alt="Play video icon" width="25" height="25">
                     <div class="--block-container">

@@ -7,9 +7,9 @@
     <script src="/static/js/content-loader.js"></script>
     
     <link rel="stylesheet" href="/static/css/general.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/panel.css">
     <link rel="stylesheet" href="/static/css/header.css">
-    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <header class="header"></header>
@@ -17,12 +17,12 @@
         {%- for element in data -%}
         <section class="material-block --self-centered">
             <div class="--header-more --border-bottom">
-                <h2 class="--material-title --font-white --no-stroke --no-margin">Bloque</h2>
-                <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones" class="--icon-box --clickable --svg-white">
+                <h2 class="--material-title --font-black --no-stroke --no-margin">Bloque</h2>
+                <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones" class="--icon-box --clickable --svg-black">
             </div>
             <a class="assigment --inline-container --material-inline --material-block --clickable --illumination" onclick="readed('{{ element.get('id') }}', '/students/task?course_id={{ element.get('id') }}')">
-                <img src="/static/icons/book.svg" alt="Task icon" class="--clickable --svg-white" width="40" height="40">
-                <h3 class="--title --font-white --no-margin">{{ element.get("course") }}</h3>
+                <img src="/static/icons/book.svg" alt="Task icon" class="--clickable --svg-circle" width="60" height="60">
+                <h3 class="--title --font-black --no-margin">{{ element.get("course") }}</h3>
             </a>
         </section>
         {%- endfor -%}

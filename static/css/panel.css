@@ -1,5 +1,5 @@
 body{
-    background-color: var(--coal);
+    background-color: var(--cultured);
 }
 
 .--gigant-title{
@@ -22,7 +22,7 @@ body{
 }
 
 .--border-bottom{
-    border-bottom: 1px solid var(--white);
+    border-bottom: 1px solid var(--onyx);
     padding-bottom: 24px;
 }
 
@@ -36,7 +36,7 @@ body{
 }
 
 .--illumination:hover{
-    box-shadow: 0px 0px 3px 1px var(--white);
+    box-shadow: 0px 0px 3px 1px var(--onyx);
     border-radius: 8px;
 }
 
@@ -44,7 +44,7 @@ body{
 .task-header{
     display: flex;
     gap: 18px;
-    border-bottom: 1px solid var(--white);
+    border-bottom: 1px solid var(--onyx);
     padding-block-end: 24px;
 }
 

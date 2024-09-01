@@ -275,6 +275,10 @@ span.--big-icon{
     filter: brightness(0) saturate(100%) invert(99%) sepia(0%) saturate(5%) hue-rotate(140deg) brightness(105%) contrast(100%);
 }
 
+.--svg-black{
+    filter: brightness(0) saturate(100%) invert(15%) sepia(3%) saturate(2936%) hue-rotate(165deg) brightness(88%) contrast(80%);
+}
+
 .--irregular-container-left{
     display: grid;
     grid-template-columns: 1fr 300px;
@@ -421,6 +425,16 @@ span.--big-icon{
 
 .--font-white{
     color: var(--white);
+}
+
+.--font-black{
+    color: var(--onyx);
+}
+
+.--svg-circle{
+    background-color: var(--purple);
+    border-radius: var(--border-3);
+    padding: 8px;
 }
 
 .--absolute-centered{

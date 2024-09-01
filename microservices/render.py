@@ -123,4 +123,7 @@ def components():
     if component not in os.listdir("templates/components"):
         abort(404)
         
+    if component == "header.html":
+        return render_template(f"components/{component}", data=[session.get('username'), session.get('subscription').upper()[0]+session.get('subscription')[1:]])
+    
     return render_template(f"components/{component}")
