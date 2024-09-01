@@ -22,18 +22,30 @@
                     class="--clickable --svg-black">
                 <div class="assigment-info">
                     <h3 class="assigmment-title --font-black --gigant-title --no-stroke">{{ data.get("course") }}</h3>
-                    <p class="assigment-desc --font-black --stroke">{{ data.get("teachers").get('name') }} | {{ data.get("published") }}</p>
+                    <p class="assigment-desc --font-black --stroke">{{ data.get("teachers").get('name') }} | {{
+                        data.get("published") }}</p>
                 </div>
             </div>
             <div class="task-content">
                 <p class="task-desc --font-black">{{ data.get("description") }}</p>
-                <a class="--button --self-centered --clickable --button-default-hover --inline-container" href="{{ data.get('url') }}" onclick="visited('{{ data.get('id') }}')">
-                    <img src="/static/icons/play_circle.svg" alt="Play video icon" width="25" height="25">
-                    <div class="--block-container">
-                        <span class="--no-margin">{{ data.get("course") }}</span>
-                        <span>{{ data.get("minutes") }} minutos</span>
-                    </div>
-                </a>
+                <div class="--inline-container">
+                    <a class="--button --clickable --button-default-hover --inline-container --self-centered"
+                        href="{{ data.get('url') }}" onclick="visited('{{ data.get('id') }}')">
+                        <img src="/static/icons/play_circle.svg" alt="Play video icon" width="25" height="25">
+                        <div class="--block-container">
+                            <span class="--no-margin">{{ data.get("course") }}</span>
+                            <span>{{ data.get("minutes") }} minutos</span>
+                        </div>
+                    </a>
+                    <span class="--button --clickable --button-default-hover --inline-container --self-centered"
+                        href="{{ data.get('url') }}" onclick="completed('{{ data.get('id') }}')">
+                        <img src="/static/icons/check.svg" alt="Mark task as completed" width="25" height="25">
+                        <div class="--block-container">
+                            <span class="--no-margin">Completado</span>
+                            <span>Marque su tarea como completada</span>
+                        </div>
+                    </span>
+                </div>
             </div>
         </div>
     </main>

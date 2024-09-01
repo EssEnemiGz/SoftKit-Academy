@@ -12,7 +12,6 @@ supabase = None
 
 @track_bp.route("/api/tracker/visited", methods=["PUT"])
 def visited():
-    print("Starting tracker")
     if not len(session):
         abort(401)
         
@@ -26,14 +25,12 @@ def visited():
     if result.status_code() == 200:
         response = make_response( "DONE" )
         response.status_code = 200
-        print("Tracked!")
         return response
     
     abort(500)
     
 @track_bp.route("/api/tracker/readed", methods=["PUT"])
 def readed():
-    print("Starting tracker")
     if not len(session):
         abort(401)
         
@@ -47,7 +44,25 @@ def readed():
     if result.status_code() == 200:
         response = make_response( "DONE" )
         response.status_code = 200
-        print("Tracked!")
+        return response
+    
+    abort(500)
+    
+@track_bp.route("/api/tracker/completed", methods=["PUT"])
+def completed():
+    if not len(session):
+        abort(401)
+        
+    content_id = request.args.get("content_id")
+    if content_id == None:
+        abort(400)
+        
+    date = datetime.now()
+    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"completed", "date":f"{date.day}/{date.month}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
+    result = interpreter.no_return(query=query)
+    if result.status_code() == 200:
+        response = make_response( "DONE" )
+        response.status_code = 200
         return response
     
     abort(500)
