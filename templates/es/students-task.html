@@ -30,7 +30,7 @@
                 <p class="task-desc --font-black">{{ data.get("description") }}</p>
                 <div class="--inline-container action-buttons">
                     <a class="--button --clickable --button-default-hover --inline-container --self-centered"
-                        href="{{ data.get('url') }}" onclick="visited('{{ data.get('id') }}')">
+                        onclick="visited('{{ data.get('id') }}', '{{ data.get('url') }}')">
                         <img src="/static/icons/play_circle.svg" alt="Play video icon" width="25" height="25">
                         <div class="--block-container">
                             <span class="--no-margin">{{ data.get("course") }}</span>

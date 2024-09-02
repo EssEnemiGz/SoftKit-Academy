@@ -15,7 +15,7 @@ const readed = (content_id, url) => {
     })
 }
 
-const visited = (content_id) => {
+const visited = (content_id, url) => {
     fetch(`${location.protocol}//${document.domain}/api/tracker/visited?content_id=${content_id}`, {
         method:"PUT",
         headers:{
@@ -27,6 +27,7 @@ const visited = (content_id) => {
             alert("Recargue su pagina, ha ocurrido un error")
         }
 
+        window.location.href = url;
         return response
     })
 }
