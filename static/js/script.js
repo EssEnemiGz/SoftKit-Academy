@@ -4,7 +4,7 @@ if (document.getElementById("year") !== null){
 
 // SUNSCRIBE TO MAIL
 const subscribe = () => {
-	const user_email = document.getElementById("user-email").ariaValueMax
+	const user_email = document.getElementById("user-email").value
 	fetch(`https://mail.softkitacademy.com/email/subscription/pending?email=${user_email}`,
 		{
 			headers:{"Accept":"application/json", "Content-Type":"application/json"},
