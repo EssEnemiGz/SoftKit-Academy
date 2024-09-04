@@ -5,7 +5,12 @@ if (document.getElementById("year") !== null){
 // SUNSCRIBE TO MAIL
 const subscribe = () => {
 	const user_email = document.getElementById("user-email").ariaValueMax
-	fetch(`https://mail.softkitacademy.com/email/subscription/pending?email=${user_email}`)
+	fetch(`https://mail.softkitacademy.com/email/subscription/pending?email=${user_email}`,
+		{
+			headers:{"Accept":"application/json", "Content-Type":"application/json"},
+			method:"POST"
+		}
+	)
 	.then(response => {
 		if (!response.ok){
 			return response.text().then(error => {
