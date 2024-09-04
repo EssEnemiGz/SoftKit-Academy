@@ -2,6 +2,25 @@ if (document.getElementById("year") !== null){
 	document.getElementById("year").innerHTML = new Date().getFullYear();
 }
 
+// SUNSCRIBE TO MAIL
+const subscribe = () => {
+	const user_email = document.getElementById("user-email").ariaValueMax
+	fetch(`${location.protocol}//mail.${document.domain}/email/subscription/pending?email=${user_email}`)
+	.then(response => {
+		if (!response.ok){
+			return response.text().then(error => {
+                alert(`Error al comunicarse con el servidor, codigo de estado: ${response.status}. \n\nEl servidor dice: ${error}`)
+                return;
+            })
+		}
+
+		return response.text().then(done => {
+			alert(done)
+			return;
+		})
+	})
+}
+
 // BOTTON TO VIEW THE TOP PAGE
 
 setTimeout(function(){
