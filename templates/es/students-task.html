@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="task-content">
-                {{ description }}
+                {{ description | safe }}
                 <div class="--inline-container action-buttons">
                     <a class="--button --clickable --button-default-hover --inline-container --self-centered"
                         onclick="visited('{{ data.get('id') }}', '{{ data.get('url') }}')">
