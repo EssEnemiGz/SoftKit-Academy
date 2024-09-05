@@ -67,9 +67,7 @@ def courses():
     query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags")
     result = interpreter.return_data(query=query, was_be_empty=0)
     if result.status_code() == 0:
-        err = make_response( "Error with the courses load" )
-        err.status_code = 500
-        return err
+        abort(404)
     
     filtered = [
         row for row in result.output_data()
