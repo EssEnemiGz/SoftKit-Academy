@@ -148,7 +148,7 @@ def students_task_default():
         
     r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
     if r.status_code == 200:
-        return render_template("es/students-task.html", data=r.json())    
+        return render_template("es/students-task.html", data=r.json(), description=r.json().get("description"))    
     else: 
         abort(500)
     
