@@ -171,6 +171,10 @@ def students_task(lang):
         return render_template("es/students-task.html", data=r.json())    
     else: 
         abort(500)
+        
+@app.route("/dashboard/admin/students", methods=["GET"])
+def admin_dashboard_students():
+    return render_template("es/dashboard_students_section.html")
     
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
