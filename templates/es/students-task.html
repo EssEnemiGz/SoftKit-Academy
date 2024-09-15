@@ -30,7 +30,7 @@
                 {{ description | safe }}
                 <div class="--inline-container action-buttons">
                     {% if data.get("minutes") != 0 %}
-                        <a class="--button --clickable --button-default-hover --inline-container --self-centered"
+                        <a class="--button --clickable --button-default-hover --inline-container --no-between --self-centered"
                             onclick="visited('{{ data.get('id') }}', '{{ data.get('url') }}')">
                             <img src="/static/icons/play_circle.svg" alt="Play video icon" width="25" height="25">
                             <div class="--block-container">
@@ -39,7 +39,7 @@
                             </div>
                         </a>
                     {% endif %}
-                    <span class="--button --clickable --button-default-hover --inline-container --self-centered"
+                    <span class="--button --clickable --button-default-hover --inline-container --no-between --self-centered"
                         href="{{ data.get('url') }}" onclick="completed('{{ data.get('id') }}')">
                         <img src="/static/icons/check.svg" alt="Mark task as completed" width="25" height="25">
                         <div class="--block-container">

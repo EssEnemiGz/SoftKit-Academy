@@ -20,7 +20,7 @@ def visited():
         abort(400)
         
     date = datetime.now()
-    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"visited", "date":f"{date.day}/{date.month}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
+    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"visited", "date":f"{date.month}/{date.day}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
     result = interpreter.no_return(query=query)
     if result.status_code() == 200:
         response = make_response( "DONE" )
@@ -39,7 +39,7 @@ def readed():
         abort(400)
         
     date = datetime.now()
-    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"readed", "date":f"{date.day}/{date.month}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
+    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"readed", "date":f"/{date.month}/{date.day}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
     result = interpreter.no_return(query=query)
     if result.status_code() == 200:
         response = make_response( "DONE" )
@@ -58,7 +58,7 @@ def completed():
         abort(400)
         
     date = datetime.now()
-    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"completed", "date":f"{date.day}/{date.month}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
+    query = supabase.table("activity").insert({"user_id":session.get("id"), "content":content_id, "action":"completed", "date":f"{date.month}/{date.day}/{date.year}", "time":f"{date.hour}:{date.minute}:{date.second}"})
     result = interpreter.no_return(query=query)
     if result.status_code() == 200:
         response = make_response( "DONE" )

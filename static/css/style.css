@@ -233,6 +233,10 @@ span.exit-icon{
     text-align: center;
 }
 
+.--no-between{
+    justify-content: initial;
+}
+
 /* MAIN */
 .main{
     padding-block: var(--margin-3);
