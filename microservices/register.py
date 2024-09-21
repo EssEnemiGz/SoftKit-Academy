@@ -44,7 +44,7 @@ def register():
             return response
         
         password_hashed = serverResponse.json()['hash-passw']
-        query = supabase.table('users').insert({'username':username, 'password':password_hashed, 'email':email})
+        query = supabase.table('users').insert({'username':username, 'password':password_hashed, 'email':email, "subscription":"free"})
         interpreter.no_return(query=query) 
         
         token = requests.post(server_url+"/api/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password, 'email':email}) # To confirm the register creating a token
