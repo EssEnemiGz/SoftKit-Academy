@@ -38,6 +38,7 @@ app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = "Lax"
 app.config['SESSION_COOKIE_DOMAIN'] = f".{server_url.split('//')[1]}"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
+app.url_map.strict_slashes = False
 
 SUPPORTED_LANGUAGES = ['es', 'en']
 
@@ -80,7 +81,7 @@ def index():
 
 @app.route("/<lang>", methods=["GET"])
 def main(lang):
-    if lang not in SUPPORTED_LANGUAGES:
+    if lang not in SUPPORTED_LANGUAGES and lang != "":
         abort(404)
     elif lang == "":
         return render_template(f"es/index.html")
@@ -96,10 +97,29 @@ def dashboard():
     
 @app.route("/form", methods=["GET"])
 def form():
-    if len(session):
-        return redirect("/students/panel")
-    else:
+    return render_template("es/form.html")
+
+@app.route("/form/<lang>", methods=["GET"])
+def form_with_lang(lang):
+    if lang not in SUPPORTED_LANGUAGES and lang != "":
+        abort(404)
+    elif lang == "":
         return render_template("es/form.html")
+    else: 
+        return render_template(f"{lang}/form.html")
+    
+@app.route("/register", methods=["GET"])
+def register():
+    return render_template("es/register.html")
+
+@app.route("/register/<lang>", methods=["GET"])
+def register_with_lang(lang):
+    if lang not in SUPPORTED_LANGUAGES and lang != "":
+        abort(404)
+    elif lang == "":
+        return render_template("es/register.html")
+    else: 
+        return render_template(f"{lang}/register.html")
     
 @app.route('/admin/insert', methods=["GET"])
 def insert_route():
@@ -126,7 +146,7 @@ def students_panel(lang):
     if not len(session):
         abort(401)
         
-    if lang not in SUPPORTED_LANGUAGES:
+    if lang not in SUPPORTED_LANGUAGES and lang != "":
         abort(404)
     elif lang == "":
         return render_template("es/students-panel.html")
@@ -157,7 +177,7 @@ def students_task(lang):
     if not len(session):
         abort(401)
         
-    if lang not in SUPPORTED_LANGUAGES:
+    if lang not in SUPPORTED_LANGUAGES and lang != "":
         abort(404)
     elif lang == "":
         return render_template("es/students-task.html")

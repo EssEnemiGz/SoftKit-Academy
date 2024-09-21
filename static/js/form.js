@@ -7,29 +7,6 @@ const LOGIN_OPTION = 'login';
 const register_url = `${location.protocol}//${document.domain}/api/register/verify`;
 const login_url = `${location.protocol}//${document.domain}/api/login/verify`;
 
-const queryString = window.location.search;
-const params = new URLSearchParams(queryString);
-const form = params.get('form');
-
-// Displays
-
-const registerForm = document.querySelector('.register-general');
-const loginForm = document.querySelector('.login-general');
-
-function change(){
-	registerForm.classList.toggle('show');
-	loginForm.classList.toggle('show');
-};
-
-// Visibility
-
-if (form === REGISTER_OPTION){
-	// Pass
-} else if (form === LOGIN_OPTION){
-	registerForm.classList.toggle('show');
-	loginForm.classList.toggle('show');
-};
-
 async function send(data, option){
 	let response, url, result;
 
@@ -60,23 +37,13 @@ function register(){
 	let username, password, email, confirmation, code;
 	username = document.querySelector(".register .username").value 
 	password = document.querySelector(".register .password").value 
-	confirmation = document.querySelector(".register .confirm").value
 	email = document.querySelector(".register .email").value
-	code = document.querySelector(".register .code").value
  
 	let json = {
 		'username':username,
 		'password':password,
-		'confirm':confirmation,
-		'email':email,	
-		'code':code
+		'email':email
 	}
-
-	if ( username.length < 1  &&  password.length < 1 ){ // CREATE A ERROR MENSAJE
-		return "ERROR";
-	} else if (password !== confirmation){
-		return "ERROR";
-	};
 
 	send(json, REGISTER_OPTION, username);
 	return 0;

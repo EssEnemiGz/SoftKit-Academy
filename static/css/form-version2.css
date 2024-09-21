@@ -5,6 +5,7 @@ html, body{
 /* FORM EXCLUSIVE STYLES */
 .main{
     display: flex;
+    align-items: center;
     padding-block: var(--margin-3);
     height: 100%;
 }
@@ -13,6 +14,7 @@ html, body{
     display: grid;
     grid-template-columns: 1fr 1fr;
     max-width: 1200px;
+    max-height: 800px;
     margin-inline: auto;
     gap: 16px;
 }

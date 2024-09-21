@@ -19,16 +19,6 @@ def register():
             err = make_response( jsonify({'status':'ERROR'}) )
             err.status_code = 500
             return err
-        
-        if 'code' not in data:
-            reject = make_response( "No intentes acceder sin el codigo :)" )
-            reject.status_code = 401
-            return reject
-        
-        if data.get('code') != server_code:
-            reject = make_response( "Codigo incorrecto" )
-            reject.status_code = 401
-            return reject
     
         username = data.get('username')
         password = data.get('password')
