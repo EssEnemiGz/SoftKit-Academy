@@ -48,3 +48,14 @@ const completed = (content_id) => {
         return response
     })
 }
+
+if (window.location.pathname === "/students/task") {
+    const searchParams = new URLSearchParams(window.location.search);
+    course_id = searchParams.get("course_id")
+    if (course_id === null) {
+        alert("El ID de este curso se está interpretando como inválido. Recargue su página o contacte con help@softkitcademy.com")
+        return
+    }
+
+    readed(course_id, `/students/task?course_id=${course_id}`)
+}

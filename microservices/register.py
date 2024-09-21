@@ -26,7 +26,7 @@ def register():
 
         check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'email':email})
         if check.status_code == 500:
-            err = make_response( jsonify({'status':'ERROR'}) )
+            err = make_response( "The user already exist" )
             err.status_code = 500
             return err
         
@@ -54,7 +54,7 @@ def register():
 
         info = token.json()
         if info.get('id') == None: 
-            err = make_response( jsonify({'status':'ERROR'}) )
+            err = make_response( "Error creating your token, try again." )
             err.status_code = 500
             return err
 
