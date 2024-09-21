@@ -62,7 +62,7 @@ def register():
         response.status_code = 200
         session['id'] =  info.get('id')
         session['username'] = username
-        session['subscription'] = "basic"
+        session['subscription'] = "free"
         session['role'] = "student"
         session.permanent = True
         return response
