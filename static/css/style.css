@@ -417,16 +417,46 @@ span.card-icon{
 /* Courses */
 #courses{
     display: flex;
-    max-width: 1250px;
+    justify-content: center;
+    max-width: 100%;
     gap: 60px;
 }
 
-.course-card{
+div.course-card{
+    display: flex;
+    flex-direction: row;
     gap: 20px;
+}
+
+.course-info{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .course-img{
     border-radius: var(--border-3);
+}
+
+.course-title{
+    font-size: var(--fs-3);
+}
+
+.course-description{
+    font-size: var(--fs-5);
+    width: 200px;
+}
+
+.course-time, .course-plan{
+    font-size: var(--fs-5);
+}
+
+.--micro-gap{
+    gap: 6px;
+}
+
+.--no-inline-pad{
+    padding-inline: 0;
 }
 
 /* PRICING */
@@ -646,6 +676,16 @@ span.contact-icon{
         align-items: baseline;
     }
 
+    #courses{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .course-card{
+        scale: 0.88;
+    }
+
     .pricing{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -710,9 +750,16 @@ span.contact-icon{
         flex-direction: row;
     }
 
+    #courses{
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
     .pricing{
         display: grid;
         grid-template-columns: 1fr;
+        justify-items: center;
         gap: 35px;
     }
 
