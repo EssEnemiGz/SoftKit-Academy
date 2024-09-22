@@ -20,7 +20,7 @@
                 <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones" class="--icon-box --clickable --svg-black">
             </div>
             {%- for element in data -%}
-            <a class="assigment --inline-container --no-between --material-inline --material-block --clickable --illumination">
+            <a href="/students/task?course_id={{ element.get('id') }}" class="assigment --inline-container --no-between --material-inline --material-block --clickable --illumination">
                 <img src="/static/icons/book.svg" alt="Task icon" class="--clickable --svg-circle" width="50" height="50">
                 <h3 class="--title --font-black --no-margin">{{ element.get("course") }}</h3>
             </a>
