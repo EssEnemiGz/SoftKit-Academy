@@ -9,9 +9,6 @@ const readed = (content_id, url) => {
         if (!response.ok){
             alert("Recargue su pagina, ha ocurrido un error")
         }
-
-        window.location.href = url;
-        return response
     })
 }
 
