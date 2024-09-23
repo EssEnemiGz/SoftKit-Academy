@@ -4,11 +4,13 @@ By: EssEnemiGz
 """
 
 import microservices.common.db_interpreter as interpreter
+import microservices.common.user_security as mail
+from threading import Thread
 from flask_cors import CORS
 from flask import *
 import requests
 
-server_url, supabase = None, None
+server_url, supabase, secret_key = None, None, None
 login_bp = Blueprint('login', __name__)
 CORS(login_bp, supports_credentials=True)
 
@@ -55,6 +57,10 @@ def login():
             err = make_response( "Error getting user info!" )
             err.status_code = 500
             return err
+        
+        first_func = lambda: mail.logged_warning(secret_key=secret_key, email=email)
+        executer = lambda: mail.infinite_retry(first_func, 200)
+        Thread(target=executer).start()
         
         response = make_response( jsonify( {'redirect':'/students/panel'} ) )
         response.status_code = 200
