@@ -11,12 +11,12 @@ import microservices.calendar as calendar
 import microservices.tracker as tracker
 
 # LIBRARYS
-from datetime import timedelta, datetime
+import microservices.common.render_components as components
+from datetime import timedelta
 from flask import *
 from dotenv import load_dotenv
 import supabase
 import requests
-import jwt
 import os
 
 # Carga de variables de entorno del .env
@@ -67,13 +67,6 @@ app.register_blueprint(insert.insert_bp)
 app.register_blueprint(meetings.meets_bp)
 app.register_blueprint(calendar.calendar_bp)
 app.register_blueprint(tracker.track_bp)
-
-def generate_jwt(data):
-    payload = {
-        'session': data,
-    }
-    token = jwt.encode(payload, secret_key, algorithm='HS256')
-    return token 
 
 @app.route("/", methods=["GET"])
 def index():
@@ -134,10 +127,11 @@ def students_panel_default():
     if not len(session):
         abort(401)
         
-    r = requests.get(server_url+f"/api/render/courses", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
-    if r.status_code == 200:
-        print(r.json())
-        return render_template("es/students-panel.html", data=r.json())    
+    r = requests.get(server_url+f"/api/render/courses", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
+    response = lambda: components.get_component(session=session, component="header.html", secret_key=secret_key, server_url=server_url)
+    result, status = components.retry(response, 3, 200)
+    if r.status_code == 200 and status == 200:
+        return render_template("es/students-panel.html", data=r.json(), header=result)    
     else: 
         abort(500)
     
@@ -151,9 +145,11 @@ def students_panel(lang):
     elif lang == "":
         return render_template("es/students-panel.html")
 
-    r = requests.get(server_url+f"/api/render/courses?subscription={session.get('subscription')}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
-    if r.status_code == 200:
-        return render_template("es/students-panel.html", data=r.json())    
+    r = requests.get(server_url+f"/api/render/courses?subscription={session.get('subscription')}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
+    response = lambda: components.get_component(session=session, component="header.html", secret_key=secret_key, server_url=server_url)
+    result, status = components.retry(response, 3, 200)
+    if r.status_code == 200 and status == 200:
+        return render_template("es/students-panel.html", data=r.json(), header=result)    
     else: 
         abort(500)
     
@@ -166,9 +162,11 @@ def students_task_default():
     if course_id == None:
         abort(400)
         
-    r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
-    if r.status_code == 200:
-        return render_template("es/students-task.html", data=r.json(), description=r.json().get("description"))    
+    r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
+    response = lambda: components.get_component(session=session, component="header.html", secret_key=secret_key, server_url=server_url)
+    result, status = components.retry(response, 3, 200)
+    if r.status_code == 200 and status == 200:
+        return render_template("es/students-task.html", data=r.json(), description=r.json().get("description"), header=result)    
     else: 
         abort(500)
     
@@ -186,15 +184,45 @@ def students_task(lang):
     if course_id == None:
         abort(400)
         
-    r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {generate_jwt({'subscription':session.get("subscription")})}"})
-    if r.status_code == 200:
-        return render_template("es/students-task.html", data=r.json())    
+    r = requests.get(server_url+f"/api/render/course?course_id={course_id}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
+    response = lambda: components.get_component(session=session, component="header.html", secret_key=secret_key, server_url=server_url)
+    result, status = components.retry(response, 3, 200)
+    if r.status_code == 200 and status == 200:
+        return render_template("es/students-task.html", data=r.json(), header=result)    
     else: 
         abort(500)
         
-@app.route("/dashboard/admin/students", methods=["GET"])
-def admin_dashboard_students():
-    return render_template("es/dashboard_students_section.html")
+@app.route("/dashboard/class", methods=["GET"])
+def dashboard_students_class():
+    if not len(session):
+        abort(401)
+    
+    if session.get("role") == "student":
+        abort(401)
+    
+    r = requests.get(server_url+f"/api/render/courses?subscription={session.get('subscription')}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
+    response = lambda: components.get_component(session=session, component="horizontal-header.html", secret_key=secret_key, server_url=server_url)
+    result, status = components.retry(response, 3, 200)
+    if r.status_code != 200 or status != 200:
+        abort(500)
+        
+    return render_template("es/dashboard_class.html", data=r.json(), header=result)
+        
+@app.route("/dashboard/class/<class_courses>", methods=["GET"])
+def dashboard_students_specific_class(class_courses):
+    if not len(session):
+        abort(401)
+    
+    if session.get("role") == "student":
+        abort(401)
+    
+    r = requests.get(server_url+f"/api/render/courses?subscription={session.get('subscription')}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
+    response = lambda: components.get_component(session=session, component="horizontal-header.html", secret_key=secret_key, server_url=server_url)
+    result, status = components.retry(response, 3, 200)
+    if r.status_code != 200 or status != 200:
+        abort(500)
+        
+    return render_template("es/dashboard_class_section.html", data=r.json(), header=result)
     
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
@@ -206,4 +234,4 @@ def favicon():
     return send_from_directory("static/icons", "favicon.ico")
 
 if __name__=="__main__":
-    app.run(debug=True, host="127.0.0.1", port=5000)
+    app.run(debug=True, host="127.0.0.1", port=5000, reloader_type="watchdog")

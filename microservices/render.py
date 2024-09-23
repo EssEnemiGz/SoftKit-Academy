@@ -41,27 +41,21 @@ def languages():
 def courses():
     token = request.headers.get("Authorization")
     if token == None:
-        print(1)
         abort(401)
         
     try:
         payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
-        payload = payload.get('session')
     except jwt.ExpiredSignatureError:
-        print(2)
         response = make_response( "Token expired ")
         response.status_code = 401
         return response
     except jwt.InvalidTokenError:
-        print(3)
         response = make_response( "Token invalid ")
         response.status_code = 401
         return response
 
     subscription = payload.get("subscription")
-    print(payload)
     if subscription == None:
-        print(4)
         abort(401)
         
     query = supabase.table("content").select("id, course, minutes, published, description, url, teachers(name), pricing, tags")
@@ -84,7 +78,6 @@ def course_unique():
         
     try:
         payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
-        payload = payload.get("session")
     except jwt.ExpiredSignatureError:
         response = make_response( "Token expired ")
         response.status_code = 401
@@ -126,7 +119,23 @@ def components():
     if component not in os.listdir("templates/components"):
         abort(404)
         
-    if component == "header.html":
-        return render_template(f"components/{component}", data=[session.get('username'), session.get('subscription').upper()[0]+session.get('subscription')[1:]])
+    token = request.headers.get("Authorization")
+    if token == None:
+        abort(401)
+        
+    try:
+        payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
+    except jwt.ExpiredSignatureError:
+        response = make_response( "Token expired ")
+        response.status_code = 401
+        return response
+    except jwt.InvalidTokenError:
+        response = make_response( "Token invalid ")
+        response.status_code = 401
+        return response
     
-    return render_template(f"components/{component}")
+    subscription = payload.get("subscription")
+    if subscription == None:
+        abort(401)
+        
+    return render_template(f"components/{component}", data=payload)

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Softkit Academy - Clase de Python</title>
+
+    <link rel="stylesheet" href="/static/css/general.css">
+    <link rel="stylesheet" href="/static/css/horizontal-header.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&amp;display=swap" rel="stylesheet">
+
+    <style>
+        .course-list{
+            max-height: 460px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body class="--inline-container">
+    <header class="header">{{ header | safe }}</header>
+    <main class="main">
+        <div class="--three-cards-container --element-mini-margin">
+            <div class="--card">
+                <div class="--header-more">
+                    <h3 class="--sinopsis --no-stroke">Cursos totales</h3>
+                </div>
+                <h2 class="--title --no-stroke">5 cursos</h2>
+                <p class="--description-transparent">Tecnología más usada: Python</p>
+            </div>
+            <div class="--card">
+                <div class="--header-more">
+                    <h3 class="--sinopsis --no-stroke">Horas totales</h3>
+                </div>
+                <h2 class="--title --no-stroke">60 horas</h2>
+                <p class="--description-transparent">Las horas que has pasado estudiando</p>
+            </div>
+            <div class="--card">
+                <div class="--header-more">
+                    <h3 class="--sinopsis --no-stroke">Debilidad</h3>
+                </div>
+                <h2 class="--title --no-stroke">Networks</h2>
+                <p class="--description-transparent">Tema que necesitas estudiar más</p>
+            </div>
+            <div class="--card">
+                <div class="--header-more">
+                    <h3 class="--sinopsis --no-stroke">Fortaleza</h3>
+                </div>
+                <h2 class="--title --no-stroke">POO</h2>
+                <p class="--description-transparent">Tema donde presentar mayor destreza</p>
+            </div>
+            <div class="--card">
+                <div class="--header-more">
+                    <h3 class="--sinopsis --no-stroke">Plan del curso</h3>
+                </div>
+                <h2 class="--title --no-stroke">Smart</h2>
+                <p class="--description-transparent">El curso actual del plan</p>
+            </div>
+            <div class="--card">
+                <div class="--header-more">
+                    <h3 class="--sinopsis --no-stroke">Tendencia</h3>
+                </div>
+                <h2 class="--title --no-stroke --trending-up">Positiva</h2>
+                <p class="--description-transparent">¡Estás creciendo!</p>
+            </div>
+        </div>
+        <div class="--card">
+            <section class="material-block">
+                <div class="--header-more --border-bottom">
+                    <h2 class="--medium-title --font-black --no-stroke --no-margin">Material de estudio</h2>
+                    <img src="/static/icons/more_vert.svg" alt="Desplegar mas opciones" class="--icon-box --clickable --svg-black">
+                </div>
+                <div class="course-list">
+                    {%- for element in data -%}
+                    <a href="/students/task?course_id={{ element.get('id') }}" class="--element-mini-margin --inline-container --no-between --material-inline --material-block --clickable --illumination --self-centered" style="width: 90%;">
+                        <img src="/static/icons/book.svg" alt="Task icon" class="--clickable --svg-circle" width="50" height="50">
+                        <h3 class="--medium-title --no-stroke --no-margin">{{ element.get("course") }}</h3>
+                    </a>
+                    {%- endfor -%}
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- CUSTOM JS -->
+    <script src="/static/js/activity-tracker.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

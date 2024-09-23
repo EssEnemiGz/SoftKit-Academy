@@ -1,6 +1,6 @@
 /* Perfil and header panel */
 .header{
-    width: fit-content;
+    width: 350px;
     min-height: 100vh;
     height: 100vh;
     background-color: var(--white);
@@ -56,4 +56,10 @@
 
 .logo{
     border-radius: 12px;
+}
+
+/* MAIN */
+.main{
+    margin-inline: var(--margin-4);
+    padding-inline: var(--margin-3);
 }

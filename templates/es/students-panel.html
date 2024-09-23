@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de estudiantes</title>
-    <script src="/static/js/content-loader.js"></script>
     
     <link rel="stylesheet" href="/static/css/general.css">
     <link rel="stylesheet" href="/static/css/style.css">
@@ -12,7 +11,7 @@
     <link rel="stylesheet" href="/static/css/header.css">
 </head>
 <body>
-    <header class="header"></header>
+    <header class="header">{{ header | safe }}</header>
     <main class="main --section-2">
         <section class="material-block --self-centered">
             <div class="--header-more --border-bottom">
@@ -28,9 +27,6 @@
         </section>
     </main>
 
-    <script>
-        render_component("header.html")
-    </script>
     <script src="/static/js/activity-tracker.js"></script>
     <script src="/static/js/script.js"></script>
 </body>

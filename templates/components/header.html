@@ -4,8 +4,8 @@
         <img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="User Photo"
             class="user-photo" width="50" height="50">
         <div class="user-info">
-            <h3 class="--font-black --no-stroke username">{{ data[0] }}</h3>
-            <span class="role --stroke --font-black">{{ data[1] }}</span>
+            <h3 class="--font-black --no-stroke username">{{ data.get("username") }}</h3>
+            <span class="role --stroke --font-black">{{ data.get('subscription') | capitalize}}</span>
         </div>
     </div>
 </nav>

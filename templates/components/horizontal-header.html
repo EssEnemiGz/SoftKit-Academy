@@ -2,47 +2,98 @@
 <nav class="nav">
     <div class="first-section">
         <div class="perfil-data">
-            <img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="Logo" class="logo" width="90" height="90">
-            <h2 class="username --no-stroke">Biscen Fabián</h2>
-            <p class="rol --no-stroke">PRO</p>
+            <img src="/static/img/logos-comprimidos/softkit-academy-logo-coal-purple.svg" alt="Logo" class="logo"
+                width="90" height="90">
+            <h2 class="username --no-stroke">{{ data.get("username") }}</h2>
+            <p class="rol --no-stroke">{{ data.get("role") | upper }}</p>
         </div>
+        {% if data.get("role") == "student" %}
         <nav class="navegation">
-            <span class="--inline-container --clickable">
-                <span class="material-symbols-outlined --icon-box">
-                    house
-                </span>
-                <a href="/" class="--link --no-stroke">Inicio</a>
+            <span class="--inline-container --clickable --header-button">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        house
+                    </span>
+                    <a href="/dashboard/students" class="--link">Dashboard</a>
+                </div>
             </span>
-            <span class="--inline-container --clickable">
-                <span class="material-symbols-outlined --icon-box">
-                    inventory
-                </span>
-                <a href="#" class="--link --no-stroke">Inventario</a>
+            <span id="clases" class="--inline-between --clickable --header-button --header-button-no-style">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        school
+                    </span>
+                    <a href="#" class="--link">Clases</a>
+                </div>
+                <img src="/static/icons/chevron_rigth.svg" alt="Chevron" class="icon-box --svg-black" width="24" height="24">
             </span>
-            <span class="--inline-container --clickable">
-                <span class="material-symbols-outlined --icon-box">
-                    bar_chart
-                </span>
-                <a href="/static/templates/tendencia.html" class="--link --no-stroke">Estadisticas</a>
+            <span id="meetings" class="--inline-container --clickable --header-button --header-button-no-style">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        videocam
+                    </span>
+                    <a class="--link">Meetings</a>
+                </div>
             </span>
-            <span class="--inline-container --clickable">
-                <span class="material-symbols-outlined --icon-box">
-                    attach_money
-                </span>
-                <a href="#" class="--link --no-stroke">Caja chica</a>
-            </span>
-            <span class="--inline-container --clickable">
-                <span class="material-symbols-outlined --icon-box">
-                    settings
-                </span>
-                <a href="#" class="--link --no-stroke">Configuracion</a>
+            <span id="settings" class="--inline-container --clickable --header-button --header-button-no-style">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        settings
+                    </span>
+                    <a href="#" class="--link">Settings</a>
+                </div>
             </span>
         </nav>
+        {% endif %}
+        {% if data.get("role") == "teacher" or data.get("role") == "admin" %}
+        <nav class="navegation">
+            <span class="--inline-container --clickable --header-button">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        house
+                    </span>
+                    <a href="/" class="--link">Dashboard</a>
+                </div>
+            </span>
+            <span id="clases" class="--inline-container --inline-between --clickable --header-button --header-button-no-style">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        school
+                    </span>
+                    <a href="#" class="--link">Clases</a>
+                </div>
+                <img src="/static/icons/chevron_rigth.svg" alt="Chevron" class="icon-box --svg-black" width="24" height="24">
+            </span>
+            <span id="meetings" class="--inline-container --clickable --header-button --header-button-no-style">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        videocam
+                    </span>
+                    <a class="--link">Meetings</a>
+                </div>
+            </span>
+            <span id="settings" class="--inline-container --clickable --header-button --header-button-no-style">
+                <div class="--inline-container">
+                    <span class="material-symbols-outlined">
+                        settings
+                    </span>
+                    <a href="#" class="--link">Settings</a>
+                </div>
+            </span>
+        </nav>
+        {% endif %}
     </div>
-    <span class="--inline-container --clickable">
-        <span class="material-symbols-outlined --icon-box">
-            logout
-        </span>
-        <a href="#" class="--link --no-stroke">Cerrar sesión</a>
+    <span class="--inline-container --clickable --header-button --header-button-no-style">
+        <div class="--inline-container">
+            <span class="material-symbols-outlined">
+                logout
+            </span>
+            <a href="#" class="--link">Cerrar sesión</a>
+        </div>
     </span>
 </nav>
+
+<script>
+    if (window.location.pathname.includes("/dashboard/class")){
+        document.getElementById("clases").classList.remove("--header-button-no-style")
+    }
+</script>
