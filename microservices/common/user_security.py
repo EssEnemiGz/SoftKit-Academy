@@ -6,6 +6,7 @@ def infinite_retry(func, expected_status, cicle=1):
     if cicle == 1500: return 500
     if cicle != 1: sleep(60)
     result = func()
+    print(result)
     if expected_status != result.status_code:
         infinite_retry(func, expected_status, cicle+1)
         
