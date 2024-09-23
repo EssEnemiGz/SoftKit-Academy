@@ -56,6 +56,7 @@ auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supaba
 login.server_url, register.server_url, meetings.server_url, render.server_url = server_url, server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 render.secret_key, login.secret_key = secret_key, secret_key
+print(secret_key)
 
 app.register_blueprint(auth.auth_bp)
 app.register_blueprint(exist.existence_bp)
