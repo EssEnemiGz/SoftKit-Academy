@@ -58,6 +58,7 @@ def login():
             err.status_code = 500
             return err
         
+        print(secret_key)
         first_func = lambda: mail.logged_warning(secret_key=secret_key, email=email)
         executer = lambda: mail.infinite_retry(first_func, 200)
         Thread(target=executer).start()
