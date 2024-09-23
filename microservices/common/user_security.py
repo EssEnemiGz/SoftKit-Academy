@@ -12,5 +12,5 @@ def infinite_retry(func, expected_status, cicle=1):
     return result.status_code
 
 def logged_warning(secret_key, email):
-    token = jwt.encode(secret_key, secret_key, algorithm='HS256')
+    token = jwt.encode({"data":secret_key}, secret_key, algorithm='HS256')
     requests.put("https://mail.softkitacademy.com/security/logged", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {token}"}, json={"email":email})
