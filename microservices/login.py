@@ -40,8 +40,8 @@ def login():
             return err
         
         first_func = lambda: mail.logged_warning(secret_key=secret_key, email=email)
-        executer = lambda: mail.infinite_retry(first_func, 200)
-        Thread(target=executer).start()
+        executer = lambda first_func, status_code: mail.infinite_retry(first_func, status_code)
+        Thread(target=executer, args=(first_func, 200)).start()
         
         response = make_response( jsonify( {'redirect':'/students/panel'} ) )
         response.status_code = 200
