@@ -18,9 +18,9 @@ async function send(data, option){
 
 	data = JSON.stringify(data);
 	response = await fetch(url, { method:"POST", headers:{"Content-Type":"application/json", "Accept":"application/json", mode:"cors", credentials:"same-origin"} , body:data });
-	result = await response.json();
 
 	if (response.ok){
+		result = await response.json();
 		window.location.href = result['redirect'];
 		return 200;
 	} else {
@@ -28,7 +28,7 @@ async function send(data, option){
 			alert("¡El usuario no existe o hay información incorrecta!")
 		}
 		else{
-			alert("Error del servidor, intente de nuevo.")
+			alert("Error del servidor o está registrando un usuario ya existente, intente de nuevo.")
 		}
 	};
 };

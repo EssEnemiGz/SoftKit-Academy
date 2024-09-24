@@ -24,18 +24,17 @@ def register():
         password = data.get('password')
         email = data.get('email')
 
-        check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'email':email})
+        check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, "password":password, 'email':email})
         if check.status_code == 500:
-            err = make_response( "The user already exist" )
+            err = make_response( "Error Registering Your User" )
             err.status_code = 500
             return err
         
-        check = check.json()
-
-        if check.get('user') and check.get('email'): # USER EXIST
-            response = make_response( redirect("/render/form") )
-            response.status_code = 409
-            return response
+        info = check.json()
+        if info.get("status") == 1:
+            err = make_response("User Already Exists")
+            err.status_code = 500
+            return err
         
         serverResponse = requests.post(server_url+"/api/hash/create", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'action':'hash-passw', 'password':password})
         if serverResponse.status_code == 500:
@@ -45,19 +44,15 @@ def register():
         
         password_hashed = serverResponse.json()['hash-passw']
         query = supabase.table('users').insert({'username':username, 'password':password_hashed, 'email':email, "subscription":"free"})
-        interpreter.no_return(query=query) 
+        interpreter.no_return(query=query)
         
-        token = requests.post(server_url+"/api/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password, 'email':email}) # To confirm the register creating a token
-        if token.status_code == 500:
-            response = make_response( redirect('/render/form') )
-            return response
-
-        info = token.json()
-        if info.get('id') == None: 
-            err = make_response( "Error creating your token, try again." )
+        check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, "password":password, 'email':email})
+        if check.status_code == 500:
+            err = make_response( "Error Registering Your User" )
             err.status_code = 500
             return err
-
+        
+        info = check.json() 
         response = make_response( jsonify( {'redirect':'/students/panel'} ) )
         response.status_code = 200
         session['id'] =  info.get('id')
