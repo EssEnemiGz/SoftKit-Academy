@@ -13,7 +13,8 @@ def infinite_retry(func, expected_status, cicle=1):
         
     if expected_status != result.status_code:
         infinite_retry(func, expected_status, cicle+1)
-        
+    
+    print(result.status_code, expected_status)
     if expected_status == result.status_code:
         sys.exit()
         return result.status_code

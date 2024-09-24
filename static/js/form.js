@@ -5,7 +5,7 @@
 const REGISTER_OPTION = 'register';
 const LOGIN_OPTION = 'login';
 const register_url = `${location.protocol}//${document.domain}/api/register/verify`;
-const login_url = `${location.protocol}//${document.domain}/api/login/verify`;
+const login_url = `${location.protocol}//${document.domain}:5000/api/login/verify`;
 
 async function send(data, option){
 	let response, url, result;

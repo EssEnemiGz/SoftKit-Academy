@@ -63,3 +63,9 @@
     margin-inline: var(--margin-4);
     padding-inline: var(--margin-3);
 }
+
+@media (max-width: 900px){
+    .header{
+        display: none;
+    }
+}
