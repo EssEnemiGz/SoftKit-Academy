@@ -36,7 +36,7 @@ app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = "Lax"
-app.config['SESSION_COOKIE_DOMAIN'] = ".127.0.0.1:5000"
+app.config['SESSION_COOKIE_DOMAIN'] = ".softkitacademy.com"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 app.url_map.strict_slashes = False
 
