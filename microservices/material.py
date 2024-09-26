@@ -10,7 +10,7 @@ import json
 material_bp = Blueprint('material', __name__)
 db = None
 
-@material_bp.route("/api/add/material")
+@material_bp.route("/api/add/material", methods=["POST"])
 def add_material():
     if not len(session):
         abort(401)
