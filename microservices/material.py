@@ -5,6 +5,7 @@ By: EssEnemiGz
 
 import microservices.common.db_interpreter as db_interpreter
 from flask import *
+from datetime import now
 import json
 
 material_bp = Blueprint('material', __name__)
@@ -44,11 +45,12 @@ def add_material():
     except json.decoder.JSONDecodeError:
         abort(400)
         
+    actual_date = now()
     query = db.table("content").insert(
         {
             "course":course, 
             "minutes":duration,
-            "published":None,
+            "published":f"{actual_date.month}/{actual_date.day}/{actual_date.year}",
             "description":description,
             "id_language":id_language,
             "id_teacher":id_teacher,
