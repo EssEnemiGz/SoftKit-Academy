@@ -156,8 +156,8 @@ ul{
     justify-content: space-between;
 }
 
-.--inline-centered{
-    justify-content: center;
+.--responsive-inline-centered{
+    justify-content: initial;
 }
 
 .--card{
@@ -492,6 +492,10 @@ ul{
 @media (max-width: 1200px){
     .--three-cards-container, .--four-cards-container{
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .--responsive-inline-centered{
+        justify-content: center;
     }
 }
 

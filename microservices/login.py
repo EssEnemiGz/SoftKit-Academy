@@ -33,14 +33,24 @@ def login():
             err.status_code = 500
             return err
         
+        if check.status_code == 401:
+            err = make_response("Unauthorized")
+            err.status_code = 401
+            return err
+        
         info = check.json()
         if info.get('id') == None: 
             err = make_response( jsonify({'status':'Error setting your password in the database'}) )
             err.status_code = 500
             return err
         
-        first_func = lambda: mail.logged_warning(secret_key=secret_key, email=email)
-        executer = lambda first_func, status_code: mail.infinite_retry(first_func, status_code)
+        def first_func(): 
+            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"))
+            return r
+        
+        def executer(first_func, expected):
+            mail.infinite_retry(first_func, expected)
+            
         Thread(target=executer, args=(first_func, 200)).start()
         
         response = make_response( jsonify( {'redirect':'/students/panel'} ) )

@@ -9,6 +9,7 @@ import microservices.insert as insert
 import microservices.mettings as meetings
 import microservices.calendar as calendar
 import microservices.tracker as tracker
+import microservices.material as material
 
 # LIBRARYS
 import microservices.common.render_components as components
@@ -52,7 +53,7 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase, tracker.supabase = db, db, db, db, db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase, tracker.supabase, material.db = db, db, db, db, db, db, db, db, db
 login.server_url, register.server_url, meetings.server_url, render.server_url, exist.server_url = server_url, server_url, server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 render.secret_key, login.secret_key = secret_key, secret_key
@@ -67,6 +68,7 @@ app.register_blueprint(insert.insert_bp)
 app.register_blueprint(meetings.meets_bp)
 app.register_blueprint(calendar.calendar_bp)
 app.register_blueprint(tracker.track_bp)
+app.register_blueprint(material.material_bp)
 
 @app.route("/", methods=["GET"])
 def index():
@@ -223,6 +225,16 @@ def dashboard_students_specific_class(class_courses):
         abort(500)
         
     return render_template("es/dashboard_class_section.html", data=r.json(), header=result)
+    
+@app.route("/dashboard/add/material", methods=["GET"])
+def dashboard_add_material():
+    if not len(session):
+        abort(401)
+        
+    if session.get("role") in ["admin", "teacher"]:
+        abort(401)
+        
+    return render_template("es/material.html")
     
 @app.route('/robots.txt')
 @app.route('/sitemap.xml')
