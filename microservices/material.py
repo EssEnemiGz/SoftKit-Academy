@@ -5,7 +5,7 @@ By: EssEnemiGz
 
 import microservices.common.db_interpreter as db_interpreter
 from flask import *
-from datetime import now
+from datetime import datetime
 import json
 
 material_bp = Blueprint('material', __name__)
@@ -45,7 +45,7 @@ def add_material():
     except json.decoder.JSONDecodeError:
         abort(400)
         
-    actual_date = now()
+    actual_date = datetime.now()
     query = db.table("content").insert(
         {
             "course":course, 
