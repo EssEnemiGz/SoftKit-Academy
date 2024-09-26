@@ -44,7 +44,7 @@ def add_material():
     except json.decoder.JSONDecodeError:
         abort(400)
         
-    query = db.insert(
+    query = db.table("content").insert(
         {
             "course":course, 
             "minutes":duration,
