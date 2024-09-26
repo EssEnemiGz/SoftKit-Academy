@@ -7,7 +7,7 @@ import microservices.common.db_interpreter as db_interpreter
 from flask import *
 import json
 
-material_bp = Blueprint(__name__, 'material')
+material_bp = Blueprint('material', __name__)
 db = None
 
 @material_bp.route("/api/add/material")
