@@ -231,7 +231,7 @@ def dashboard_add_material():
     if not len(session):
         abort(401)
         
-    if session.get("role") in ["admin", "teacher"]:
+    if session.get("role") not in ["admin", "teacher"]:
         abort(401)
         
     return render_template("es/material.html")
