@@ -24,7 +24,7 @@ def register():
         password = data.get('password')
         email = data.get('email')
 
-        check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, "password":password, 'email':email})
+        check = requests.post(server_url+"/api/existence/check", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, "password":password, 'email':email, 'operation':'register'})
         if check.status_code == 500:
             err = make_response( "Error Registering Your User" )
             err.status_code = 500

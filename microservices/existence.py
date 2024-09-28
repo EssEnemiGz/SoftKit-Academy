@@ -20,6 +20,7 @@ def check():
         username = data.get('username')
         password = data.get("password")
         email = data.get("email")
+        operation = data.get("operation")
         
         if None in [username, password, email]:
             err = make_response()
@@ -49,12 +50,13 @@ def check():
             
             dic.update(result)
             dic.setdefault("status", user_existence)
-
-        token = requests.post(server_url+"/api/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password}) # To confirm the register creating a token
-        if token.status_code == 401:
-            response = make_response( "Auth error" )
-            response.status_code = 401
-            return response 
+            
+        if operation == None:
+            token = requests.post(server_url+"/api/auth/log", headers={'Content-Type':'application/json', 'Accept':'application/json'}, json={'username':username, 'password':password}) # To confirm the register creating a token
+            if token.status_code == 401:
+                response = make_response( "Auth error" )
+                response.status_code = 401
+                return response 
         
         response = make_response( jsonify(dic) )
         response.status_code = 200
