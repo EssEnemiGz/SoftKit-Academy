@@ -45,13 +45,8 @@ def login():
         
     
         user_ip = "Desconocida"
-        if 'X-Forwarded-For' in request.headers:
-            user_ip = request.headers['X-Forwarded-For'].split(',')[0]
-        
-        if 'X-Real-IP' in request.headers:
-            user_ip = request.headers.get('X-Real-IP')
-            
-        print(request.headers.get('X-Real-IP'), request.headers['X-Forwarded-For'].split(',')[0])
+        if 'CF-Connecting-IP' in request.headers:
+            user_ip = request.headers.get('CF-Connecting-IP')
             
         user_agent_string = request.headers.get('User-Agent')
         def first_func(): 
