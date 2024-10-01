@@ -44,7 +44,15 @@ def login():
             return err
         
     
-        user_ip = request.remote_addr
+        user_ip = "Desconocida"
+        if 'X-Forwarded-For' in request.headers:
+            user_ip = request.headers['X-Forwarded-For'].split(',')[0]
+        
+        if 'X-Real-IP' in request.headers:
+            user_ip = request.headers.get('X-Real-IP')
+            
+        print(request.headers.get('X-Real-IP'), request.headers['X-Forwarded-For'].split(',')[0])
+            
         user_agent_string = request.headers.get('User-Agent')
         def first_func(): 
             r = mail.logged_warning(secret_key=secret_key, email=info.get("email"), remote_addr=user_ip, user_agent=user_agent_string)
