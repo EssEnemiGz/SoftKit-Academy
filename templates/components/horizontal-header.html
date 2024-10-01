@@ -17,15 +17,23 @@
                     <a href="/dashboard/students" class="--link">Dashboard</a>
                 </div>
             </span>
-            <span id="clases" class="--inline-between --clickable --header-button --header-button-no-style">
+            <span id="clases"
+                class="--inline-container --inline-between --clickable --header-button --header-button-no-style --rotation-animation-icon">
                 <div class="--inline-container">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <a href="#" class="--link">Clases</a>
                 </div>
-                <img src="/static/icons/chevron_rigth.svg" alt="Chevron" class="icon-box --svg-black" width="24" height="24">
+                <img src="/static/icons/chevron_rigth.svg" alt="Chevron" class="icon-box --svg-black" width="24"
+                    height="24">
             </span>
+            <div class="course-options-container --block-container --hidden" name="rotator" value="clases">
+                <div class="--block-container">
+                    <div class="--clickable --header-button --header-button-no-style .course-option" name="python">
+                        Python</div>
+                </div>
+            </div>
             <span id="meetings" class="--inline-container --clickable --header-button --header-button-no-style">
                 <div class="--inline-container">
                     <span class="material-symbols-outlined">
@@ -54,16 +62,29 @@
                     <a href="/" class="--link">Dashboard</a>
                 </div>
             </span>
-            <span id="clases" class="--inline-container --inline-between --clickable --header-button --header-button-no-style">
+            <span id="clases"
+                class="--inline-container --inline-between --clickable --header-button --header-button-no-style --rotation-animation-icon">
                 <div class="--inline-container">
                     <span class="material-symbols-outlined">
                         school
                     </span>
-                    <a href="#" class="--link">Clases</a>
+                    <span class="--link">Cursos</span>
                 </div>
-                <img src="/static/icons/chevron_rigth.svg" alt="Chevron" class="icon-box --svg-black" width="24" height="24">
+                <img src="/static/icons/chevron_rigth.svg" alt="Chevron" class="icon-box --svg-black" width="24"
+                    height="24">
             </span>
-            <span id="meetings" class="--inline-container --clickable --header-button --header-button-no-style">
+            <div class="--block-container --limited-container-height --mini-bar">
+                {% for curso in course_list %}
+                <div class="course-options-container --block-container --hidden --element-micro-margin" data-rotator="clases">
+                    <div class="--block-container">
+                        <div class="--clickable --header-button --header-button-no-style course-option" data-topic="{{ curso.get('topic') }}">
+                            {{ curso.get("topic") | e }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <span id="meetings" class="--block-container --clickable --header-button --header-button-no-style">
                 <div class="--inline-container">
                     <span class="material-symbols-outlined">
                         videocam
@@ -92,8 +113,23 @@
     </span>
 </nav>
 
+<script src="/static/js/animations.js"></script>
 <script>
-    if (window.location.pathname.includes("/dashboard/class")){
-        document.getElementById("clases").classList.remove("--header-button-no-style")
+    if (window.location.pathname.includes("/dashboard/class")) {
+        document.getElementById("clases").classList.remove("--header-button-no-style");
+        document.getElementById("clases").querySelector("img").classList.toggle("--rotated");
+        const courses_containers = document.querySelectorAll("[data-rotator]");
+        const path = window.location.pathname.split("/");
+
+        for (let i = 0; i < courses_containers.length; i++) {
+            if (courses_containers[i].getAttribute("data-rotator") === "clases") {
+                courses_containers[i].classList.toggle("--hidden");
+            }
+
+            const courseOption = courses_containers[i].querySelector(".course-option");
+            if (courseOption && courseOption.getAttribute("data-topic").toLowerCase() === path[path.length - 1].toLowerCase()) {
+                courseOption.classList.toggle("--header-button-no-style");
+            }
+        }
     }
 </script>

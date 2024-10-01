@@ -1,4 +1,6 @@
 from time import sleep
+from user_agents import parse
+from datetime import datetime
 import requests
 import jwt
 import sys
@@ -19,7 +21,26 @@ def infinite_retry(func, expected_status, cicle=1):
         sys.exit()
         return result.status_code
 
-def logged_warning(secret_key, email):
+def logged_warning(secret_key, email, request):
     token = jwt.encode({"data":secret_key}, secret_key, algorithm='HS256')
-    r = requests.put("https://mail.softkitacademy.com/security/logged", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {token}"}, json={"email":email})
+    device_info = get_device_info(request)
+    device_info.setdefault("email", email)
+    r = requests.put("https://mail.softkitacademy.com/security/logged", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {token}"}, json=device_info)
     return r
+
+def get_device_info(request):
+    user_ip = request.remote_addr
+    user_agent_string = request.headers.get('User-Agent')
+    user_agent = parse(user_agent_string)
+    date = datetime.now()
+
+    device_info = {
+        'ip': user_ip,
+        'device': str(user_agent.device),
+        'os': str(user_agent.os),
+        'browser': str(user_agent.browser),
+        'date':f"{date.day}/{date.month}/{date.year} - {date.hour}:{date.minute}",
+        'date_object':date
+    }
+    
+    return device_info

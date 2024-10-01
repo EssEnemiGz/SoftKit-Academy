@@ -64,6 +64,21 @@
     padding-inline: var(--margin-3);
 }
 
+.course-options-container{
+    align-items: end;
+}
+
+.course-options-container > div{
+    border-left: 4px solid var(--gray-strong);
+}
+
+.course-options-container *{
+    width: 190px;
+}
+.course-option{
+    width: 175px;
+}
+
 @media (max-width: 1150px){
     .header{
         display: none;

@@ -3,14 +3,13 @@ This microservice work in the login.
 By: EssEnemiGz
 """
 
-import microservices.common.db_interpreter as interpreter
 import microservices.common.user_security as mail
 from threading import Thread
 from flask_cors import CORS
 from flask import *
 import requests
 
-server_url, supabase, secret_key = None, None, None
+server_url, secret_key = None, None
 login_bp = Blueprint('login', __name__)
 CORS(login_bp, supports_credentials=True)
 
@@ -45,7 +44,7 @@ def login():
             return err
         
         def first_func(): 
-            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"))
+            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"), request=request)
             return r
         
         def executer(first_func, expected):

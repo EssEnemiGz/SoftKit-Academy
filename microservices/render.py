@@ -7,7 +7,7 @@ import microservices.common.db_interpreter as interpreter
 import jwt
 import os
 
-supabase, server_url, secret_key = None, None, None
+supabase, server_url, secret_key, ACCESS_LEVELS = None, None, None, None
 render_bp = Blueprint('render_bp', __name__)
 
 @render_bp.route('/api/dashboard/califications', methods=["GET"])
@@ -137,5 +137,22 @@ def components():
     subscription = payload.get("subscription")
     if subscription == None:
         abort(401)
+    
+    if component == "horizontal-header.html":
+        response = supabase.rpc("find_subscription", {"val":subscription}).execute()
+        if response.error:
+            err = make_response()
+            err.status_code = 500
+            return err
+        
+        query = supabase.table("class_groups").select("topic").lte("access_level", ACCESS_LEVELS[subscription])
+        result = interpreter.return_data(query=query, was_be_empty=0)
+        if result.status_code() == 200:
+            print("RESULT: ",result.output_data())
+            return render_template(f"components/{component}", data=payload, course_list=result.output_data())
+        else:
+            err = make_response()
+            err.status_code = 500
+            return err
         
     return render_template(f"components/{component}", data=payload)

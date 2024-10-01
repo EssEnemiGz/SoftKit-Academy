@@ -41,6 +41,7 @@ app.config['SESSION_COOKIE_DOMAIN'] = ".softkitacademy.com"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 app.url_map.strict_slashes = False
 
+ACCESS_LEVELS = {"free":0, "basic":1, "standard":2, "premium":3}
 SUPPORTED_LANGUAGES = ['es', 'en']
 
 # Conexion a base de datos
@@ -53,10 +54,11 @@ else:
     print(f"Error de auth. {auth_key.error}")
 
 # BLUEPRINTS
-auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, login.supabase, tracker.supabase, material.db = db, db, db, db, db, db, db, db, db
+auth.supabase, exist.supabase, register.supabase, render.supabase, insert.supabase, meetings.supabase, tracker.supabase, material.db = db, db, db, db, db, db, db, db
 login.server_url, register.server_url, meetings.server_url, render.server_url, exist.server_url = server_url, server_url, server_url, server_url, server_url
 insert.server_code, register.server_code = server_code, server_code
 render.secret_key, login.secret_key = secret_key, secret_key
+render.ACCESS_LEVELS = ACCESS_LEVELS
 
 app.register_blueprint(auth.auth_bp)
 app.register_blueprint(exist.existence_bp)
@@ -213,9 +215,6 @@ def dashboard_students_class():
 @app.route("/dashboard/class/<class_courses>", methods=["GET"])
 def dashboard_students_specific_class(class_courses):
     if not len(session):
-        abort(401)
-    
-    if session.get("role") == "student":
         abort(401)
     
     r = requests.get(server_url+f"/api/render/courses?subscription={session.get('subscription')}", headers={"Content-Type":"application/json", "Accept":"application/json", "Authorization":f"Bearer {components.generate_jwt({'subscription':session.get("subscription")}, secret_key=secret_key)}"})
