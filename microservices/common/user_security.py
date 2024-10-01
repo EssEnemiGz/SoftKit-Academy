@@ -39,8 +39,7 @@ def get_device_info(remote_addr, user_agent):
         'device': str(user_agent.device),
         'os': str(user_agent.os),
         'browser': str(user_agent.browser),
-        'date':f"{date.day}/{date.month}/{date.year} - {date.hour}:{date.minute}",
-        'date_object':date
+        'date':f"{date.day}/{date.month}/{date.year} - {date.hour}:{date.minute}"
     }
     
     return device_info
