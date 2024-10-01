@@ -43,8 +43,11 @@ def login():
             err.status_code = 500
             return err
         
+    
+        user_ip = request.remote_addr
+        user_agent_string = request.headers.get('User-Agent')
         def first_func(): 
-            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"), request=request)
+            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"), remote_addr=user_ip, user_agent=user_agent_string)
             return r
         
         def executer(first_func, expected):
