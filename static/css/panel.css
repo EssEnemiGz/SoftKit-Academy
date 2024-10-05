@@ -65,8 +65,17 @@ body{
     gap: 32px;
 }
 
+.download-link{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 @media(max-width: 550px){
     .action-buttons{
         flex-direction: column;
+    }
+
+    .download-link{
+        grid-template-columns: 1fr;
     }
 }
