@@ -50,7 +50,7 @@ def login():
             
         country = "Desconocido"
         if "CF-IPCountry" in request.headers:
-            country = request.headers.get('CF-IPContry')
+            country = request.headers.get('CF-IPCountry')
             
         user_agent_string = request.headers.get('User-Agent')
         def first_func(): 
