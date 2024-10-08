@@ -46,11 +46,15 @@ def login():
     
         user_ip = "Desconocida"
         if 'CF-Connecting-IP' in request.headers:
-            user_ip = request.headers.get('CF-IPCountry')
+            user_ip = request.headers.get('CF-Connecting-IP')
+            
+        country = "Desconocido"
+        if "CF-IPCountry" in request.headers:
+            country = request.headers.get('CF-IPContry')
             
         user_agent_string = request.headers.get('User-Agent')
         def first_func(): 
-            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"), remote_addr=user_ip, user_agent=user_agent_string)
+            r = mail.logged_warning(secret_key=secret_key, email=info.get("email"), remote_addr=user_ip, user_agent=user_agent_string, country=country)
             return r
         
         def executer(first_func, expected):
