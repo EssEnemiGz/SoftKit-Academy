@@ -32,7 +32,6 @@ server_code = os.getenv('SERVER_CODE')
 
 # Configuracion de la aplicacion web
 app = Flask(__name__)
-if secret_key == None: secret_key = "ewkwer1231231kajeklew3213ropewp21oiewrop312309-490i3u2313jwlelk"
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
