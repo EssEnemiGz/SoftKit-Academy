@@ -8,10 +8,12 @@ import sys
 def infinite_retry(func, expected_status, cicle=1):
     if cicle == 1500: 
         return 500
-    if cicle != 1: sleep(60)
+    if cicle != 1: 
+        sleep(60)
+        
     result = func()
     
-    if result == None: 
+    if result is None: 
         infinite_retry(func, expected_status, cicle+1)
         
     if expected_status != result.status_code:

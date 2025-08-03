@@ -4,21 +4,21 @@ By: EssEnemiGz
 """
 
 import microservices.common.db_interpreter as db_interpreter
-from flask import *
+from flask import Blueprint, request, make_response, session, abort
 from datetime import datetime
 import json
 
-material_bp = Blueprint('material', __name__)
+material_bp = Blueprint("material", __name__)
 db = None
 
 @material_bp.route("/api/add/material", methods=["POST"])
 def add_material():
     if not len(session):
         abort(401)
-        
+
     if session.get("role") not in ["admin", "teacher"]:
         abort(401)
-        
+
     course = request.form.get("course")
     duration = request.form.get("duration")
     description = request.form.get("description")
@@ -27,10 +27,19 @@ def add_material():
     course_url = request.form.get("course_url")
     tags = request.form.get("tags")
     pricing = request.form.get("pricing")
-    
-    if None in [course, duration, description, id_language, id_teacher, course_url, pricing, tags]:
+
+    if None in [
+        course,
+        duration,
+        description,
+        id_language,
+        id_teacher,
+        course_url,
+        pricing,
+        tags,
+    ]:
         abort(400)
-        
+
     # Formateo correcto de la información
     try:
         duration = int(duration)
@@ -38,25 +47,26 @@ def add_material():
         id_teacher = int(id_teacher)
     except ValueError:
         abort(400)
-        
+
     try:
         pricing = json.loads(pricing)
-        if tags != "": tags = json.loads(tags)
+        if tags != "":
+            tags = json.loads(tags)
     except json.decoder.JSONDecodeError:
         abort(400)
-        
+
     actual_date = datetime.now()
     query = db.table("content").insert(
         {
-            "course":course, 
-            "minutes":duration,
-            "published":f"{actual_date.month}/{actual_date.day}/{actual_date.year}",
-            "description":description,
-            "id_language":id_language,
-            "id_teacher":id_teacher,
-            "url":course_url,
-            "tags":tags,
-            "pricing":pricing
+            "course": course,
+            "minutes": duration,
+            "published": f"{actual_date.month}/{actual_date.day}/{actual_date.year}",
+            "description": description,
+            "id_language": id_language,
+            "id_teacher": id_teacher,
+            "url": course_url,
+            "tags": tags,
+            "pricing": pricing,
         }
     )
     result = db_interpreter.no_return(query=query)

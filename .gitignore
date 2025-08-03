@@ -1,5 +1,5 @@
 .DS_Store
-isolated/
+venv/
 tools/
 __pycache__
 .vscode

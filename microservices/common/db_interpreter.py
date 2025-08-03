@@ -88,8 +88,10 @@ def unique_return(*, query, key: str, was_be_empty: int):
         empty_object = db_response(response=empty_response, output=output, status=0)
         return empty_object
     
-    if len(output) == 0 and was_be_empty: output = 0 # Siempre que la lista este vacia y el resultado de la query pueda estar vacio
-    else: output = output[0].get(key)
+    if len(output) == 0 and was_be_empty: 
+        output = 0 # Siempre que la lista este vacia y el resultado de la query pueda estar vacio
+    else: 
+        output = output[0].get(key)
 
     response = make_response( jsonify( "Query executed!" ) )
     response.status_code = 200

@@ -4,34 +4,41 @@ Disponible solo para administradores.
 By: EssEnemiGz
 """
 
-from flask import *
+from flask import Blueprint, request, make_response
 import microservices.common.db_interpreter as interpreter
 
 supabase, server_code = None, None
-insert_bp = Blueprint('insert_bp', __name__)
+insert_bp = Blueprint("insert_bp", __name__)
 
 @insert_bp.route("/api/insert/califications", methods=["POST"])
 def califications_insert():
     info = request.get_json()
 
-    if 'server_code' not in info:
+    if "server_code" not in info:
         err = make_response("Falta el codigo del servidor")
         err.status_code = 401
         return err
-    
-    if info.get('server_code') != server_code:
+
+    if info.get("server_code") != server_code:
         err = make_response("Codigo incorrecto")
         err.status_code = 401
         return err
-    
-    user_id = info.get('user_id')
-    califications = info.get('califications')
-    week = info.get('week')
+
+    user_id = info.get("user_id")
+    califications = info.get("califications")
+    week = info.get("week")
 
     for cont, element in enumerate(califications, 1):
-        query = supabase.table('califications').insert({'user_id':user_id, 'week':week, 'task':f'Tarea {cont}', 'point':element})
+        query = supabase.table("califications").insert(
+            {
+                "user_id": user_id,
+                "week": week,
+                "task": f"Tarea {cont}",
+                "point": element,
+            }
+        )
         interpreter.no_return(query=query)
-    
+
     response = make_response()
     response.status_code = 200
     return response
